@@ -15,10 +15,10 @@ public class UserDao {
 
 
     private Connection connection;
-
+    private Statement stmnt;
     public UserDao() throws SQLException {
-
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
+        stmnt = connection.createStatement();
     }
 
     public void shutdown() throws SQLException {
@@ -48,6 +48,20 @@ public class UserDao {
         }
     return null;
     }
-    // other methods, eg. addPerson(...) etc
+
+    public void updateType(int id, String newType) throws SQLException {
+       stmnt.executeUpdate("UPDATE users set user_type='"+newType+"' WHERE user_id="+id+";");
+    }
+    public void updateLogin(int id, String newLogin) throws SQLException {
+        stmnt.executeUpdate("UPDATE users set user_type='"+newLogin+"' WHERE user_id="+id+";");
+    }
+    public void updatePassword(int id, String newPass) throws SQLException {
+        stmnt.executeUpdate("UPDATE users set password='"+newPass+"' WHERE user_id="+id+";");
+    }
+
+
+    public void delete(Integer id) throws SQLException {
+        stmnt.execute("DELETE FROM users WHERE user_id="+id+";");
+    }
 }
 

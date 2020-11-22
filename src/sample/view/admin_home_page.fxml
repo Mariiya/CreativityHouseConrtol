@@ -34,7 +34,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="edit_users_btn" layoutX="675.0" layoutY="543.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
+      <Button fx:id="edit_users_btn" layoutX="662.0" layoutY="543.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
          <font>
             <Font size="14.0" />
          </font>
@@ -78,5 +78,10 @@
             </Button>
          </children>
       </AnchorPane>
+      <Button fx:id="done_edit_btn" disable="true" layoutX="546.0" layoutY="543.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
