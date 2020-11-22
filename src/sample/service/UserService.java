@@ -1,15 +1,29 @@
 package sample.service;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import sample.dao.UserDao;
 import sample.model.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
+    private UserDao userDao;
+    private ObservableList<User> allUsers;
 
-   public int isUser(List<User> list,String login,String password){
+    public UserService() throws SQLException {
+        userDao = new UserDao();
+        allUsers= FXCollections.observableArrayList(userDao.getUserList());
+    }
+
+    public int isUser( String login, String password){
         String user_type="";
         User user;
-       for (User value : list) {
+       for (User value : allUsers) {
            user = value;
            if (user.getLogin().equals(login)
                    && user.getPassword().equals(password)) {
@@ -26,4 +40,37 @@ public class UserService {
        };
     }
 
+    public ObservableList<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public void fillTable(TableView<User> table){
+        table.setEditable(true);
+
+        TableColumn firstIdCol = new TableColumn("ID");
+        firstIdCol.setCellValueFactory(
+                new PropertyValueFactory<>("id"));
+
+        TableColumn typeCol = new TableColumn("Type");
+        typeCol.setCellValueFactory(
+                new PropertyValueFactory<>("type"));
+
+        TableColumn loginCol = new TableColumn("Login");
+        typeCol.setCellValueFactory(
+                new PropertyValueFactory<>("login"));
+typeCol.setMinWidth(200);
+        TableColumn passwordCol = new TableColumn("Password");
+        typeCol.setCellValueFactory(
+                new PropertyValueFactory<>("password"));
+typeCol.setMinWidth(200);
+        TableColumn userIdCol = new TableColumn("userId");
+        userIdCol.setMinWidth(200);
+        typeCol.setCellValueFactory(
+                new PropertyValueFactory<>("userId"));
+
+        table.setItems(allUsers);
+        table.getColumns().addAll(firstIdCol, typeCol,loginCol,passwordCol,userIdCol);
+
+
+    }
 }

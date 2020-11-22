@@ -13,13 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.dao.UserDao;
 
+import sample.service.StageService;
 import sample.service.UserService;
 
-import java.io.IOException;
 import java.sql.SQLException;
-
-
-
 
 public class AuthorizationController {
 
@@ -34,10 +31,12 @@ public class AuthorizationController {
 
     private UserDao userDao;
     private UserService service;
+private StageService stageService;
 
     public AuthorizationController() throws SQLException {
         userDao = new UserDao();
         service = new UserService();
+        stageService=new StageService();
     }
 
 
@@ -48,19 +47,18 @@ public class AuthorizationController {
             @Override
             public void handle(ActionEvent event) {
                 Stage stage = (Stage) continue_btn.getScene().getWindow();
-                switch (service.isUser(userDao.getUserList(),
-                        password_input_field.getText(), login_input_field.getText())) {
+                switch (service.isUser(password_input_field.getText(), login_input_field.getText())) {
                     case 0:
                         stage.close();
-                      loadStage("/sample/view/admin_home_page.fxml");
+                        stageService.loadStage("/sample/view/admin_home_page.fxml");
                         break;
                     case 1:
                         stage.close();
-                        loadStage("/sample/view/teacher_home_page.fxml");
+                        stageService.loadStage("/sample/view/teacher_home_page.fxml");
                         break;
                     case 2:
                         stage.close();
-                        loadStage("/sample/view/member_home_page.fxml");
+                        stageService.loadStage("/sample/view/member_home_page.fxml");
                         break;
                     default:
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -74,19 +72,6 @@ public class AuthorizationController {
         });
     }
 
-    public void loadStage(String viewPath) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation((getClass().getResource(viewPath)));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
 
     @FXML
     public void stop() throws Exception {
