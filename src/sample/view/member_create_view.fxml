@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="532.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AdminManagPageController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="482.0" style="-fx-background-color: #FFC107;">
+         <children>
+            <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="365.0" text="New Member" textFill="#ffecb3">
+               <font>
+                  <Font name="Cambria" size="39.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="68.0" fitWidth="71.0" layoutX="40.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../sources/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+    <AnchorPane layoutX="-3.0" layoutY="76.0" minHeight="0.0" minWidth="0.0" prefHeight="456.0" prefWidth="485.0">
+         <children>
+            <Label layoutX="36.0" layoutY="239.0" prefHeight="24.0" prefWidth="190.0" text="Birth date">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="242.0" layoutY="60.0" prefHeight="33.0" prefWidth="214.0" promptText="Last name" />
+            <DatePicker layoutX="198.0" layoutY="235.0" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #FFA000;" />
+            <TextField layoutX="36.0" layoutY="60.0" prefHeight="33.0" prefWidth="190.0" promptText="First name" />
+            <TextField layoutX="31.0" layoutY="182.0" prefHeight="33.0" prefWidth="423.0" promptText="Email" />
+            <TextField layoutX="35.0" layoutY="279.0" prefHeight="33.0" prefWidth="413.0" promptText="Birth sertificate number" />
+            <DatePicker layoutX="198.0" layoutY="326.0" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #FFA000;" />
+            <Label layoutX="36.0" layoutY="330.0" prefHeight="24.0" prefWidth="190.0" text="Medical setificate">
+               <font>
+                  <Font name="Cambria" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="35.0" layoutY="122.0" prefHeight="33.0" prefWidth="251.0" promptText="Parent name" />
+            <TextField layoutX="295.0" layoutY="122.0" prefHeight="33.0" prefWidth="153.0" promptText="Phone" />
+            <Label layoutX="194.0" layoutY="21.0" prefHeight="24.0" prefWidth="97.0" text="Enter data">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="178.0" layoutY="395.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

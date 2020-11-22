@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AuthorizationController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="904.0" style="-fx-background-color: #FFC107;">
+         <children>
+            <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="394.0" text="Groups Managment" textFill="#ffecb3">
+               <font>
+                  <Font name="Cambria" size="39.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="42.0" layoutY="12.0">
+               <image>
+                  <Image url="@sources/icons8-user-groups-100.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="32.0" layoutY="378.0" prefHeight="274.0" prefWidth="394.0" style="-fx-border-color: #7C4DFF; -fx-border-radius: 20; -fx-border-width: 2;">
+         <children>
+            <TextField layoutX="64.0" layoutY="80.0" prefHeight="40.0" prefWidth="266.0" promptText="age-min">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="64.0" layoutY="190.0" prefHeight="40.0" prefWidth="266.0" promptText="max number of members">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <ComboBox layoutX="64.0" layoutY="24.0" prefHeight="40.0" prefWidth="266.0" promptText="Section" style="-fx-background-color: #FFA000;" />
+            <TextField layoutX="64.0" layoutY="137.0" prefHeight="40.0" prefWidth="266.0" promptText="age-max">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <TableView layoutY="75.0" prefHeight="238.0" prefWidth="904.0" style="-fx-border-width: 3;" stylesheets="@sources/table_style.css">
+        <columns>
+          <TableColumn prefWidth="139.0" text="Section" />
+            <TableColumn prefWidth="78.0" text="Age" />
+            <TableColumn prefWidth="74.0" text="Type" />
+            <TableColumn prefWidth="118.0" text="Free places" />
+            <TableColumn prefWidth="101.0" text="Members" />
+        </columns>
+      </TableView>
+      <Button layoutX="374.0" layoutY="298.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="129.0" layoutY="338.0" text="New Group">
+         <font>
+            <Font name="Cambria Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="601.0" layoutY="338.0" text="Week Lessons">
+         <font>
+            <Font name="Cambria Bold" size="20.0" />
+         </font>
+      </Label>
+      <Pane layoutX="461.0" layoutY="378.0" prefHeight="274.0" prefWidth="410.0" style="-fx-border-color: #7C4DFF; -fx-border-radius: 20; -fx-border-width: 2;">
+         <children>
+            <CheckBox layoutX="24.0" layoutY="19.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="189.0" text="MONDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="24.0" layoutY="49.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="189.0" text="TUESDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="24.0" layoutY="82.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="189.0" text="WEDNESDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="24.0" layoutY="117.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="189.0" text="THURSDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="24.0" layoutY="174.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="189.0" text="SATURDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="24.0" layoutY="204.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="189.0" text="SUNDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="24.0" layoutY="144.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="189.0" text="FRIDAY">
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </CheckBox>
+            <TextField layoutX="163.0" layoutY="21.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField layoutX="163.0" layoutY="51.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField layoutX="163.0" layoutY="84.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField layoutX="163.0" layoutY="116.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField layoutX="163.0" layoutY="146.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField layoutX="163.0" layoutY="176.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField layoutX="163.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <Button layoutX="127.0" layoutY="250.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Set" textFill="#ffecb3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <TextField layoutX="283.0" layoutY="22.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField layoutX="283.0" layoutY="52.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField layoutX="283.0" layoutY="85.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField layoutX="283.0" layoutY="117.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField layoutX="283.0" layoutY="147.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField layoutX="283.0" layoutY="177.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField layoutX="283.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+         </children>
+      </Pane>
+      <Button layoutX="151.0" layoutY="628.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Create" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

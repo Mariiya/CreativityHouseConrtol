@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MemberHomePageController">
+   <children>
+      <Pane prefHeight="76.0" prefWidth="901.0" style="-fx-background-color: #FFC107;">
+         <children>
+            <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="394.0" text="Member Home Page" textFill="#ffecb3">
+               <font>
+                  <Font name="Cambria" size="39.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="68.0" fitWidth="71.0" layoutX="40.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../sources/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+    <AnchorPane layoutX="8.0" layoutY="75.0" minHeight="0.0" minWidth="0.0" prefHeight="623.0" prefWidth="893.0">
+         <children>
+            <Pane layoutX="23.0" layoutY="14.0" prefHeight="177.0" prefWidth="187.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="24.0" layoutY="122.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Time Table" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="98.0" fitWidth="107.0" layoutX="40.0" layoutY="7.0">
+                     <image>
+                        <Image url="@sources/icons8-event-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="23.0" layoutY="209.0" prefHeight="177.0" prefWidth="187.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="24.0" layoutY="130.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="New Request" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="45.0" layoutY="14.0">
+                     <image>
+                        <Image url="@sources/icons8-message-preview-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="23.0" layoutY="401.0" prefHeight="186.0" prefWidth="187.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="24.0" layoutY="132.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Log out" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="107.0" fitWidth="107.0" layoutX="40.0" layoutY="6.0">
+                     <image>
+                        <Image url="@sources/shutdown-shut-close-power-off-switchoff-4-14608.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="247.0" layoutY="61.0" prefHeight="274.0" prefWidth="616.0" style="-fx-border-color: #7C4DFF;">
+               <children>
+                  <Label layoutX="33.0" layoutY="31.0" text="First name:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="688.0" layoutY="31.0" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Cambria Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="71.0" text="Last name:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="33.0" layoutY="117.0" text="Birth data:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="161.0" text="My parent:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="210.0" text="Phone number:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Cambria Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TableView layoutX="247.0" layoutY="409.0" prefHeight="177.0" prefWidth="616.0">
+              <columns>
+                <TableColumn prefWidth="303.0" text="Section" />
+                <TableColumn prefWidth="93.0" text="Age" />
+                  <TableColumn minWidth="0.0" prefWidth="219.0" text="Since" />
+              </columns>
+            </TableView>
+            <Label layoutX="678.0" layoutY="21.0" text="Hey! It`s me!" textAlignment="RIGHT">
+               <font>
+                  <Font name="Cambria Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="448.0" layoutY="359.0" text="I`m attend lessons of:" textAlignment="RIGHT">
+               <font>
+                  <Font name="Cambria Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

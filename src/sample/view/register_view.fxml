@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AuthorizationController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="904.0" style="-fx-background-color: #FFC107;">
+         <children>
+            <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="394.0" text="Register" textFill="#ffecb3">
+               <font>
+                  <Font name="Cambria" size="39.0" />
+               </font>
+            </Label>
+            <ImageView layoutX="37.0" layoutY="6.0">
+               <image>
+                  <Image url="@sources/icons8-edit-property-64.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button layoutX="715.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="OK" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <ChoiceBox layoutX="43.0" layoutY="139.0" prefHeight="25.0" prefWidth="318.0" style="-fx-background-color: #FFA000;" />
+      <DatePicker layoutX="439.0" layoutY="140.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: #FFA000;" />
+      <Label layoutX="43.0" layoutY="96.0" prefHeight="24.0" prefWidth="64.0" text="Group">
+         <font>
+            <Font name="Cambria Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="445.0" layoutY="102.0" prefHeight="24.0" prefWidth="64.0" text="Date">
+         <font>
+            <Font name="Cambria Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView layoutX="43.0" layoutY="198.0" prefHeight="416.0" prefWidth="830.0" stylesheets="@sources/time_table_style.css">
+        <columns>
+          <TableColumn prefWidth="93.0" text="№" />
+          <TableColumn prefWidth="653.0" text="Member name" />
+            <TableColumn minWidth="0.0" prefWidth="84.0" text="presence" />
+        </columns>
+      </TableView>
+      <Button layoutX="698.0" layoutY="633.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="46.0" layoutY="633.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="View  previous" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

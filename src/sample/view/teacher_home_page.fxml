@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TeacherHomePageController">
+   <children>
+      <Pane prefHeight="76.0" prefWidth="901.0" style="-fx-background-color: #FFC107;">
+         <children>
+            <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="394.0" text="Teacher Home Page" textFill="#ffecb3">
+               <font>
+                  <Font name="Cambria" size="39.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="68.0" fitWidth="71.0" layoutX="40.0" layoutY="6.0">
+               <image>
+                  <Image url="@../../../sources/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+    <AnchorPane layoutX="8.0" layoutY="75.0" minHeight="0.0" minWidth="0.0" prefHeight="623.0" prefWidth="893.0">
+         <children>
+            <Pane layoutX="62.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <ImageView fitHeight="88.0" fitWidth="93.0" layoutX="43.0" layoutY="29.0">
+                     <image>
+                        <Image url="@sources/icons8-user-groups-100.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Manage Groups" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="351.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Lesson Register" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="114.0" fitWidth="111.0" layoutX="45.0" layoutY="23.0">
+                     <image>
+                        <Image url="@sources/icons8-edit-property-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="629.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Time Table" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="114.0" fitWidth="111.0" layoutX="40.0" layoutY="14.0">
+                     <image>
+                        <Image url="@sources/icons8-flip-chart-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="62.0" layoutY="322.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Requests" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="127.0" fitWidth="124.0" layoutX="34.0" layoutY="20.0">
+                     <image>
+                        <Image url="@sources/icons8-message-preview-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="351.0" layoutY="322.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="New Event" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="120.0" fitWidth="124.0" layoutX="38.0" layoutY="14.0">
+                     <image>
+                        <Image url="@sources/icons8-event-100.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="629.0" layoutY="322.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
+               <children>
+                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Log out" textFill="#ffecb3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="145.0" fitWidth="155.0" layoutX="18.0">
+                     <image>
+                        <Image url="@sources/shutdown-shut-close-power-off-switchoff-4-14608.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
