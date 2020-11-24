@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TeacherHomePageController implements Initializable,ControlledScreen{
+public class GroupsController implements Initializable,ControlledScreen {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

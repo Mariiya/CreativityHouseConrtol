@@ -12,9 +12,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AuthorizationController">
+<AnchorPane prefHeight="702.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TimeTableController">
    <children>
-      <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="1103.0" style="-fx-background-color: #FFECB3;">
+      <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="900.0" style="-fx-background-color: #FFECB3;">
          <children>
             <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="394.0" text="Time Table" textFill="#212121">
                <font>
@@ -28,58 +28,16 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView layoutY="75.0" prefHeight="627.0" prefWidth="1103.0" stylesheets="@sources/time_table_style.css">
+      <TableView layoutY="75.0" prefHeight="627.0" prefWidth="900.0" stylesheets="@sources/time_table_style.css">
         <columns>
-            <TableColumn prefWidth="164.0" text="Group" />
-          <TableColumn maxWidth="199.0" prefWidth="77.0" text="MON">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
-            <TableColumn maxWidth="199.0" prefWidth="115.0" text="TUE">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
-            <TableColumn maxWidth="199.0" prefWidth="115.0" text="WED">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
-            <TableColumn maxWidth="199.0" prefWidth="115.0" text="THU">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
-            <TableColumn maxWidth="199.0" prefWidth="115.0" text="FRI">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
-            <TableColumn maxWidth="199.0" prefWidth="115.0" text="SAT">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
-            <TableColumn maxWidth="199.0" prefWidth="115.0" text="SUN">
-               <columns>
-                  <TableColumn prefWidth="35.0" text="T" />
-                  <TableColumn prefWidth="25.0" text="R" />
-                  <TableColumn prefWidth="75.0" text="Teacher" />
-               </columns>
-            </TableColumn>
+            <TableColumn prefWidth="130.0" text="Group" />
+          <TableColumn maxWidth="110.0" prefWidth="110.0" text="MON" />
+            <TableColumn maxWidth="110.0" prefWidth="110.0" text="TUE" />
+            <TableColumn maxWidth="110.0" prefWidth="110.0" text="WED" />
+            <TableColumn maxWidth="110.0" minWidth="0.0" prefWidth="110.0" text="THU" />
+            <TableColumn maxWidth="110.0" prefWidth="110.0" text="FRI" />
+            <TableColumn maxWidth="110.0" minWidth="0.0" prefWidth="110.0" text="SAT" />
+            <TableColumn maxWidth="110.0" prefWidth="110.0" text="SUN" />
         </columns>
       </TableView>
    </children>

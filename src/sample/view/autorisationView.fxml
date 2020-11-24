@@ -9,27 +9,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AuthorizationController">
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AuthorizationController">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="900.0">
-         <image>
-            <Image url="@sources/aut.png" />
-         </image>
-      </ImageView>
-      <PasswordField id="password_input" fx:id="password_input_field" layoutX="305.0" layoutY="372.0" prefHeight="45.0" prefWidth="292.0" promptText="password">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </PasswordField>
-      <TextField id="login_input" fx:id="login_input_field" layoutX="305.0" layoutY="305.0" prefHeight="45.0" prefWidth="292.0" promptText="login">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <Button id="continue_btn" fx:id="continue_btn" layoutX="385.0" layoutY="445.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: #FFC107;" text="Continue" textFill="#162f5b">
-         <font>
-            <Font name="Cambria" size="17.0" />
-         </font>
-      </Button>
+      <AnchorPane prefHeight="700.0" prefWidth="900.0">
+         <children>
+            <ImageView fitHeight="700.0" fitWidth="900.0">
+               <image>
+                  <Image url="@sources/aut.png" />
+               </image>
+            </ImageView>
+            <PasswordField id="password_input" fx:id="password_input_field" layoutX="305.0" layoutY="372.0" prefHeight="45.0" prefWidth="292.0" promptText="password">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </PasswordField>
+            <TextField id="login_input" fx:id="login_input_field" layoutX="305.0" layoutY="305.0" prefHeight="45.0" prefWidth="292.0" promptText="login">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Button id="continue_btn" fx:id="continue_btn" layoutX="385.0" layoutY="445.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: #FFC107;" text="Continue" textFill="#162f5b">
+               <font>
+                  <Font name="Cambria" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

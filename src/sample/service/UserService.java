@@ -44,32 +44,6 @@ public class UserService {
         return allUsers;
     }
 
-    public void fillTable(TableView<User> table) {
-
-        TableColumn firstIdCol = new TableColumn("ID");
-        firstIdCol.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
-
-        TableColumn typeCol = new TableColumn("Type");
-        typeCol.setCellValueFactory(
-                new PropertyValueFactory<>("type"));
-
-        TableColumn loginCol = new TableColumn("Login");
-        typeCol.setCellValueFactory(
-                new PropertyValueFactory<>("login"));
-        typeCol.setMinWidth(200);
-        TableColumn passwordCol = new TableColumn("Password");
-        typeCol.setCellValueFactory(
-                new PropertyValueFactory<>("password"));
-        typeCol.setMinWidth(200);
-        TableColumn userIdCol = new TableColumn("userId");
-        userIdCol.setMinWidth(200);
-        typeCol.setCellValueFactory(
-                new PropertyValueFactory<>("userId"));
-
-        table.setItems(allUsers);
-        table.getColumns().addAll(firstIdCol, typeCol, loginCol, passwordCol, userIdCol);
-    }
 
     public void updateType(int id, String newType) {
         try {

@@ -3,9 +3,8 @@ package sample.controllers;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -13,12 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.dao.UserDao;
 
-import sample.service.StageService;
 import sample.service.UserService;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class AuthorizationController {
+public class AuthorizationController implements Initializable,ControlledScreen {
 
     @FXML
     private PasswordField password_input_field;
@@ -31,34 +31,36 @@ public class AuthorizationController {
 
     private UserDao userDao;
     private UserService service;
-private StageService stageService;
+   ScreenController screenController;
+
 
     public AuthorizationController() throws SQLException {
         userDao = new UserDao();
         service = new UserService();
-        stageService=new StageService();
+    }
+
+    public  void setScreenParent(ScreenController screen){
+        screenController=screen;
     }
 
 
-    @FXML
-    void initialize() throws SQLException {
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
         continue_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Stage stage = (Stage) continue_btn.getScene().getWindow();
                 switch (service.isUser(password_input_field.getText(), login_input_field.getText())) {
                     case 0:
-                        stage.close();
-                        stageService.loadStage("/sample/view/admin_home_page.fxml");
+                        screenController.setScreen(ScreensFramework.screenAHomeID);
                         break;
                     case 1:
-                        stage.close();
-                        stageService.loadStage("/sample/view/teacher_home_page.fxml");
+                        screenController.setScreen(ScreensFramework.screenTHome);
                         break;
                     case 2:
-                        stage.close();
-                        stageService.loadStage("/sample/view/member_home_page.fxml");
+                        screenController.setScreen(ScreensFramework.screenMHome);
                         break;
                     default:
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -66,12 +68,10 @@ private StageService stageService;
                         alert.setHeaderText(null);
                         alert.setContentText("No user found!");
                         alert.showAndWait();
-
                 }
             }
         });
     }
-
 
     @FXML
     public void stop() throws Exception {
@@ -79,4 +79,8 @@ private StageService stageService;
             userDao.shutdown();
         }
     }
+
+
+
+
 }

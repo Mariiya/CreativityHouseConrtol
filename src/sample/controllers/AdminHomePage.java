@@ -3,6 +3,7 @@ package sample.controllers;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,63 +11,51 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import sample.model.User;
-import sample.service.StageService;
 import sample.service.UserService;
+
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+
 import javafx.scene.control.TableColumn.CellEditEvent;
 
 
-
-public class AdminHomePage {
-
-    @FXML
-    private Button manage_btn;
+public class AdminHomePage implements Initializable,ControlledScreen {
 
     @FXML
-    private Button delete_users_btn;
-
+    private Button manage_btn, delete_users_btn;
     @FXML
     private TableView<User> users_table;
-
     @FXML
-    private Button log_out_btn;
-
-    @FXML
-    private Button edit_users_btn;
-
-    @FXML
-    private Button users_history_btn;
-    @FXML
-    private Button done_edit_btn;
+    private Button log_out_btn, edit_users_btn, users_history_btn, done_edit_btn;
 
     private UserService service;
-    private StageService stageService;
     private Stage stage;
-    private Object EventHandler;
+    private ScreenController screenController;
 
     public AdminHomePage() throws SQLException {
         service = new UserService();
-        stageService = new StageService();
         users_table = new TableView<User>();
     }
 
+    @Override
+    public void setScreenParent(ScreenController screenPage) {
+        this.screenController=screenPage;
+    }
 
-    
-    @FXML
-    void initialize() throws SQLException {
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
         TableColumn idCol = new TableColumn("ID");
         idCol.setMinWidth(107);
         idCol.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
 
-
         TableColumn typeCol = new TableColumn("Type");
         typeCol.setMinWidth(107);
         typeCol.setCellValueFactory(
                 new PropertyValueFactory<>("type"));
-       typeCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
+        typeCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
         typeCol.setOnEditCommit(
                 new EventHandler<CellEditEvent<User, String>>() {
                     @Override
@@ -74,9 +63,9 @@ public class AdminHomePage {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setType(t.getNewValue());
-                        int id=t.getTableView().getItems().get(
+                        int id = t.getTableView().getItems().get(
                                 t.getTablePosition().getRow()).getId();
-                          service.updateType(id,t.getNewValue());
+                        service.updateType(id, t.getNewValue());
                     }
                 }
         );
@@ -86,16 +75,16 @@ public class AdminHomePage {
         loginCol.setCellValueFactory(
                 new PropertyValueFactory<>("login"));
         loginCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
-       loginCol.setOnEditCommit(
+        loginCol.setOnEditCommit(
                 new EventHandler<CellEditEvent<User, String>>() {
                     @Override
                     public void handle(CellEditEvent<User, String> t) {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setLogin(t.getNewValue());
-                        int id=t.getTableView().getItems().get(
+                        int id = t.getTableView().getItems().get(
                                 t.getTablePosition().getRow()).getId();
-                        service.updateLogin(id,t.getNewValue());
+                        service.updateLogin(id, t.getNewValue());
                     }
                 }
         );
@@ -113,13 +102,12 @@ public class AdminHomePage {
                         ((User) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setPassword(t.getNewValue());
-                        int id=t.getTableView().getItems().get(
+                        int id = t.getTableView().getItems().get(
                                 t.getTablePosition().getRow()).getId();
-                        service.updatePassword(id,t.getNewValue());
+                        service.updatePassword(id, t.getNewValue());
                     }
                 }
         );
-
 
 
         TableColumn userIdCol = new TableColumn("userId");
@@ -133,24 +121,19 @@ public class AdminHomePage {
 
         log_out_btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                stage = (Stage) log_out_btn.getScene().getWindow();
-                stageService.loadStage("/sample/view/autorisationView.fxml");
-                stage.close();
+                screenController.setScreen(ScreensFramework.screenMainID);
             }
         });
 
         manage_btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                stage = (Stage) manage_btn.getScene().getWindow();
-                stage.close();
-                stageService.loadStage("/sample/view/admin_manage_page.fxml");
+                screenController.setScreen(ScreensFramework.screenAManage);
             }
         });
 
         users_history_btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                // stage.close();
-                // stageService.loadStage("/sample/view/admin_manage_view.fxml");
+
             }
         });
 
@@ -163,9 +146,9 @@ public class AdminHomePage {
 
         delete_users_btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                int index= users_table.getSelectionModel().getSelectedIndex();
-            User user=users_table.getItems().get(index);
-            service.deleteUser(user.getId());
+                int index = users_table.getSelectionModel().getSelectedIndex();
+                User user = users_table.getItems().get(index);
+                service.deleteUser(user.getId());
                 users_table.getItems().remove(index);
 
             }
@@ -178,6 +161,7 @@ public class AdminHomePage {
             }
         });
     }
+
 
 
 }

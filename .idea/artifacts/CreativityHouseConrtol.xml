@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="CreativityHouseConrtol">
+    <output-path>$PROJECT_DIR$/out/artifacts/CreativityHouseConrtol</output-path>
+    <root id="root">
+      <element id="archive" name="CreativityHouseConrtol.jar">
+        <element id="module-output" name="CreativityHouseConrtol" />
+      </element>
+    </root>
+  </artifact>
+</component>
