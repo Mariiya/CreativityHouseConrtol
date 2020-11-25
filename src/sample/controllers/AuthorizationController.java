@@ -32,7 +32,7 @@ public class AuthorizationController implements Initializable,ControlledScreen {
     private UserDao userDao;
     private UserService service;
    ScreenController screenController;
-
+ public static int activeUser;
 
     public AuthorizationController() throws SQLException {
         userDao = new UserDao();
@@ -55,12 +55,15 @@ public class AuthorizationController implements Initializable,ControlledScreen {
                 switch (service.isUser(password_input_field.getText(), login_input_field.getText())) {
                     case 0:
                         screenController.setScreen(ScreensFramework.screenAHomeID);
+                        activeUser=0;
                         break;
                     case 1:
                         screenController.setScreen(ScreensFramework.screenTHome);
+                        activeUser=1;
                         break;
                     case 2:
                         screenController.setScreen(ScreensFramework.screenMHome);
+                        activeUser=2;
                         break;
                     default:
                         Alert alert = new Alert(Alert.AlertType.ERROR);

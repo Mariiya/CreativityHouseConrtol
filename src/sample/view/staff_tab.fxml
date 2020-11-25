@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controllers.TabControllers.StaffTabController"
+            prefHeight="400.0" prefWidth="600.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <children>
+            <TableView layoutX="14.0" layoutY="88.0" prefHeight="459.0" prefWidth="689.0" stylesheets="@sources/table_style.css">
+                <columns>
+                    <TableColumn prefWidth="39.0" text="№" />
+                    <TableColumn text="Name" />
+                    <TableColumn prefWidth="103.0" text="Surname" />
+                    <TableColumn prefWidth="102.0" text="Phone" />
+                    <TableColumn prefWidth="117.0" text="Position" />
+                    <TableColumn prefWidth="195.0" text="Specialization" />
+                    <TableColumn prefWidth="53.0" text="M_H" />
+                </columns>
+            </TableView>
+            <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+                <font>
+                    <Font name="Cambria" size="14.0" />
+                </font>
+            </Button>
+            <Button layoutX="275.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
+                <font>
+                    <Font name="Cambria" size="14.0" />
+                </font>
+            </Button>
+            <Button layoutX="528.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
+                <font>
+                    <Font name="Cambria" size="14.0" />
+                </font>
+            </Button>
+        </children>
+    </AnchorPane>
+
+</AnchorPane>

@@ -12,8 +12,8 @@ import javafx.scene.control.cell.*;
 import javafx.scene.image.ImageView;
 import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import sample.controllers.TabControllers.SectionsTabController;
 import sample.model.TimeTable;
-import sample.model.User;
 import sample.service.LessonService;
 
 import java.net.URL;
@@ -31,10 +31,14 @@ public class AdminManagePageController implements Initializable, ControlledScree
     private TableColumn<TimeTable, Integer> lessons_room_col, lessons_dur_col;
     @FXML
     private ImageView back_img,logo_img;
+    @FXML
+    private Tab section_tab;
 
     @FXML
     private TableView<TimeTable> lessons_table;
+
     private ScreenController screenController;
+    private SectionsTabController sectionsTabController;
     private LessonService service;
     private ObservableList<String> day;
     private ObservableList<Integer> room;
@@ -77,10 +81,12 @@ public class AdminManagePageController implements Initializable, ControlledScree
         lessons_room_col.setCellFactory(ComboBoxTableCell.forTableColumn(room));
 
         lessons_table.setItems(service.getTimeTable());
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         fillTable();
         groups_btn.setOnAction(e -> screenController.setScreen(ScreensFramework.screenGroups));
         register_btn.setOnAction(e -> screenController.setScreen(ScreensFramework.screenRegister));
@@ -93,6 +99,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
                 TimeTable tt = lessons_table.getItems().get(index);
                 service.delete(tt.getGroupId(), tt.getDay_of_week());
                 lessons_table.getItems().remove(index);
+
             }
         });
         lessons_done_btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -100,6 +107,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
             public void handle(ActionEvent event) {
                 lessons_table.setEditable(false);
                 lessons_done_btn.setDisable(true);
+
             }
         });
         lessons_edit_btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -107,6 +115,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
             public void handle(ActionEvent event) {
                 lessons_table.setEditable(true);
                 lessons_done_btn.setDisable(false);
+
             }
         });
 
@@ -120,6 +129,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
                         int id = t.getTableView().getItems().get(
                                 t.getTablePosition().getRow()).getGroupId();
                         service.updateWeek(id, t.getNewValue(), t.getOldValue());
+
 
                     }
                 }
@@ -166,14 +176,8 @@ public class AdminManagePageController implements Initializable, ControlledScree
                     }
                 }
         );
-       // TODO: сделать кряшку и струлку назад
-       /* int i=0;
-        double value = logo_img.getRotate();
-    while(time_table_btn.){
-     logo_img.setRotate(value + 30);
-     i++;
- }*/
-       // back_img.setOnMouseClicked(e-> screenController.setScreen(ScreensFramework.screenAHomeID));
+
+    back_img.setOnMouseReleased(e-> screenController.setScreen(ScreensFramework.screenAHomeID));
     }
 
     @Override

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controllers.TabControllers.PaymentTabController"
+            prefHeight="400.0" prefWidth="600.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <children>
+                <Pane layoutX="21.0" layoutY="14.0" prefHeight="234.0" prefWidth="697.0" style="-fx-border-color: #7C4DFF;">
+                    <children>
+                        <Label layoutX="265.0" layoutY="14.0" prefHeight="30.0" prefWidth="168.0" text="New Payment">
+                            <font>
+                                <Font name="Cambria Bold" size="24.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <TableView layoutX="21.0" layoutY="307.0" prefHeight="241.0" prefWidth="686.0" stylesheets="@sources/table_style.css">
+                    <columns>
+                        <TableColumn prefWidth="63.0" text="P_id" />
+                        <TableColumn prefWidth="216.0" text="member" />
+                        <TableColumn prefWidth="87.0" text="amount" />
+                        <TableColumn prefWidth="133.0" text="P_C" />
+                        <TableColumn prefWidth="68.0" text="date" />
+                        <TableColumn prefWidth="119.0" text="section" />
+                    </columns>
+                </TableView>
+                <DatePicker layoutX="91.0" layoutY="263.0" />
+                <DatePicker layoutX="348.0" layoutY="263.0" />
+                <Label layoutX="21.0" layoutY="263.0" prefHeight="24.0" prefWidth="56.0" text="From">
+                    <font>
+                        <Font name="Cambria" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="297.0" layoutY="263.0" prefHeight="17.0" prefWidth="41.0" text="To">
+                    <font>
+                        <Font name="Cambria" size="20.0" />
+                    </font>
+                </Label>
+                <Button layoutX="563.0" layoutY="259.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Apply" textFill="#ffecb3">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <TextField layoutX="32.0" layoutY="70.0" prefHeight="33.0" prefWidth="201.0" promptText="member name" />
+                <TextField layoutX="488.0" layoutY="70.0" prefHeight="33.0" prefWidth="215.0" promptText="amount" />
+                <DatePicker layoutX="29.0" layoutY="128.0" prefHeight="33.0" prefWidth="203.0" style="-fx-background-color: #FFA000;" />
+                <CheckBox layoutX="259.0" layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="198.0" style="-fx-border-color: #FFA000;" text="Preferential Catecory" />
+                <ComboBox layoutX="489.0" layoutY="128.0" prefHeight="33.0" prefWidth="213.0" promptText="section" style="-fx-background-color: #FFA000;" />
+                <TextField layoutX="253.0" layoutY="70.0" prefHeight="33.0" prefWidth="201.0" promptText="phone" />
+                <Button layoutX="279.0" layoutY="192.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+    </AnchorPane>
+</AnchorPane>

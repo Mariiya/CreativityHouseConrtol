@@ -96,233 +96,29 @@
                               </AnchorPane>
                            </content>
                         </Tab>
-                        <Tab closable="false" styleClass="background" text="Sections">
+                        <Tab fx:id="section_tab" closable="false" styleClass="background" text="Sections" >
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView blendMode="MULTIPLY" layoutX="22.0" layoutY="270.0" prefHeight="248.0" prefWidth="687.0" stylesheets="@sources/table_style.css">
-                                       <columns>
-                                          <TableColumn prefWidth="50.0" text="№" />
-                                          <TableColumn prefWidth="235.0" text="Name" />
-                                          <TableColumn minWidth="0.0" prefWidth="222.0" text="Course" />
-                                          <TableColumn prefWidth="179.0" styleClass="background" text="Price for month" />
-                                       </columns>
-                                    </TableView>
-                                    <Pane layoutX="21.0" layoutY="68.0" prefHeight="191.0" prefWidth="684.0" style="-fx-border-color: #7C4DFF;">
-                                       <children>
-                                          <TextField layoutX="14.0" layoutY="64.0" prefHeight="25.0" prefWidth="292.0" promptText="number of week lessons">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <TextField layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="289.0" promptText="name">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <TextField layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="293.0" promptText="price">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <TextArea layoutX="358.0" layoutY="65.0" prefHeight="68.0" prefWidth="292.0" promptText="description">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextArea>
-                                          <Button layoutX="253.0" layoutY="147.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Button>
-                                          <ComboBox layoutX="356.0" layoutY="28.0" prefHeight="25.0" prefWidth="294.0" promptText="Type" style="-fx-background-color: #FFA000;" />
-                                       </children>
-                                    </Pane>
-                                    <Button layoutX="563.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="148.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="392.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Label layoutX="296.0" layoutY="24.0" prefHeight="31.0" prefWidth="148.0" text="New Section">
-                                       <font>
-                                          <Font name="Cambria Bold" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
+                              <fx:include fx:id = "sectionTabPage" source = "tab_sections.fxml" />
                            </content>
                         </Tab>
                         <Tab closable="false" text="Members">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView layoutX="16.0" layoutY="82.0" prefHeight="468.0" prefWidth="690.0" stylesheets="@sources/table_style.css">
-                                       <columns>
-                                          <TableColumn prefWidth="42.0" text="№" />
-                                          <TableColumn prefWidth="104.0" text="Name" />
-                                          <TableColumn prefWidth="110.0" text="Surname" />
-                                          <TableColumn prefWidth="115.0" text="Birth date" />
-                                          <TableColumn prefWidth="200.0" text="Parent name" />
-                                          <TableColumn prefWidth="115.0" text="Phone " />
-                                       </columns>
-                                    </TableView>
-                                    <Button layoutX="16.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="174.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                                       <font>
-                                          <Font name="Cambria" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="274.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-                                       <font>
-                                          <Font name="Cambria" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="531.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
-                                       <font>
-                                          <Font name="Cambria" size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
+                              <fx:include fx:id = "memberTab" source = "member_tab.fxml" />
                            </content>
                         </Tab>
                         <Tab closable="false" text="Staff">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView layoutX="14.0" layoutY="88.0" prefHeight="459.0" prefWidth="689.0" stylesheets="@sources/table_style.css">
-                                       <columns>
-                                          <TableColumn prefWidth="39.0" text="№" />
-                                          <TableColumn text="Name" />
-                                          <TableColumn prefWidth="103.0" text="Surname" />
-                                          <TableColumn prefWidth="102.0" text="Phone" />
-                                          <TableColumn prefWidth="117.0" text="Position" />
-                                          <TableColumn prefWidth="195.0" text="Specialization" />
-                                          <TableColumn prefWidth="53.0" text="M_H" />
-                                       </columns>
-                                    </TableView>
-                                    <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                                       <font>
-                                          <Font name="Cambria" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="275.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-                                       <font>
-                                          <Font name="Cambria" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="528.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
-                                       <font>
-                                          <Font name="Cambria" size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
+                              <fx:include fx:id = "staffTab" source = "staff_tab.fxml" />
                            </content>
                         </Tab>
                         <Tab closable="false" text="Events">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TableView layoutX="25.0" layoutY="82.0" prefHeight="208.0" prefWidth="675.0" stylesheets="@sources/table_style.css">
-                                       <columns>
-                                          <TableColumn prefWidth="47.0" text="№" />
-                                          <TableColumn prefWidth="187.0" text="name" />
-                                          <TableColumn prefWidth="260.0" text="address" />
-                                          <TableColumn prefWidth="99.0" text="date" />
-                                          <TableColumn prefWidth="82.0" text="time" />
-                                       </columns>
-                                    </TableView>
-                                    <Label layoutX="260.0" layoutY="22.0" prefHeight="50.0" prefWidth="227.0" stylesheets="@sources/table_style.css" text="Upcoming Events" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Cambria Bold" size="22.0" />
-                                       </font>
-                                    </Label>
-                                    <Button layoutX="561.0" layoutY="304.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="397.0" layoutY="304.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="293.0" layoutY="506.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <TextField layoutX="25.0" layoutY="412.0" prefHeight="25.0" prefWidth="306.0" promptText="name" />
-                                    <TextField layoutX="370.0" layoutY="412.0" prefHeight="25.0" prefWidth="332.0" promptText="address" />
-                                    <TextField layoutX="371.0" layoutY="468.0" prefHeight="25.0" prefWidth="330.0" promptText="time" />
-                                    <Label layoutX="286.0" layoutY="349.0" prefHeight="50.0" prefWidth="130.0" stylesheets="@sources/table_style.css" text="Create new" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Cambria Bold" size="22.0" />
-                                       </font>
-                                    </Label>
-                                    <DatePicker layoutX="25.0" layoutY="468.0" prefHeight="25.0" prefWidth="304.0" style="-fx-background-color: #FFA000;" />
-                                 </children>
-                              </AnchorPane>
+                              <fx:include fx:id = "eventsTab" source = "events_tab.fxml" />
                            </content>
                         </Tab>
                         <Tab closable="false" text="Payments">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <Pane layoutX="21.0" layoutY="14.0" prefHeight="234.0" prefWidth="697.0" style="-fx-border-color: #7C4DFF;">
-                                       <children>
-                                          <Label layoutX="265.0" layoutY="14.0" prefHeight="30.0" prefWidth="168.0" text="New Payment">
-                                             <font>
-                                                <Font name="Cambria Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </Pane>
-                                    <TableView layoutX="21.0" layoutY="307.0" prefHeight="241.0" prefWidth="686.0" stylesheets="@sources/table_style.css">
-                                       <columns>
-                                          <TableColumn prefWidth="63.0" text="P_id" />
-                                          <TableColumn prefWidth="216.0" text="member" />
-                                          <TableColumn prefWidth="87.0" text="amount" />
-                                          <TableColumn prefWidth="133.0" text="P_C" />
-                                          <TableColumn prefWidth="68.0" text="date" />
-                                          <TableColumn prefWidth="119.0" text="section" />
-                                       </columns>
-                                    </TableView>
-                                    <DatePicker layoutX="91.0" layoutY="263.0" />
-                                    <DatePicker layoutX="348.0" layoutY="263.0" />
-                                    <Label layoutX="21.0" layoutY="263.0" prefHeight="24.0" prefWidth="56.0" text="From">
-                                       <font>
-                                          <Font name="Cambria" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="297.0" layoutY="263.0" prefHeight="17.0" prefWidth="41.0" text="To">
-                                       <font>
-                                          <Font name="Cambria" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Button layoutX="563.0" layoutY="259.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Apply" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <TextField layoutX="32.0" layoutY="70.0" prefHeight="33.0" prefWidth="201.0" promptText="member name" />
-                                    <TextField layoutX="488.0" layoutY="70.0" prefHeight="33.0" prefWidth="215.0" promptText="amount" />
-                                    <DatePicker layoutX="29.0" layoutY="128.0" prefHeight="33.0" prefWidth="203.0" style="-fx-background-color: #FFA000;" />
-                                    <CheckBox layoutX="259.0" layoutY="128.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="198.0" style="-fx-border-color: #FFA000;" text="Preferential Catecory" />
-                                    <ComboBox layoutX="489.0" layoutY="128.0" prefHeight="33.0" prefWidth="213.0" promptText="section" style="-fx-background-color: #FFA000;" />
-                                    <TextField layoutX="253.0" layoutY="70.0" prefHeight="33.0" prefWidth="201.0" promptText="phone" />
-                                    <Button layoutX="279.0" layoutY="192.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
+                              <fx:include fx:id = "paymentsTab" source = "payment_tab.fxml" />
                            </content>
                         </Tab>
                      </tabs>
@@ -343,8 +139,7 @@
                   <Image url="@sources/logo.png" />
                </image>
             </ImageView>
-            <AmbientLight color="CHARTREUSE" layoutX="28.0" layoutY="38.0" lightOn="true" />
-            <ImageView fx:id="back_img" fitHeight="68.0" fitWidth="71.0" layoutX="27.0" layoutY="3.0">
+            <ImageView fx:id="back_img" fitHeight="68.0" fitWidth="71.0" layoutX="27.0" layoutY="4.0">
                <image>
                   <Image url="@sources/icons8-back-arrow-100.png" />
                </image>
