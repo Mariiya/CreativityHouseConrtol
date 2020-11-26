@@ -9,16 +9,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import sample.dao.UserDao;
-
+import sample.model.User;
 import sample.service.UserService;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AuthorizationController implements Initializable,ControlledScreen {
+public class AuthorizationController implements Initializable, ControlledScreen {
 
     @FXML
     private PasswordField password_input_field;
@@ -31,19 +30,32 @@ public class AuthorizationController implements Initializable,ControlledScreen {
 
     private UserDao userDao;
     private UserService service;
-   ScreenController screenController;
- public static int activeUser;
-
+    ScreenController screenController;
+    public static User activeUser;
+    public static int activeUserType=5;
     public AuthorizationController() throws SQLException {
         userDao = new UserDao();
         service = new UserService();
     }
 
-    public  void setScreenParent(ScreenController screen){
-        screenController=screen;
+    public void setScreenParent(ScreenController screen) {
+        screenController = screen;
     }
 
 
+    public static User getActiveUser() {
+        return activeUser;
+    }
+
+    public static int getActiveUserType() {
+        return switch (activeUser.getType()) {
+            case "admin" -> 0;
+            case "staff" -> 1;
+            case "members" -> 2;
+            default -> 5;
+        };
+
+    }
 
 
     @Override
@@ -52,18 +64,19 @@ public class AuthorizationController implements Initializable,ControlledScreen {
         continue_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                switch (service.isUser(password_input_field.getText(), login_input_field.getText())) {
+                activeUser=service.isUser(login_input_field.getText(),password_input_field.getText());
+                switch (getActiveUserType()) {
                     case 0:
                         screenController.setScreen(ScreensFramework.screenAHomeID);
-                        activeUser=0;
+                        activeUserType=0;
                         break;
                     case 1:
                         screenController.setScreen(ScreensFramework.screenTHome);
-                        activeUser=1;
+                        activeUserType=1;
                         break;
                     case 2:
                         screenController.setScreen(ScreensFramework.screenMHome);
-                        activeUser=2;
+                        activeUserType=2;
                         break;
                     default:
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -82,8 +95,6 @@ public class AuthorizationController implements Initializable,ControlledScreen {
             userDao.shutdown();
         }
     }
-
-
 
 
 }

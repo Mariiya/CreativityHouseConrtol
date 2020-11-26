@@ -56,12 +56,11 @@
       </Pane>
       <TableView fx:id="groups_table" layoutY="75.0" prefHeight="238.0" prefWidth="904.0" style="-fx-border-width: 3;" stylesheets="@sources/table_style.css">
         <columns>
-          <TableColumn fx:id="section_name_col" prefWidth="215.0" text="Section" />
-            <TableColumn fx:id="age_min_col" prefWidth="91.0" text="Age Min" />
-            <TableColumn fx:id="age_max_col" prefWidth="95.0" text="Age Max" />
-            <TableColumn fx:id="type_col" prefWidth="185.0" text="Type" />
-            <TableColumn fx:id="free_places_col" prefWidth="131.0" text="Free places" />
-            <TableColumn fx:id="teacher_col" prefWidth="186.0" text="Teacher" />
+          <TableColumn fx:id="section_name_col" prefWidth="338.0" text="Section" />
+            <TableColumn fx:id="age_min_col" prefWidth="113.0" text="Age Min" />
+            <TableColumn fx:id="age_max_col" prefWidth="93.0" text="Age Max" />
+            <TableColumn fx:id="free_places_col" prefWidth="126.0" text="Free places" />
+            <TableColumn fx:id="teacher_col" prefWidth="230.0" text="Teacher" />
         </columns>
       </TableView>
       <Button fx:id="delete_group_btn" layoutX="734.0" layoutY="313.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
@@ -123,13 +122,13 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="monday_time_input" layoutX="283.0" layoutY="22.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
-            <TextField fx:id="tue_time_input" layoutX="283.0" layoutY="52.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
-            <TextField fx:id="wed_time_input" layoutX="283.0" layoutY="85.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
-            <TextField fx:id="thu_time_input" layoutX="283.0" layoutY="117.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
-            <TextField fx:id="fri_time_input" layoutX="283.0" layoutY="147.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
-            <TextField fx:id="sat_time_input" layoutX="283.0" layoutY="177.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
-            <TextField fx:id="sun_time_input" layoutX="283.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="monday_dur_input" layoutX="283.0" layoutY="22.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="tue_dur_input" layoutX="283.0" layoutY="52.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="wed_dur_input" layoutX="283.0" layoutY="85.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="thu_dur_input" layoutX="283.0" layoutY="117.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="fri_dur_input" layoutX="283.0" layoutY="147.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="sat_dur_input" layoutX="283.0" layoutY="177.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
+            <TextField fx:id="sun_dur_input" layoutX="283.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="duration" />
             <Label layoutX="148.0" layoutY="-12.0" style="-fx-background-color: #ffff;" text="Week Lessons">
                <font>
                   <Font name="Cambria Bold" size="20.0" />

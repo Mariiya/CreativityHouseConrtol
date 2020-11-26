@@ -6,11 +6,7 @@ import javafx.collections.ObservableList;
 import sample.dao.LessonDao;
 import sample.model.Lesson;
 import sample.model.TimeTable;
-
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LessonService {
@@ -72,6 +68,15 @@ public class LessonService {
             throwables.printStackTrace();
         }
     }
+
+    public void create (int lessonDay,int groupId,String time,int duration) {
+        try {
+            lessonDao.create(lessonDay,groupId,time,duration);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public List<Integer> getRoomsList() {
        return lessonDao.getRoomsList();
     }

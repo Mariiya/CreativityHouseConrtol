@@ -20,7 +20,9 @@ public class SectionsService {
             sectionsDao = new SectionsDao();
             allSections = FXCollections.observableArrayList(sectionsDao.getSectionList());
         }
-
+    public List<String> getAllTypes(){
+           return sectionsDao.getAllTypes();
+    }
     public void updateName(int id, String newName)  {
         try {
             sectionsDao.updateName(id,newName);

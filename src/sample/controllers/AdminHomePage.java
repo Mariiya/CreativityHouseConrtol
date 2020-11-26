@@ -47,12 +47,12 @@ public class AdminHomePage implements Initializable,ControlledScreen {
     public void initialize(URL location, ResourceBundle resources) {
 
         TableColumn idCol = new TableColumn("ID");
-        idCol.setMinWidth(107);
+        idCol.setMinWidth(100);
         idCol.setCellValueFactory(
                 new PropertyValueFactory<>("id"));
 
         TableColumn typeCol = new TableColumn("Type");
-        typeCol.setMinWidth(107);
+        typeCol.setMinWidth(120);
         typeCol.setCellValueFactory(
                 new PropertyValueFactory<>("type"));
         typeCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
@@ -71,7 +71,7 @@ public class AdminHomePage implements Initializable,ControlledScreen {
         );
 
         TableColumn loginCol = new TableColumn("Login");
-        loginCol.setMinWidth(107);
+        loginCol.setMinWidth(200);
         loginCol.setCellValueFactory(
                 new PropertyValueFactory<>("login"));
         loginCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
@@ -91,7 +91,7 @@ public class AdminHomePage implements Initializable,ControlledScreen {
 
 
         TableColumn passwordCol = new TableColumn("Password");
-        passwordCol.setMinWidth(107);
+        passwordCol.setMinWidth(120);
         passwordCol.setCellValueFactory(
                 new PropertyValueFactory<>("password"));
         passwordCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
@@ -111,7 +111,7 @@ public class AdminHomePage implements Initializable,ControlledScreen {
 
 
         TableColumn userIdCol = new TableColumn("userId");
-        userIdCol.setMinWidth(107);
+        userIdCol.setMinWidth(115);
         userIdCol.setCellValueFactory(
                 new PropertyValueFactory<>("userId"));
 

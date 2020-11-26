@@ -1,50 +1,54 @@
 package sample.controllers.TabControllers;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import sample.controllers.ScreenController;
 import sample.model.Section;
 
 import sample.service.SectionsService;
+
 import java.sql.SQLException;
 
 
 public class SectionsTabController {
     @FXML
-    private Button section_add_btn,section_done_btn,section_delete_btn,section_edit_btn;
-
+    private Button section_add_btn, section_done_btn, section_delete_btn, section_edit_btn;
+    @FXML
+    private ComboBox<String> section_type_input;
     @FXML
     private TextArea section_decription_input;
-
     @FXML
     private TableView<Section> section_table;
-
     @FXML
-    private TextField section_name_input,section_type_input,section_price_input,section_num_of_lessons_input;
-
+    private TextField section_name_input, section_price_input, section_num_of_lessons_input;
     @FXML
-    private TableColumn<Section, String> section_type_col,sections_descr_col,section_name_col;
-
+    private TableColumn<Section, String> section_type_col, sections_descr_col, section_name_col;
     @FXML
-    private TableColumn<Section, Integer> section_row_num_col,section_l_nym_col;
+    private TableColumn<Section, Integer> section_row_num_col, section_l_nym_col;
     @FXML
     private TableColumn<Section, Float> section_price_col;
 
     private ScreenController screenController;
     private SectionsService service;
-
+    private ObservableList<String> type;
 
     public SectionsTabController() throws SQLException {
+        screenController=new ScreenController();
         service = new SectionsService();
         section_table = new TableView<Section>();
         section_table.setEditable(false);
+        type = FXCollections.observableArrayList();
+        type.addAll(service.getAllTypes());
     }
 
 
@@ -53,17 +57,17 @@ public class SectionsTabController {
                 new PropertyValueFactory<>("type"));
         section_l_nym_col.setCellValueFactory(
                 new PropertyValueFactory<>("lessonsNum"));
-        section_l_nym_col.setCellFactory(TextFieldTableCell.<Section,Integer>forTableColumn(new IntegerStringConverter()));
+        section_l_nym_col.setCellFactory(TextFieldTableCell.<Section, Integer>forTableColumn(new IntegerStringConverter()));
         section_name_col.setCellValueFactory(
                 new PropertyValueFactory<>("name"));
 
-       section_price_col.setCellValueFactory(
+        section_price_col.setCellValueFactory(
                 new PropertyValueFactory<>("price"));
         section_row_num_col.setCellValueFactory(
                 new PropertyValueFactory<>("sectionId"));
 
-       section_type_col.setCellFactory(TextFieldTableCell.<Section>forTableColumn());
-        section_price_col.setCellFactory(TextFieldTableCell.<Section,Float>forTableColumn(new FloatStringConverter()));
+        section_type_col.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), type));
+        section_price_col.setCellFactory(TextFieldTableCell.<Section, Float>forTableColumn(new FloatStringConverter()));
         sections_descr_col.setCellValueFactory(
                 new PropertyValueFactory<>("description"));
         sections_descr_col.setCellFactory(TextFieldTableCell.<Section>forTableColumn());
@@ -74,14 +78,15 @@ public class SectionsTabController {
 
     @FXML
     public void initialize() {
+        section_type_input.setItems(type);
         fillTable();
 
-       section_delete_btn.setOnAction(new EventHandler<ActionEvent>() {
+        section_delete_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 int index = section_table.getSelectionModel().getSelectedIndex();
                 Section section = section_table.getItems().get(index);
-               service.delete(section.getSectionIdId());
+                service.delete(section.getSectionIdId());
                 section_table.getItems().remove(index);
 
             }
@@ -94,16 +99,16 @@ public class SectionsTabController {
 
             }
         });
-       section_edit_btn.setOnAction(new EventHandler<ActionEvent>() {
+        section_edit_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               section_table.setEditable(true);
+                section_table.setEditable(true);
                 section_done_btn.setDisable(false);
 
             }
         });
 
-      section_name_col.setOnEditCommit(
+        section_name_col.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Section, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Section, String> t) {
@@ -116,7 +121,6 @@ public class SectionsTabController {
                     }
                 }
         );
-
 
         sections_descr_col.setOnEditCommit(
                 new EventHandler<TableColumn.CellEditEvent<Section, String>>() {
@@ -147,7 +151,7 @@ public class SectionsTabController {
         );
 
         section_l_nym_col.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<Section,Integer>>() {
+                new EventHandler<TableColumn.CellEditEvent<Section, Integer>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Section, Integer> t) {
                         ((Section) t.getTableView().getItems().get(
@@ -160,28 +164,46 @@ public class SectionsTabController {
                 }
         );
 
+        section_type_col.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Section, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Section, String> t) {
+                        ((Section) t.getTableView().getItems().get(
+                                t.getTablePosition().getRow())
+                        ).setType(t.getNewValue());
+                        int id = t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).getSectionIdId();
+                        service.updateType(id, t.getNewValue());
+                    }
+                }
+        );
+
+
         section_add_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
-                if(section_name_input.getText().trim().isEmpty()
-                || section_type_input.getText().isEmpty()
-                        ||section_price_input.getText().trim().isEmpty()
-                        ||section_num_of_lessons_input.getText().trim().isEmpty()
-                        || section_decription_input.getText().trim().isEmpty()){
-                    screenController.alert(Alert.AlertType.WARNING,"Can not creat Section","Enter all fields");
+                if (section_name_input.getText().trim().isEmpty()
+                        || section_type_input.getValue().isEmpty()
+                        || section_price_input.getText().trim().isEmpty()
+                        || section_num_of_lessons_input.getText().trim().isEmpty()
+                        || section_decription_input.getText().trim().isEmpty()) {
+                    screenController.alert(Alert.AlertType.WARNING, "Can not creat Section", "Enter all fields");
+                } else {
+                    String name = section_name_input.getText().trim();
+                    String type = section_type_input.getValue();
+                    float price = Float.parseFloat(section_price_input.getText().trim());
+                    int less_num = Integer.parseInt(section_price_input.getText().trim());
+                    String descrition = section_decription_input.getText().trim();
+                    service.create(name, type, less_num, price, descrition);
+                    screenController.alert(Alert.AlertType.INFORMATION, "Section", "New Section created!");
                 }
-                else {
-                String name=section_name_input.getText().trim();
-                String type=section_type_input.getText().trim();
-                float price=Float.parseFloat(section_price_input.getText().trim());
-                int less_num=Integer.parseInt(section_price_input.getText().trim());
-                String descrition=section_decription_input.getText().trim();
-                    service.create(name,type,less_num,price,descrition);
-                }
+                section_decription_input.clear();
+                section_name_input.clear();
+                section_num_of_lessons_input.clear();
+                section_price_input.clear();
             }
         });
-
 
 
     }

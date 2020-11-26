@@ -1,78 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TabControllers.SectionsTabController">
-    <children>
-        <TableView fx:id="section_table" blendMode="MULTIPLY" layoutX="22.0" layoutY="270.0" prefHeight="248.0" prefWidth="687.0" stylesheets="@sources/table_style.css">
-            <columns>
-                <TableColumn fx:id="section_row_num_col" prefWidth="50.0" text="№" />
-                <TableColumn fx:id="section_name_col" prefWidth="227.0" text="Name" />
-                <TableColumn fx:id="section_type_col" minWidth="0.0" prefWidth="106.0" text="Type" />
-            <TableColumn fx:id="section_l_nym_col" prefWidth="84.0" text="L_NUM" />
-                <TableColumn fx:id="section_price_col" prefWidth="64.0" styleClass="background" text="Price" />
-                <TableColumn fx:id="sections_descr_col" prefWidth="156.0" text="Descr" />
-            </columns>
-        </TableView>
-        <Pane layoutX="21.0" layoutY="68.0" prefHeight="191.0" prefWidth="684.0" style="-fx-border-color: #7C4DFF;">
-            <children>
-                <TextField fx:id="section_num_of_lessons_input" layoutX="14.0" layoutY="64.0" prefHeight="25.0" prefWidth="292.0" promptText="number of week lessons">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="section_name_input" layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="289.0" promptText="name">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <TextField fx:id="section_price_input" layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="293.0" promptText="price">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <TextArea fx:id="section_decription_input" layoutX="358.0" layoutY="65.0" prefHeight="68.0" prefWidth="292.0" promptText="description">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextArea>
-                <Button fx:id="section_add_btn" layoutX="253.0" layoutY="147.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-                <TextField fx:id="section_type_input" layoutX="360.0" layoutY="25.0" prefHeight="25.0" prefWidth="289.0" promptText="type">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-            </children>
-        </Pane>
-        <Button fx:id="section_delete_btn" layoutX="563.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="148.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TabControllers.SectionsTabController">
+    <TableView fx:id="section_table" blendMode="MULTIPLY" layoutX="22.0" layoutY="270.0" prefHeight="248.0"
+               prefWidth="687.0" stylesheets="@sources/table_style.css">
+        <columns>
+            <TableColumn fx:id="section_row_num_col" prefWidth="50.0" text="№"/>
+            <TableColumn fx:id="section_name_col" prefWidth="227.0" text="Name"/>
+            <TableColumn fx:id="section_type_col" minWidth="0.0" prefWidth="106.0" text="Type"/>
+            <TableColumn fx:id="section_l_nym_col" prefWidth="84.0" text="L_NUM"/>
+            <TableColumn fx:id="section_price_col" prefWidth="64.0" styleClass="background" text="Price"/>
+            <TableColumn fx:id="sections_descr_col" prefWidth="156.0" text="Descr"/>
+        </columns>
+    </TableView>
+    <Pane layoutX="21.0" layoutY="68.0" prefHeight="191.0" prefWidth="684.0" style="-fx-border-color: #7C4DFF;">
+        <TextField fx:id="section_num_of_lessons_input" layoutX="14.0" layoutY="64.0" prefHeight="25.0"
+                   prefWidth="292.0" promptText="number of week lessons">
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="section_name_input" layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="289.0"
+                   promptText="name">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="section_price_input" layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="293.0"
+                   promptText="price">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextField>
+        <TextArea fx:id="section_decription_input" layoutX="358.0" layoutY="65.0" prefHeight="68.0" prefWidth="292.0"
+                  promptText="description">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </TextArea>
+        <Button fx:id="section_add_btn" layoutX="253.0" layoutY="147.0" mnemonicParsing="false" prefHeight="30.0"
+                prefWidth="178.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+            <font>
+                <Font size="14.0"/>
             </font>
         </Button>
-        <Button fx:id="section_edit_btn" layoutX="392.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <Label layoutX="296.0" layoutY="24.0" prefHeight="31.0" prefWidth="148.0" text="New Section">
-            <font>
-                <Font name="Cambria Bold" size="25.0" />
-            </font>
-        </Label>
-        <Button fx:id="section_done_btn" disable="true" layoutX="226.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-    </children>
+        <ComboBox fx:id="section_type_input" layoutX="356.0" layoutY="28.0" prefHeight="25.0" prefWidth="292.0"
+                  style="-fx-background-color: #FFA000;"/>
+    </Pane>
+    <Button fx:id="section_delete_btn" layoutX="563.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0"
+            prefWidth="148.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Button fx:id="section_edit_btn" layoutX="392.0" layoutY="522.0" mnemonicParsing="false" prefHeight="33.0"
+            prefWidth="152.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
+    <Label layoutX="296.0" layoutY="24.0" prefHeight="31.0" prefWidth="148.0" text="New Section">
+        <font>
+            <Font name="Cambria Bold" size="25.0"/>
+        </font>
+    </Label>
+    <Button fx:id="section_done_btn" disable="true" layoutX="226.0" layoutY="522.0" mnemonicParsing="false"
+            prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Button>
 </AnchorPane>

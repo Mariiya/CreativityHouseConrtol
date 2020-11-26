@@ -20,24 +20,14 @@ public class UserService {
         allUsers = FXCollections.observableArrayList(userDao.getUserList());
     }
 
-    public int isUser(String login, String password) {
-        String user_type = "";
-        User user;
-        for (User value : allUsers) {
-            user = value;
-            if (user.getLogin().equals(login)
-                    && user.getPassword().equals(password)) {
-                user_type = user.getType();
-                System.out.println(user_type);
-                break;
+    public User isUser(String login, String password) {
+        for (int i=0; i< allUsers.size(); i++) {
+            if (allUsers.get(i).getLogin().equals(login)
+                    && allUsers.get(i).getPassword().equals(password)) {
+                return allUsers.get(i);
             }
         }
-        return switch (user_type) {
-            case "admin" -> 0;
-            case "staff" -> 1;
-            case "members" -> 2;
-            default -> 5;
-        };
+        return null;
     }
 
     public ObservableList<User> getAllUsers() {
@@ -62,7 +52,7 @@ public class UserService {
     }
     public void updatePassword(int id, String newPass)  {
         try {
-            userDao. updateLogin(id,newPass);
+            userDao. updatePassword(id,newPass);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

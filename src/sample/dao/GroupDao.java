@@ -1,11 +1,10 @@
 package sample.dao;
 
 import sample.model.Group;
-import sample.model.Section;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.List;;
 
 public class GroupDao {
     private Connection connection;
@@ -25,7 +24,7 @@ public class GroupDao {
     public List<Group> getGroupsList() {
         try (
                 Statement stmnt = connection.createStatement();
-                ResultSet rs = stmnt.executeQuery("SELECT s.section_name,g.group_id,g.age_min,g.age_max,g.manager_id,g.section_id,s.section_id,g.max_members_num,\n" +
+                ResultSet rs = stmnt.executeQuery("SELECT (case when s.type LIKE '%групповые%' then 'Group' else 'Individual'end) as type,s.section_name,g.group_id,g.age_min,g.age_max,g.manager_id,g.section_id,s.section_id,g.max_members_num,\n" +
                         "       CONCAT(e.first_name,' ', e.last_name) as employee_name\n" +
                         "FROM Groups g LEFT JOIN\n" +
                         "    Sections s\n" +
@@ -41,10 +40,11 @@ public class GroupDao {
                 int sectionId = rs.getInt("section_id");
                 String section_name = rs.getString("section_name");
                 String manager_name = rs.getString("employee_name");
+                String type = rs.getString("type");
                 int max_memb = rs.getInt("max_members_num");
                 int age_min = rs.getInt("age_min");
                 int age_max = rs.getInt("age_max");
-                Group group = new Group(groupId,age_min,age_max,max_memb,managerId,sectionId,manager_name,section_name);
+                Group group = new Group(groupId,age_min,age_max,max_memb,managerId,sectionId,manager_name,section_name+"("+type+")");
                 sectionsList.add(group);
             }
             return sectionsList;
@@ -53,6 +53,25 @@ public class GroupDao {
         }
         return null;
     }
+
+    public HashMap<String,Integer> getAllSections(){
+        try (
+                ResultSet rs = stmnt.executeQuery("SELECT DISTINCT section_id,section_name from sections");
+        ){
+            HashMap<String,Integer> sections_names=new HashMap<>();
+            while(rs.next()){
+                int id  = rs.getInt("section_id");
+                String type = rs.getString("section_name");
+                sections_names.put(type,id);
+            }
+            return sections_names;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+
 
     public void updateMaxAge(int id, int newAge) throws SQLException {
         stmnt.executeUpdate("UPDATE groups set max_age=" +newAge + " WHERE group_id=" + id + ";");
@@ -67,8 +86,18 @@ public class GroupDao {
     public void delete(Integer id) throws SQLException {
         stmnt.execute("DELETE FROM groups WHERE group_id=" + id + ";");
     }
-    public void create(int age_min,int age_max,int max_memb,int manager_id,int section_id) throws SQLException {
-        stmnt.execute("INSERT INTO groups VALUES (NULL,"+age_min+","+age_max+","+max_memb+","+manager_id+","+section_id+");");
+    public boolean create(int age_min,int age_max,int max_memb,int manager_id,int section_id) throws SQLException {
+        System.out.println(manager_id);
+      return  stmnt.execute("INSERT INTO groups VALUES (NULL,"+age_min+","+age_max+","+max_memb+","+manager_id+","+section_id+");");
+    }
+
+    public int getLastAddedgroup() throws SQLException {
+        ResultSet rs = stmnt.executeQuery("SELECT max(group_id) as max from `groups`;");
+           int lastId=0;
+            while (rs.next()) {
+               lastId= rs.getInt("max");
+            }
+            return lastId;
     }
 }
 

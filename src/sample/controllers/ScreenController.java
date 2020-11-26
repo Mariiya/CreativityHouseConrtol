@@ -10,13 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Screen;
 import javafx.util.Duration;
-
 import java.io.IOException;
-import java.security.Key;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {

@@ -47,6 +47,11 @@ public class LessonDao {
         return null;
     }
 
+    public void create (int lessonDay,int groupId,String time,int duration) throws SQLException {
+        stmnt.execute("INSERT INTO Lessons VALUES(" +lessonDay + ","+groupId+",'"+time+"',"+duration+",NULL);");
+    }
+
+
     public List<Integer> getRoomsList() {
         List<Integer> roomList = new ArrayList<>();
         try {

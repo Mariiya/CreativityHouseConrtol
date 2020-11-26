@@ -21,7 +21,21 @@ public class SectionsDao {
             connection.close();
         }
     }
-
+public List<String> getAllTypes(){
+    try (
+        ResultSet rs = stmnt.executeQuery("SELECT DISTINCT (case when type LIKE '%групповые%' then 'Group' else 'Individual'end) as type from sections");
+    ){
+        List<String>types=new ArrayList<>();
+        while(rs.next()){
+            String type = rs.getString("type");
+            types.add(type);
+        }
+        return types;
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+return null;
+}
     public List<Section> getSectionList() {
         try (
                 Statement stmnt = connection.createStatement();
@@ -54,7 +68,7 @@ public class SectionsDao {
     }
 
     public void updateType(int id, String newType) throws SQLException {
-        stmnt.executeUpdate("UPDATE sections set type='" + newType + "' WHERE section_id=" + id + ";");
+        stmnt.executeUpdate("UPDATE sections set type='" + switchType(newType) + "' WHERE section_id=" + id + ";");
     }
 
     public void updatePrice(int id, float price) throws SQLException {
@@ -67,7 +81,19 @@ public class SectionsDao {
         stmnt.execute("DELETE FROM sections WHERE section_id=" + id + ";");
     }
     public void create(String name,String type, int less_num,float price,String description) throws SQLException {
-        stmnt.execute("INSERT INTO Sections VALUES (NULL,'"+name+"','"+type+"',"+less_num+","+price+",'"+description+"');");
+
+        stmnt.execute("INSERT INTO Sections VALUES (NULL,'"+name+"','"+switchType(type)+"',"+less_num+","+price+",'"+description+"');");
+    }
+    String switchType(String type){
+        String typeUpdated;
+        switch (type){
+            case "Individual":typeUpdated="индивидуальные занятия";
+                break;
+            case "Group": typeUpdated="групповые занятия";
+                break;
+            default:typeUpdated="индивидуальные занятия";
+        }
+        return typeUpdated;
     }
 }
 
