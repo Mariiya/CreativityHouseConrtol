@@ -8,7 +8,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import sample.dao.UserDao;
 import sample.model.User;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -20,6 +22,7 @@ public class UserService {
         allUsers = FXCollections.observableArrayList(userDao.getUserList());
     }
 
+
     public User isUser(String login, String password) {
         for (int i=0; i< allUsers.size(); i++) {
             if (allUsers.get(i).getLogin().equals(login)
@@ -30,6 +33,14 @@ public class UserService {
         return null;
     }
 
+    public boolean create(String login, String passw, String userType, int user_num)  {
+        try {
+            return userDao.create(login, passw, userType, user_num);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public ObservableList<User> getAllUsers() {
         return allUsers;
     }

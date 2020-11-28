@@ -1,5 +1,7 @@
 package sample.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,9 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.converter.DefaultStringConverter;
 import sample.model.User;
 import sample.service.UserService;
 
@@ -30,12 +34,14 @@ public class AdminHomePage implements Initializable,ControlledScreen {
     private Button log_out_btn, edit_users_btn, users_history_btn, done_edit_btn;
 
     private UserService service;
-    private Stage stage;
     private ScreenController screenController;
+    private ObservableList<String> userType;
 
     public AdminHomePage() throws SQLException {
         service = new UserService();
         users_table = new TableView<User>();
+        userType = FXCollections.observableArrayList();
+        userType.addAll("admin","member","staff");
     }
 
     @Override
@@ -55,7 +61,7 @@ public class AdminHomePage implements Initializable,ControlledScreen {
         typeCol.setMinWidth(120);
         typeCol.setCellValueFactory(
                 new PropertyValueFactory<>("type"));
-        typeCol.setCellFactory(TextFieldTableCell.<User>forTableColumn());
+        typeCol.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(), userType));
         typeCol.setOnEditCommit(
                 new EventHandler<CellEditEvent<User, String>>() {
                     @Override

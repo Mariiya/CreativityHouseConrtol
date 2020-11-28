@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.media.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="532.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AdminManagePageController">
+<AnchorPane prefHeight="532.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MemberCreateController">
    <children>
       <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="482.0" style="-fx-background-color: #FFC107;">
          <children>
@@ -30,34 +24,51 @@
       </Pane>
     <AnchorPane layoutX="-3.0" layoutY="76.0" minHeight="0.0" minWidth="0.0" prefHeight="456.0" prefWidth="485.0">
          <children>
-            <Label layoutX="36.0" layoutY="239.0" prefHeight="24.0" prefWidth="190.0" text="Birth date">
+            <Label layoutX="36.0" layoutY="239.0" prefHeight="24.0" prefWidth="91.0" text="Birth date">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="242.0" layoutY="60.0" prefHeight="33.0" prefWidth="214.0" promptText="Last name" />
-            <DatePicker layoutX="198.0" layoutY="235.0" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #FFA000;" />
-            <TextField layoutX="36.0" layoutY="60.0" prefHeight="33.0" prefWidth="190.0" promptText="First name" />
-            <TextField layoutX="31.0" layoutY="182.0" prefHeight="33.0" prefWidth="423.0" promptText="Email" />
-            <TextField layoutX="35.0" layoutY="279.0" prefHeight="33.0" prefWidth="413.0" promptText="Birth sertificate number" />
-            <DatePicker layoutX="198.0" layoutY="326.0" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #FFA000;" />
+            <TextField fx:id="las_name_input" layoutX="242.0" layoutY="60.0" prefHeight="33.0" prefWidth="214.0" promptText="Last name" />
+            <TextField fx:id="first_name_input" layoutX="36.0" layoutY="60.0" prefHeight="33.0" prefWidth="190.0" promptText="First name" />
+            <TextField fx:id="email_input" layoutX="31.0" layoutY="182.0" prefHeight="33.0" prefWidth="423.0" promptText="Email" />
+            <TextField fx:id="birth_certificate_input" layoutX="35.0" layoutY="279.0" prefHeight="33.0" prefWidth="423.0" promptText="Birth sertificate number" />
+            <DatePicker fx:id="medical_certificate_date" layoutX="207.0" layoutY="326.0" prefHeight="33.0" prefWidth="251.0" style="-fx-background-color: #FFA000;" />
             <Label layoutX="36.0" layoutY="330.0" prefHeight="24.0" prefWidth="190.0" text="Medical setificate">
                <font>
                   <Font name="Cambria" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="35.0" layoutY="122.0" prefHeight="33.0" prefWidth="251.0" promptText="Parent name" />
-            <TextField layoutX="295.0" layoutY="122.0" prefHeight="33.0" prefWidth="153.0" promptText="Phone" />
+            <TextField fx:id="parent_name_input" layoutX="35.0" layoutY="122.0" prefHeight="33.0" prefWidth="251.0" promptText="Parent name" />
+            <TextField fx:id="phone_input" layoutX="303.0" layoutY="122.0" prefHeight="33.0" prefWidth="153.0" promptText="Phone" />
             <Label layoutX="194.0" layoutY="21.0" prefHeight="24.0" prefWidth="97.0" text="Enter data">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="178.0" layoutY="395.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+            <Button fx:id="add_member_btn" layoutX="178.0" layoutY="395.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
+            <Label layoutX="141.0" layoutY="239.0" prefHeight="24.0" prefWidth="39.0" text="day">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="236.0" layoutY="240.0" prefHeight="24.0" prefWidth="50.0" text="month">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="348.0" layoutY="239.0" prefHeight="24.0" prefWidth="32.0" text="year">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="mm_input" layoutX="280.0" layoutY="240.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #FFC107;" />
+            <ComboBox fx:id="dd_input" layoutX="172.0" layoutY="240.0" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #FFC107;" />
+            <ComboBox fx:id="yyyy_input" layoutX="383.0" layoutY="240.0" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #FFC107;" />
          </children>
       </AnchorPane>
    </children>

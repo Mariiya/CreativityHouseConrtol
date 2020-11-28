@@ -46,7 +46,7 @@ public class GroupsController implements Initializable, ControlledScreen {
     ScreenController controlledScreen;
     GroupService service;
     boolean allowCreateLessons = false;
-    private ObservableList<String> sectionName;
+
     HashMap<String, Integer> sections = new HashMap<String, Integer>();
     ObservableList<String> targetList;
 
@@ -94,10 +94,10 @@ public class GroupsController implements Initializable, ControlledScreen {
             if (!p.matcher(newValue).matches()) age_max_input.setText(oldValue);
         });
         age_min_input.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!p.matcher(newValue).matches()) age_max_input.setText(oldValue);
+            if (!p.matcher(newValue).matches()) age_min_input.setText(oldValue);
         });
         max_num_members_input.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!p.matcher(newValue).matches()) age_max_input.setText(oldValue);
+            if (!p.matcher(newValue).matches())  max_num_members_input.setText(oldValue);
         });
 
         back_img.setOnMouseReleased(new EventHandler<MouseEvent>() {

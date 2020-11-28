@@ -72,6 +72,9 @@ public class User {
     public final void setUserId(int userId) {
         userIdProperty().set(userId);
     }
+     public User(){
+        
+     }
     public User(int id, String login, String password, String type, int userId) {
         setLogin(login);
         setPassword(password);

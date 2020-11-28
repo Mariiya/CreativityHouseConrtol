@@ -48,6 +48,7 @@ public class AuthorizationController implements Initializable, ControlledScreen 
     }
 
     public static int getActiveUserType() {
+        if(activeUser==null) return 5;
         return switch (activeUser.getType()) {
             case "admin" -> 0;
             case "staff" -> 1;
