@@ -31,7 +31,7 @@ public class AuthorizationController implements Initializable, ControlledScreen 
     private UserDao userDao;
     private UserService service;
     ScreenController screenController;
-    public static User activeUser;
+    public static User activeUser=new User();
     public static int activeUserType=5;
     public AuthorizationController() throws SQLException {
         userDao = new UserDao();

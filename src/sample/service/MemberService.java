@@ -5,8 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.dao.MembersDao;
 import sample.model.Member;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -64,14 +62,15 @@ public class MemberService {
         }
     }
 
-    public boolean create(String fname, String lname, String pname,
+    public int create(String fname, String lname, String pname,
                           String pphone, String birthDate, String birtCer, LocalDate medDate) {
         try {
             return membersDao.create(fname, lname, pname, pphone, birthDate, birtCer, medDate.toString());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        System.out.println("Returning dfalse");
+        return -1;
     }
     public int getLastAddedMember()  {
         try {

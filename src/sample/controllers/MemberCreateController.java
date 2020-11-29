@@ -140,12 +140,6 @@ public class MemberCreateController {
         });
     }
 
-    public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
-        return dateToConvert.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-    }
-
     @FXML
     public void initialize() {
 
@@ -156,6 +150,7 @@ public class MemberCreateController {
         phone_input.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!p.matcher(newValue).matches()) phone_input.setText(oldValue);
         });
+
 
         addTextLimiter(phone_input, 10);
         addTextLimiter(birth_certificate_input, 10);
@@ -207,42 +202,47 @@ public class MemberCreateController {
                 parent_name = parent_name_input.getText().trim();
                 parent_phone = phone_input.getText().trim();
                 LocalDate med_date = medical_certificate_date.getValue();
-                if (!email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")) {
-                    screenController.alert(Alert.AlertType.WARNING, "Wrong email", "No such email!");
-                }
-                if (2020 - med_date.getYear() < 4) {
-                    screenController.alert(Alert.AlertType.WARNING, "Can not creat new member", "Child must be over 3 years old");
-                }
-
-                if (birth_cert.isEmpty() || dd.isEmpty() || mm.isEmpty() || yyyy.isEmpty() || las_name.isEmpty() ||
-                        first_name.isEmpty() || email.isEmpty() || parent_name.isEmpty() || parent_phone.isEmpty() ||
-                        !email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
-                        || (2020 - med_date.getYear()) < 4) {
-                    screenController.alert(Alert.AlertType.WARNING, "Can not creat Member", "Enter all fields");
+                if (userService.isEmail(email)) {
+                    ScreenController.alert(Alert.AlertType.ERROR, "Email error", "This email is already in use");
                 } else {
-
-                    if (memberService.create(first_name, las_name, parent_name, parent_phone,
-                            yyyy + '-' + mm + '-' + dd, birth_cert, med_date)) {
-                        char[] chars = "abcdefghijklmnopqrstuvwxyz1234ABDC".toCharArray();
-                        StringBuilder sb = new StringBuilder(19);
-                        Random random = new Random();
-                        for (int i = 0; i < 19; i++) {
-                            char c = chars[random.nextInt(chars.length)];
-                            sb.append(c);
+                    if (!email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")) {
+                        screenController.alert(Alert.AlertType.WARNING, "Wrong email", "Wrong email input!");
+                    } else {
+                        if (now.getYear() - Integer.parseInt(yyyy) < 3) {
+                            screenController.alert(Alert.AlertType.WARNING, "Can not creat new member", "Child must be over 3 years old");
                         }
-                        String password = sb.toString();
-                        if (userService.create(email, password, "member", memberService.getLastAddedMember())) {
-                            screenController.alert(Alert.AlertType.INFORMATION, "OK", "New memeber created!\n Login +" +
-                                    email + " password" + password);
+
+                        if (birth_cert.isEmpty() || dd.isEmpty() || mm.isEmpty() || yyyy.isEmpty() || las_name.isEmpty() ||
+                                first_name.isEmpty() || email.isEmpty() || parent_name.isEmpty() || parent_phone.isEmpty() ||
+                                !email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
+                                || (now.getYear() - Integer.parseInt(yyyy)) < 3) {
+                            screenController.alert(Alert.AlertType.WARNING, "Can not creat Member", "Enter all fields");
+                        } else {
+
+                            if (memberService.create(first_name, las_name, parent_name, parent_phone,
+                                    yyyy + '-' + mm + '-' + dd, birth_cert, med_date) > 0) {
+                                char[] chars = "abcdefghijklmnopqrstuvwxyz1234ABDC".toCharArray();
+                                StringBuilder sb = new StringBuilder(19);
+                                Random random = new Random();
+                                for (int i = 0; i < 19; i++) {
+                                    char c = chars[random.nextInt(chars.length)];
+                                    sb.append(c);
+                                }
+                                String password = sb.toString();
+                                if (userService.create(email, password, "member", memberService.getLastAddedMember()) > 0) {
+                                    screenController.alert(Alert.AlertType.INFORMATION, "OK", "New memeber created!\n Login " +
+                                            email + " password" + password);
+                                }
+                            }
+                            first_name_input.clear();
+                            phone_input.clear();
+                            email_input.clear();
+                            birth_certificate_input.clear();
+                            parent_name_input.clear();
+                            phone_input.clear();
+                            las_name_input.clear();
                         }
                     }
-                    first_name_input.clear();
-                    phone_input.clear();
-                    email_input.clear();
-                    birth_certificate_input.clear();
-                    parent_name_input.clear();
-                    phone_input.clear();
-                    las_name_input.clear();
                 }
             }
         });

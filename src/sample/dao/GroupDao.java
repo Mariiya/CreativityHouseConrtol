@@ -24,7 +24,8 @@ public class GroupDao {
     public List<Group> getGroupsList() {
         try (
                 Statement stmnt = connection.createStatement();
-                ResultSet rs = stmnt.executeQuery("SELECT (case when s.type LIKE '%групповые%' then 'Group' else 'Individual'end) as type,s.section_name,g.group_id,g.age_min,g.age_max,g.manager_id,g.section_id,s.section_id,g.max_members_num,\n" +
+                ResultSet rs = stmnt.executeQuery("SELECT (case when s.type LIKE '%групповые%' then 'Group' else 'Individual'end) as type," +
+                        "s.section_name,g.group_id,g.age_min,g.age_max,g.manager_id,g.section_id,s.section_id,g.max_members_num,\n" +
                         "       CONCAT(e.first_name,' ', e.last_name) as employee_name\n" +
                         "FROM Groups g LEFT JOIN\n" +
                         "    Sections s\n" +
@@ -54,17 +55,20 @@ public class GroupDao {
         return null;
     }
 
-    public HashMap<String,Integer> getAllSections(){
+
+    public List<String> getAllGroups(){
         try (
-                ResultSet rs = stmnt.executeQuery("SELECT DISTINCT section_id,section_name from sections");
+                ResultSet rs = stmnt.executeQuery("select group_id,\n" +
+                        "       CONCAT(s.section_name,' ',age_min,'-',age_max,' ',s.type) as `group_name` from  `groups`\n" +
+                        "                left join sections s on `groups`.section_id = s.section_id\n" +
+                        "GROUP BY group_name;");
         ){
-            HashMap<String,Integer> sections_names=new HashMap<>();
+            List<String>types=new ArrayList<>();
             while(rs.next()){
-                int id  = rs.getInt("section_id");
-                String type = rs.getString("section_name");
-                sections_names.put(type,id);
+                String type = rs.getString("type");
+                types.add(type);
             }
-            return sections_names;
+            return types;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -72,6 +76,40 @@ public class GroupDao {
     }
 
 
+    public List<Group> getGroupsListByManagerId(int manager_id) {
+        try (
+                Statement stmnt = connection.createStatement();
+                ResultSet rs = stmnt.executeQuery("SELECT (case when s.type LIKE '%групповые%' then 'Group' else 'Individual'end) as type,\n" +
+                        "                        s.section_name,\n" +
+                        "g.group_id,g.age_min,g.age_max,g.manager_id,g.section_id,s.section_id,g.max_members_num,\n" +
+                        "                              CONCAT(e.first_name,' ', e.last_name) as employee_name\n" +
+                        "                        FROM Groups g LEFT JOIN\n" +
+                        "                            Sections s\n" +
+                        "                                ON g.section_id=s.section_id\n" +
+                        "                                    LEFT JOIN staff e\n" +
+                        "                                               ON e.employee_id=g.manager_id\n" +
+                        "                        WHERE g.manager_id="+manager_id+" GROUP BY g.group_id;");
+        ) {
+            List<Group> sectionsList = new ArrayList<>();
+            while (rs.next()) {
+                int groupId = rs.getInt("group_id");
+                int managerId = rs.getInt("manager_id");
+                int sectionId = rs.getInt("section_id");
+                String section_name = rs.getString("section_name");
+                String manager_name = rs.getString("employee_name");
+                String type = rs.getString("type");
+                int max_memb = rs.getInt("max_members_num");
+                int age_min = rs.getInt("age_min");
+                int age_max = rs.getInt("age_max");
+                Group group = new Group(groupId,age_min,age_max,max_memb,managerId,sectionId,manager_name,section_name+"("+type+")");
+                sectionsList.add(group);
+            }
+            return sectionsList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 
     public void updateMaxAge(int id, int newAge) throws SQLException {
         stmnt.executeUpdate("UPDATE groups set max_age=" +newAge + " WHERE group_id=" + id + ";");

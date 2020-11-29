@@ -50,12 +50,10 @@ public class GroupsController implements Initializable, ControlledScreen {
     HashMap<String, Integer> sections = new HashMap<String, Integer>();
     ObservableList<String> targetList;
 
-
     public GroupsController() throws SQLException {
         service = new GroupService();
         groups_table = new TableView<Group>();
         sections = service.getAllSections();
-
     }
 
     void fillTable() {
@@ -77,7 +75,12 @@ public class GroupsController implements Initializable, ControlledScreen {
 
         free_places_col.setCellValueFactory(
                 new PropertyValueFactory<>("maxMemberNum"));
-        groups_table.setItems(service.getAllGroups());
+        if(activeUserType==0) {
+            groups_table.setItems(service.getAllGroups());
+        }
+        else {
+            groups_table.setItems(service.getGroupsListByManagerId(activeUser.getUserId()));
+        }
     }
 
 

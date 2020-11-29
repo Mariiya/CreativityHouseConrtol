@@ -23,6 +23,7 @@ public class ScreenController extends StackPane {
         super();
     }
 
+
     public void addScreen(String name, Node screen) {
         screens.put(name, screen);
     }
@@ -91,7 +92,7 @@ public class ScreenController extends StackPane {
         }
     }
 
-    public void alert(Alert.AlertType type,String title,String message) {
+    public static void alert(Alert.AlertType type,String title,String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);

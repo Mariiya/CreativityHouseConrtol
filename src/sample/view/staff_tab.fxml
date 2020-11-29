@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.controllers.TabControllers.StaffTabController"
-            prefHeight="400.0" prefWidth="600.0">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <children>
-            <TableView layoutX="14.0" layoutY="88.0" prefHeight="459.0" prefWidth="689.0" stylesheets="@sources/table_style.css">
-                <columns>
-                    <TableColumn prefWidth="39.0" text="№" />
-                    <TableColumn text="Name" />
-                    <TableColumn prefWidth="103.0" text="Surname" />
-                    <TableColumn prefWidth="102.0" text="Phone" />
-                    <TableColumn prefWidth="117.0" text="Position" />
-                    <TableColumn prefWidth="195.0" text="Specialization" />
-                    <TableColumn prefWidth="53.0" text="M_H" />
-                </columns>
-            </TableView>
-            <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                <font>
-                    <Font name="Cambria" size="14.0" />
-                </font>
-            </Button>
-            <Button layoutX="275.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-                <font>
-                    <Font name="Cambria" size="14.0" />
-                </font>
-            </Button>
-            <Button layoutX="528.0" layoutY="22.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="175.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
-                <font>
-                    <Font name="Cambria" size="14.0" />
-                </font>
-            </Button>
-        </children>
-    </AnchorPane>
+
+<AnchorPane prefHeight="591.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TabControllers.StaffTabController">
+   <children>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+         <TableView fx:id="staff_table" layoutX="18.0" layoutY="39.0" prefHeight="459.0" prefWidth="689.0" stylesheets="@sources/table_style.css">
+             <columns>
+                 <TableColumn fx:id="emp_id_col" prefWidth="39.0" text="№" />
+                 <TableColumn fx:id="f_name_col" text="Name" />
+                 <TableColumn fx:id="last_name_col" prefWidth="103.0" text="Surname" />
+                 <TableColumn fx:id="phone_col" prefWidth="102.0" text="Phone" />
+                 <TableColumn fx:id="position_col" prefWidth="117.0" text="Position" />
+                 <TableColumn fx:id="spec_col" prefWidth="195.0" text="Specialization" />
+                 <TableColumn fx:id="max_h_col" prefWidth="53.0" text="M_H" />
+             </columns>
+         </TableView>
+         <Button fx:id="edit_btn" layoutX="478.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
+             <font>
+                 <Font name="Cambria" size="14.0" />
+             </font>
+         </Button>
+         <Button fx:id="delete_btn" layoutX="608.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
+             <font>
+                 <Font name="Cambria" size="14.0" />
+             </font>
+         </Button>
+      <Button fx:id="done_btn" disable="true" layoutX="350.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+         <font>
+            <Font name="Cambria" size="14.0" />
+         </font>
+      </Button>
+         <Button fx:id="add_emp_btn" layoutX="18.0" layoutY="520.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="104.0" style="-fx-background-color: #1d1d1d;" text="Add" textFill="#ffecb3">
+             <font>
+                 <Font name="Cambria" size="14.0" />
+             </font>
+         </Button>
+   </children>
 
 </AnchorPane>

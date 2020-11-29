@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="582.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TabControllers.MembersTabController">
+<AnchorPane prefHeight="582.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TabControllers.MembersTabController">
     <children>
         <TableView fx:id="members_table" layoutX="4.0" layoutY="16.0" prefHeight="502.0" prefWidth="690.0" stylesheets="@sources/table_style.css">
             <columns>
@@ -17,7 +18,7 @@
                 <TableColumn fx:id="parent_phone_col" prefWidth="136.0" text="Phone " />
             </columns>
         </TableView>
-        <Button fx:id="add_member_btn" layoutX="14.0" layoutY="502.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #1d1d1d;" text="Add" textFill="#ffecb3">
+        <Button fx:id="add_member_btn" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="149.0" style="-fx-background-color: #1d1d1d;" text="Add" textFill="#ffecb3">
             <font>
                 <Font name="Cambria" size="14.0" />
             </font>

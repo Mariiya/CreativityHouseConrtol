@@ -13,27 +13,29 @@ import java.util.List;
 
 public class SectionsService {
 
-        private SectionsDao sectionsDao;
-        private ObservableList<Section> allSections;
+    private SectionsDao sectionsDao;
+    private ObservableList<Section> allSections;
 
-        public SectionsService() throws SQLException {
-            sectionsDao = new SectionsDao();
-            allSections = FXCollections.observableArrayList(sectionsDao.getSectionList());
-        }
-    public List<String> getAllTypes(){
-           return sectionsDao.getAllTypes();
+    public SectionsService() throws SQLException {
+        sectionsDao = new SectionsDao();
+        allSections = FXCollections.observableArrayList(sectionsDao.getSectionList());
     }
-    public void updateName(int id, String newName)  {
+
+    public List<String> getAllTypes() {
+        return sectionsDao.getAllTypes();
+    }
+
+    public void updateName(int id, String newName) {
         try {
-            sectionsDao.updateName(id,newName);
+            sectionsDao.updateName(id, newName);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public void updateDescription(int id, String newDes)  {
+    public void updateDescription(int id, String newDes) {
         try {
-            sectionsDao.updateDescription(id,newDes);
+            sectionsDao.updateDescription(id, newDes);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -41,27 +43,29 @@ public class SectionsService {
 
     public void updateType(int id, String newType) {
         try {
-            sectionsDao.updateType(id,newType);
+            sectionsDao.updateType(id, newType);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public void updatePrice(int id, float price)  {
+    public void updatePrice(int id, float price) {
         try {
-            sectionsDao.updatePrice(id,price);
+            sectionsDao.updatePrice(id, price);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
-    public void updateLessonsNumber(int id, float lessonsNumber)  {
+
+    public void updateLessonsNumber(int id, float lessonsNumber) {
         try {
-            sectionsDao.updateLessonsNumber(id,lessonsNumber);
+            sectionsDao.updateLessonsNumber(id, lessonsNumber);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
-    public void delete(Integer id)  {
+
+    public void delete(Integer id) {
         try {
             sectionsDao.delete(id);
         } catch (SQLException throwables) {
@@ -69,18 +73,17 @@ public class SectionsService {
         }
     }
 
-    public void create(String name,String type, int less_num,float price,String description) {
+    public void create(String name, String type, int less_num, float price, String description) {
         try {
-            sectionsDao.create(name,type,less_num,price,description);
+            sectionsDao.create(name, type, less_num, price, description);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-        public ObservableList<Section> getAllSections() {
-            return allSections;
-        }
-
-
-
+    public ObservableList<Section> getAllSections() {
+        return allSections;
     }
+
+
+}

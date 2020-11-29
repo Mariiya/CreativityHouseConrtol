@@ -2,14 +2,17 @@ package sample.service;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import sample.controllers.ScreenController;
 import sample.dao.UserDao;
 import sample.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +35,17 @@ public class UserService {
         }
         return null;
     }
+    public boolean isEmail(String email) {
+        return userDao.isEmail(email);
+    }
 
-    public boolean create(String login, String passw, String userType, int user_num)  {
+    public int create(String login, String passw, String userType, int user_num)  {
         try {
             return userDao.create(login, passw, userType, user_num);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return -1;
     }
     public ObservableList<User> getAllUsers() {
         return allUsers;

@@ -17,8 +17,8 @@ public class MembersDao {
         stmnt = connection.createStatement();
     }
 
-    public boolean create(String fname,String lname,String pname, String pphone,String birthDate,String birtCer, String medDate) throws SQLException {
-        return  stmnt.execute("INSERT INTO Members VALUES\n" +
+    public int create(String fname,String lname,String pname, String pphone,String birthDate,String birtCer, String medDate) throws SQLException {
+        return  stmnt.executeUpdate("INSERT INTO Members VALUES\n" +
                 "        (NULL, '"+fname+"', '"+lname+"', '"+birthDate+"', '"+ birtCer+"', '"+medDate+"', '"+pname+"', '"+pphone+"')\n" +
                 "        ;");
 
@@ -81,6 +81,6 @@ public class MembersDao {
 
 
     public void delete(int memberId) throws SQLException {
-        stmnt.execute("DELETE FROM members WHERE memberId=" + memberId + ";");
+        stmnt.execute("DELETE FROM members WHERE member_id=" + memberId + ";");
     }
 }

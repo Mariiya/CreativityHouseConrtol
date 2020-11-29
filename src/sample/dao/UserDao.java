@@ -32,7 +32,6 @@ public class UserDao {
 
     public List<User> getUserList() {
         try (
-                Statement stmnt = connection.createStatement();
                 ResultSet rs = stmnt.executeQuery("select * from users");
         ) {
             List<User> userList = new ArrayList<>();
@@ -52,6 +51,23 @@ public class UserDao {
         return null;
     }
 
+    public boolean isEmail(String email) {
+        try (
+                ResultSet rs = stmnt.executeQuery("select * from users WHERE login='"+email+"';");
+        ) {
+            int count=0;
+            while (rs.next()) {
+                count++;
+            }
+            if(count==0) {
+                return false;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
+    }
+
     public void updateType(int id, String newType) throws SQLException {
         stmnt.executeUpdate("UPDATE users set user_type='" + newType + "' WHERE user_id=" + id + ";");
     }
@@ -64,8 +80,8 @@ public class UserDao {
         stmnt.executeUpdate("UPDATE users set password='" + newPass + "' WHERE user_id=" + id + ";");
     }
 
-    public boolean create(String login, String passw, String userType, int user_num) throws SQLException {
-        return stmnt.execute("INSERT INTO Users VALUES (NULL,'" + login + "','" + passw + "','" + userType + "'," + user_num + ");");
+    public int create(String login, String passw, String userType, int user_num) throws SQLException {
+        return stmnt.executeUpdate("INSERT INTO Users VALUES (NULL,'" + login + "','" + passw + "','" + userType + "'," + user_num + ");");
     }
 
     public void delete(Integer id) throws SQLException {

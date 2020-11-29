@@ -3,25 +3,29 @@ package sample.service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sample.dao.GroupDao;
+import sample.dao.SectionsDao;
 import sample.model.Group;
-
+import sample.model.Payment;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class GroupService {
     private GroupDao groupDao;
+    private SectionsDao sectionDao;
     private ObservableList<Group> allGroups;
 
     public GroupService() throws SQLException {
         groupDao = new GroupDao();
+        sectionDao=new SectionsDao();
         allGroups = FXCollections.observableArrayList(groupDao.getGroupsList());
     }
     public HashMap<String,Integer> getAllSections(){
-       return groupDao.getAllSections();
+       return sectionDao.getAllSectionsNames();
     }
 
     public void delete(Integer id) {
@@ -39,6 +43,7 @@ public class GroupService {
         }
         return false;
     }
+
 
     public ObservableList<Group> getAllGroups() {
         return allGroups;
@@ -61,7 +66,7 @@ public class GroupService {
 
     public void updateMaxMemberNum(int id, int maxMemberNum)  {
         try {
-            groupDao.updateMaxAge(id,maxMemberNum);
+            groupDao.updateMaxMemberNum(id,maxMemberNum);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -75,5 +80,7 @@ public class GroupService {
         }
         return -1;
     }
-
+    public ObservableList<Group>  getGroupsListByManagerId(int manager_id) {
+        return  FXCollections.observableArrayList(groupDao.getGroupsListByManagerId(manager_id));
+    }
 }

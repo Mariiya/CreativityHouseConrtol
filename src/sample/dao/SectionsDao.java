@@ -5,6 +5,7 @@ import sample.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SectionsDao {
@@ -36,6 +37,24 @@ public List<String> getAllTypes(){
     }
 return null;
 }
+
+    public HashMap<String,Integer> getAllSectionsNames(){
+        try (
+                ResultSet rs = stmnt.executeQuery("SELECT DISTINCT section_id,section_name from sections");
+        ){
+            HashMap<String,Integer> sections_names=new HashMap<>();
+            while(rs.next()){
+                int id  = rs.getInt("section_id");
+                String type = rs.getString("section_name");
+                sections_names.put(type,id);
+            }
+            return sections_names;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Section> getSectionList() {
         try (
                 Statement stmnt = connection.createStatement();
