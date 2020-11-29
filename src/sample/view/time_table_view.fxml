@@ -28,16 +28,16 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView layoutY="75.0" prefHeight="627.0" prefWidth="900.0" stylesheets="@sources/time_table_style.css">
+      <TableView fx:id="tt_table" layoutY="75.0" prefHeight="627.0" prefWidth="900.0" stylesheets="@sources/time_table_style.css">
         <columns>
-            <TableColumn prefWidth="130.0" text="Group" />
-          <TableColumn maxWidth="110.0" prefWidth="110.0" text="MON" />
-            <TableColumn maxWidth="110.0" prefWidth="110.0" text="TUE" />
-            <TableColumn maxWidth="110.0" prefWidth="110.0" text="WED" />
-            <TableColumn maxWidth="110.0" minWidth="0.0" prefWidth="110.0" text="THU" />
-            <TableColumn maxWidth="110.0" prefWidth="110.0" text="FRI" />
-            <TableColumn maxWidth="110.0" minWidth="0.0" prefWidth="110.0" text="SAT" />
-            <TableColumn maxWidth="110.0" prefWidth="110.0" text="SUN" />
+            <TableColumn fx:id="group_col" prefWidth="130.0" text="Group" />
+          <TableColumn fx:id="mon_col" maxWidth="110.0" prefWidth="110.0" text="MON" />
+            <TableColumn fx:id="tue_col" maxWidth="110.0" prefWidth="110.0" text="TUE" />
+            <TableColumn fx:id="wed_col" maxWidth="110.0" prefWidth="110.0" text="WED" />
+            <TableColumn fx:id="thu_col" maxWidth="110.0" minWidth="0.0" prefWidth="110.0" text="THU" />
+            <TableColumn fx:id="fri_col" maxWidth="110.0" prefWidth="110.0" text="FRI" />
+            <TableColumn fx:id="sat_col" maxWidth="110.0" minWidth="0.0" prefWidth="110.0" text="SAT" />
+            <TableColumn fx:id="sun_col" maxWidth="110.0" prefWidth="110.0" text="SUN" />
         </columns>
       </TableView>
    </children>

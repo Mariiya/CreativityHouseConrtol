@@ -2,11 +2,8 @@ package sample.service;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import sample.dao.LessonDao;
 import sample.dao.SectionsDao;
-import sample.model.Lesson;
 import sample.model.Section;
-import sample.model.TimeTable;
 
 import java.sql.SQLException;
 import java.util.List;

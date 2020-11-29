@@ -1,131 +1,124 @@
 package sample.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+public class TimeTable {
 
-public class TimeTable  {
-    private final StringProperty type = new SimpleStringProperty(this, "type");
-    private final StringProperty day_of_week = new SimpleStringProperty(this, "day_of_week");
-    private final IntegerProperty groupId = new SimpleIntegerProperty(this, "groupId");
+
+    private final StringProperty mon = new SimpleStringProperty(this, "mon");
+    private final StringProperty tue = new SimpleStringProperty(this, "thu");
+    private final StringProperty wed = new SimpleStringProperty(this, "wed");
+    private final StringProperty fri = new SimpleStringProperty(this, "fri");
+    private final StringProperty thu = new SimpleStringProperty(this, "thu");
+    private final StringProperty sat = new SimpleStringProperty(this, "sat");
+    private final StringProperty sun = new SimpleStringProperty(this, "sun");
     private final StringProperty group = new SimpleStringProperty(this, "group");
-    private final StringProperty time = new SimpleStringProperty(this, "time");
-    private final IntegerProperty duration = new SimpleIntegerProperty(this, "duration");
-    private final IntegerProperty roomId = new SimpleIntegerProperty(this, "roomId");
-    private final IntegerProperty room = new SimpleIntegerProperty(this, "room");
 
-
-    public StringProperty typeProperty() {
-        return type;
+    public StringProperty monProperty() {
+        return mon;
+    }
+    public final String getMon() {
+        return monProperty().get();
+    }
+    public final void setMon(String day) {
+        monProperty().set(day);
     }
 
-    public final String getType() {
-        return typeProperty().get();
+    public StringProperty tueProperty() {
+        return tue;
+    }
+    public final String getTue() {
+        return tueProperty().get();
+    }
+    public final void setTue(String tue) {
+        tueProperty().set(tue);
     }
 
-    public final void setType(String t) {
-        typeProperty().set(t);
+    public StringProperty wedProperty() {
+        return wed;
+    }
+    public final String getWed() {
+        return wedProperty().get();
+    }
+    public final void setWed(String wed) {
+        wedProperty().set(wed);
     }
 
-
-    public StringProperty day_of_weekProperty() {
-        return day_of_week;
+    public StringProperty friProperty() {
+        return fri;
+    }
+    public final String getFri() {
+        return friProperty().get();
+    }
+    public final void setFri(String fri) {
+        friProperty().set(fri);
     }
 
-    public final String getDay_of_week() {
-        return day_of_weekProperty().get();
+    public StringProperty thuProperty() {
+        return thu;
+    }
+    public final String getThu() {
+        return thuProperty().get();
+    }
+    public final void setThu(String thu) {
+        thuProperty().set(thu);
     }
 
-    public final void setDay_of_week(String day) {
-        day_of_weekProperty().set(day);
+    public StringProperty satProperty() {
+        return sat;
+    }
+    public final String getSat() {
+        return satProperty().get();
+    }
+    public final void setSat(String sat) {
+        satProperty().set(sat);
     }
 
-    public IntegerProperty groupIdProperty() {
-        return groupId;
+    public StringProperty sunProperty() {
+        return sun;
     }
-
-    public final int getGroupId() {
-        return groupIdProperty().get();
+    public final String getSun() {
+        return sunProperty().get();
     }
-
-    public final void setGroupId(Integer groupId) {
-        groupIdProperty().set(groupId);
+    public final void setSun(String sun) {
+        sunProperty().set(sun);
     }
-
 
     public StringProperty groupProperty() {
         return group;
     }
-
     public final String getGroup() {
         return groupProperty().get();
     }
-
     public final void setGroup(String group) {
         groupProperty().set(group);
     }
 
-
-
-    public StringProperty timeProperty() {
-        return time;
-    }
-
-    public final String getTime() {
-        return timeProperty().get();
-    }
-
-    public final void setTime(String time) {
-        timeProperty().set(time);
-    }
-
-    public IntegerProperty durationProperty() {
-        return duration;
-    }
-
-    public final int getDuration() {
-        return durationProperty().get();
-    }
-
-    public final void setDuration(Integer d) {
-       durationProperty().set(d);
-    }
-
-    public IntegerProperty roomIdProperty() {
-        return roomId;
-    }
-
-    public final int getRoomId() {
-        return roomIdProperty().get();
-    }
-
-    public final void setRoomId(Integer d) {
-        roomIdProperty().set(d);
-    }
-
-    public IntegerProperty roomProperty() {
-        return room;
-    }
-
-    public final int getRoom() {
-        return roomProperty().get();
-    }
-
-    public final void setRoom(Integer d) {
-        roomProperty().set(d);
-    }
-
-    public TimeTable(String type,String day,int group_id,String group,String time,int d, int room_id,int room_n) {
-        setDay_of_week(day);
-        setGroupId(group_id);
+    public TimeTable(String info, int day, String group) {
+        if (day == 1) {
+            setMon(info);
+        }
+        if (day == 2) {
+            setTue(info);
+        }
+        if (day == 3) {
+            setWed(info);
+        }
+        if (day == 4) {
+            setThu(info);
+        }
+        if (day == 5) {
+            setFri(info);
+        }
+        if (day == 6) {
+            setSat(info);
+        }
+        if (day == 7) {
+            setSun(info);
+        }
         setGroup(group);
-        setTime(time);
-        setDuration(d);
-        setRoomId(room_id);
-        setRoom(room_n);
-        setType(type);
 
     }
 }
+

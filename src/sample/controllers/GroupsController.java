@@ -222,26 +222,22 @@ public class GroupsController implements Initializable, ControlledScreen {
                 } else {
                     int groupId = service.getLastAddedGroup();
                     if (allowCreateLessons && groupId > 0) {
-                        try {
-                            LessonService lessonService = new LessonService();
-                            if (monday_check_box.isSelected())
-                                lessonService.create(1, groupId, monday_time_input.getText(), Integer.parseInt(monday_dur_input.getText()));
-                            if (tue_check_box.isSelected())
-                                lessonService.create(2, groupId, tue_time_input.getText(), Integer.parseInt(tue_dur_input.getText()));
-                            if (wed_check_box.isSelected())
-                                lessonService.create(3, groupId, wed_time_input.getText(), Integer.parseInt(wed_dur_input.getText()));
-                            if (thu_check_box.isSelected())
-                                lessonService.create(4, groupId, thu_time_input.getText(), Integer.parseInt(thu_dur_input.getText()));
-                            if (fri_check_box.isSelected())
-                                lessonService.create(5, groupId, fri_time_input.getText(), Integer.parseInt(fri_dur_input.getText()));
-                            if (sat_check_box.isSelected())
-                                lessonService.create(6, groupId, sat_time_input.getText(), Integer.parseInt(sat_dur_input.getText()));
-                            if (sun_check_box.isSelected())
-                                lessonService.create(7, groupId, sun_time_input.getText(), Integer.parseInt(sun_dur_input.getText()));
-                            controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "New Lessons created!");
-                        } catch (SQLException throwables) {
-                            throwables.printStackTrace();
-                        }
+                        LessonService lessonService = new LessonService();
+                        if (monday_check_box.isSelected())
+                            lessonService.create(1, groupId, monday_time_input.getText(), Integer.parseInt(monday_dur_input.getText()));
+                        if (tue_check_box.isSelected())
+                            lessonService.create(2, groupId, tue_time_input.getText(), Integer.parseInt(tue_dur_input.getText()));
+                        if (wed_check_box.isSelected())
+                            lessonService.create(3, groupId, wed_time_input.getText(), Integer.parseInt(wed_dur_input.getText()));
+                        if (thu_check_box.isSelected())
+                            lessonService.create(4, groupId, thu_time_input.getText(), Integer.parseInt(thu_dur_input.getText()));
+                        if (fri_check_box.isSelected())
+                            lessonService.create(5, groupId, fri_time_input.getText(), Integer.parseInt(fri_dur_input.getText()));
+                        if (sat_check_box.isSelected())
+                            lessonService.create(6, groupId, sat_time_input.getText(), Integer.parseInt(sat_dur_input.getText()));
+                        if (sun_check_box.isSelected())
+                            lessonService.create(7, groupId, sun_time_input.getText(), Integer.parseInt(sun_dur_input.getText()));
+                        controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "New Lessons created!");
                     }
                     controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "Error during creating group");
                 }

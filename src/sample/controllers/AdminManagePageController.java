@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import sample.controllers.TabControllers.SectionsTabController;
-import sample.model.TimeTable;
+import sample.model.Lessons;
 import sample.service.LessonService;
 
 import java.net.URL;
@@ -26,16 +26,16 @@ public class AdminManagePageController implements Initializable, ControlledScree
     @FXML
     private Button groups_btn, register_btn, lessons_edit_btn, time_table_btn, reports_btn, lessons_delete_btn, lessons_done_btn;
     @FXML
-    private TableColumn<TimeTable, String> lessons_group_col, lessons_time_col, lesson_type_col, lessons_day_col;
+    private TableColumn<Lessons, String> lessons_group_col, lessons_time_col, lesson_type_col, lessons_day_col;
     @FXML
-    private TableColumn<TimeTable, Integer> lessons_room_col, lessons_dur_col;
+    private TableColumn<Lessons, Integer> lessons_room_col, lessons_dur_col;
     @FXML
     private ImageView back_img,logo_img;
     @FXML
     private Tab section_tab;
 
     @FXML
-    private TableView<TimeTable> lessons_table;
+    private TableView<Lessons> lessons_table;
 
     private ScreenController screenController;
     private SectionsTabController sectionsTabController;
@@ -45,7 +45,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
 
     public AdminManagePageController() throws SQLException {
         service = new LessonService();
-        lessons_table = new TableView<TimeTable>();
+        lessons_table = new TableView<Lessons>();
         lessons_table.setEditable(true);
         day = FXCollections.observableArrayList();
         day.add("Thursday");
@@ -70,11 +70,11 @@ public class AdminManagePageController implements Initializable, ControlledScree
                 new PropertyValueFactory<>("type"));
         lessons_time_col.setCellValueFactory(
                 new PropertyValueFactory<>("time"));
-        lessons_time_col.setCellFactory(TextFieldTableCell.<TimeTable>forTableColumn());
+        lessons_time_col.setCellFactory(TextFieldTableCell.<Lessons>forTableColumn());
 
         lessons_dur_col.setCellValueFactory(
                 new PropertyValueFactory<>("duration"));
-        lessons_dur_col.setCellFactory(TextFieldTableCell.<TimeTable, Integer>forTableColumn(new IntegerStringConverter()));
+        lessons_dur_col.setCellFactory(TextFieldTableCell.<Lessons, Integer>forTableColumn(new IntegerStringConverter()));
 
         lessons_room_col.setCellValueFactory(
                 new PropertyValueFactory<>("room"));
@@ -96,7 +96,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
             @Override
             public void handle(ActionEvent event) {
                 int index = lessons_table.getSelectionModel().getSelectedIndex();
-                TimeTable tt = lessons_table.getItems().get(index);
+                Lessons tt = lessons_table.getItems().get(index);
                 service.delete(tt.getGroupId(), tt.getDay_of_week());
                 lessons_table.getItems().remove(index);
 
@@ -120,10 +120,10 @@ public class AdminManagePageController implements Initializable, ControlledScree
         });
 
         lessons_day_col.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<TimeTable, String>>() {
+                new EventHandler<TableColumn.CellEditEvent<Lessons, String>>() {
                     @Override
-                    public void handle(TableColumn.CellEditEvent<TimeTable, String> t) {
-                        ((TimeTable) t.getTableView().getItems().get(
+                    public void handle(TableColumn.CellEditEvent<Lessons, String> t) {
+                        ((Lessons) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         ).setDay_of_week(t.getNewValue());
                         int id = t.getTableView().getItems().get(
@@ -136,10 +136,10 @@ public class AdminManagePageController implements Initializable, ControlledScree
         );
 
         lessons_time_col.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<TimeTable, String>>() {
+                new EventHandler<TableColumn.CellEditEvent<Lessons, String>>() {
                     @Override
-                    public void handle(TableColumn.CellEditEvent<TimeTable, String> t) {
-                        TimeTable tt = (TimeTable) t.getTableView().getItems().get(
+                    public void handle(TableColumn.CellEditEvent<Lessons, String> t) {
+                        Lessons tt = (Lessons) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow());
                         if (!t.getNewValue().matches("([1][0-9]):([0-5][0-9]):([0-5][0-9])")) {
                             screenController.alert(Alert.AlertType.ERROR, "Wrong time", "Time should be in 10:00:00-19:00:00");
@@ -152,10 +152,10 @@ public class AdminManagePageController implements Initializable, ControlledScree
         );
 
         lessons_room_col.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<TimeTable, Integer>>() {
+                new EventHandler<TableColumn.CellEditEvent<Lessons, Integer>>() {
                     @Override
-                    public void handle(TableColumn.CellEditEvent<TimeTable, Integer> t) {
-                        TimeTable tt = (TimeTable) t.getTableView().getItems().get(
+                    public void handle(TableColumn.CellEditEvent<Lessons, Integer> t) {
+                        Lessons tt = (Lessons) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow());
                         tt.setRoom(t.getNewValue());
                         service.updateRoom(tt.getGroupId(), t.getNewValue(), tt.getDay_of_week());
@@ -165,10 +165,10 @@ public class AdminManagePageController implements Initializable, ControlledScree
 
 
         lessons_dur_col.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<TimeTable, Integer>>() {
+                new EventHandler<TableColumn.CellEditEvent<Lessons, Integer>>() {
                     @Override
-                    public void handle(TableColumn.CellEditEvent<TimeTable, Integer> t) {
-                        TimeTable tt = (TimeTable) t.getTableView().getItems().get(
+                    public void handle(TableColumn.CellEditEvent<Lessons, Integer> t) {
+                        Lessons tt = (Lessons) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow());
                         screenController.alert(Alert.AlertType.INFORMATION, "Duration", "Duration is in minutes!");
                         tt.setDuration(t.getNewValue());

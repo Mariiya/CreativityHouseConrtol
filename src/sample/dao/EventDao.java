@@ -1,7 +1,6 @@
 package sample.dao;
 
 import sample.model.Event;
-import sample.model.Lesson;
 
 import java.sql.*;
 import java.util.ArrayList;
