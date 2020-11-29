@@ -19,6 +19,7 @@ import sample.service.PaymentService;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -91,9 +92,7 @@ public class PaymentTabController {
                         super.updateItem(item, empty);
 
 
-                        if (item.getYear() > now.getYear()
-                                || item.getMonth().getValue() > now.getMonth().getValue()
-                                || item.getDayOfYear() > now.getDayOfYear()) {
+                        if (item.isAfter(ChronoLocalDate.from(now))) {
                             setDisable(true);
                             setStyle("-fx-background-color: #ffc0cb;");
                         }
@@ -233,12 +232,16 @@ public class PaymentTabController {
                         screenController.alert(Alert.AlertType.WARNING, "Wrong amount", "Amount can not be 0");
                     } else {
                         group_id = list.get(index).getGroupId();
-                            if (service.create(payment_date.getValue().toString(), amountPayment, pref_cat, member_id, group_id)!=-1) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure in your data? \n You could not change it!");
+                        Optional<ButtonType> option = alert.showAndWait();
+                        if (option.get() == ButtonType.OK) {
+                            if (service.create(payment_date.getValue().toString(), amountPayment, pref_cat, member_id, group_id) != -1) {
                                 screenController.alert(Alert.AlertType.INFORMATION, "Payment", "New Payment created!");
                                 first_name_input.clear();
                                 last_name_input.clear();
                                 phone_input.clear();
 
+                            }
                         }
                     }
                 }

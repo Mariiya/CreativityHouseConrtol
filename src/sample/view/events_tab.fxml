@@ -1,56 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.controllers.TabControllers.EventsTabController"
-            prefHeight="400.0" prefWidth="600.0">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <children>
-            <TableView layoutX="25.0" layoutY="82.0" prefHeight="208.0" prefWidth="675.0" stylesheets="@sources/table_style.css">
-                <columns>
-                    <TableColumn prefWidth="47.0" text="№" />
-                    <TableColumn prefWidth="187.0" text="name" />
-                    <TableColumn prefWidth="260.0" text="address" />
-                    <TableColumn prefWidth="99.0" text="date" />
-                    <TableColumn prefWidth="82.0" text="time" />
-                </columns>
-            </TableView>
-            <Label layoutX="260.0" layoutY="22.0" prefHeight="50.0" prefWidth="227.0" stylesheets="@sources/table_style.css" text="Upcoming Events" textAlignment="CENTER">
-                <font>
-                    <Font name="Cambria Bold" size="22.0" />
-                </font>
-            </Label>
-            <Button layoutX="561.0" layoutY="304.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-            <Button layoutX="397.0" layoutY="304.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-            <Button layoutX="293.0" layoutY="506.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-            <TextField layoutX="25.0" layoutY="412.0" prefHeight="25.0" prefWidth="306.0" promptText="name" />
-            <TextField layoutX="370.0" layoutY="412.0" prefHeight="25.0" prefWidth="332.0" promptText="address" />
-            <TextField layoutX="371.0" layoutY="468.0" prefHeight="25.0" prefWidth="330.0" promptText="time" />
-            <Label layoutX="286.0" layoutY="349.0" prefHeight="50.0" prefWidth="130.0" stylesheets="@sources/table_style.css" text="Create new" textAlignment="CENTER">
-                <font>
-                    <Font name="Cambria Bold" size="22.0" />
-                </font>
-            </Label>
-            <DatePicker layoutX="25.0" layoutY="468.0" prefHeight="25.0" prefWidth="304.0" style="-fx-background-color: #FFA000;" />
-        </children>
-    </AnchorPane>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TabControllers.EventsTabController">
+   <children>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+           <children>
+               <TableView fx:id="events_table" layoutX="25.0" layoutY="82.0" prefHeight="208.0" prefWidth="675.0" stylesheets="@sources/table_style.css">
+                   <columns>
+                       <TableColumn fx:id="id_col" prefWidth="47.0" text="№" />
+                       <TableColumn fx:id="name_col" prefWidth="187.0" text="name" />
+                       <TableColumn fx:id="address_col" prefWidth="260.0" text="address" />
+                       <TableColumn fx:id="date_col" prefWidth="99.0" text="date" />
+                       <TableColumn fx:id="time_col" prefWidth="82.0" text="time" />
+                   </columns>
+               </TableView>
+               <Label layoutX="260.0" layoutY="22.0" prefHeight="50.0" prefWidth="227.0" stylesheets="@sources/table_style.css" text="Upcoming Events" textAlignment="CENTER">
+                   <font>
+                       <Font name="Cambria Bold" size="22.0" />
+                   </font>
+               </Label>
+               <Button fx:id="delete_btn" layoutX="561.0" layoutY="304.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3">
+                   <font>
+                       <Font size="14.0" />
+                   </font>
+               </Button>
+               <Button fx:id="edit_btn" layoutX="397.0" layoutY="304.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
+                   <font>
+                       <Font size="14.0" />
+                   </font>
+               </Button>
+               <Button fx:id="add_btn" layoutX="293.0" layoutY="506.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+                   <font>
+                       <Font size="14.0" />
+                   </font>
+               </Button>
+               <TextField fx:id="name_input" layoutX="25.0" layoutY="412.0" prefHeight="25.0" prefWidth="306.0" promptText="name" />
+               <TextField fx:id="adress_input" layoutX="370.0" layoutY="412.0" prefHeight="25.0" prefWidth="332.0" promptText="address" />
+               <TextField fx:id="time_input" layoutX="371.0" layoutY="468.0" prefHeight="25.0" prefWidth="330.0" promptText="time" text="00:00:00" />
+               <Label layoutX="286.0" layoutY="349.0" prefHeight="50.0" prefWidth="130.0" stylesheets="@sources/table_style.css" text="Create new" textAlignment="CENTER">
+                   <font>
+                       <Font name="Cambria Bold" size="22.0" />
+                   </font>
+               </Label>
+               <DatePicker fx:id="date_input" layoutX="25.0" layoutY="468.0" prefHeight="25.0" prefWidth="304.0" style="-fx-background-color: #FFA000;" />
+           </children>
+       </AnchorPane>
+      <Button fx:id="done_btn" disable="true" layoutX="223.0" layoutY="305.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="view_actions_btn" layoutX="24.0" layoutY="305.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #1d1d1d;" text="View actions" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>

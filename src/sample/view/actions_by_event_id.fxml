@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="actions_table" layoutX="5.0" layoutY="6.0" prefHeight="338.0" prefWidth="591.0" stylesheets="@sources/table_style.css">
+        <columns>
+          <TableColumn fx:id="action_title_col" prefWidth="148.0" text="Action title" />
+          <TableColumn fx:id="event_col" prefWidth="123.0" text="Event" />
+            <TableColumn fx:id="num_col" prefWidth="63.0" text="Num" />
+            <TableColumn fx:id="group_col" prefWidth="146.0" text="Group" />
+            <TableColumn fx:id="manager_col" prefWidth="111.0" text="Manager" />
+        </columns>
+      </TableView>
+      <Button fx:id="edit_btn" layoutX="344.0" layoutY="357.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3" />
+      <Button fx:id="delete_btn" layoutX="477.0" layoutY="357.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #7C4DFF;" text="Delete" textFill="#ffecb3" />
+      <Button fx:id="done_btn" disable="true" layoutX="210.0" layoutY="357.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3" />
+   </children>
+</AnchorPane>

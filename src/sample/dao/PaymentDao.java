@@ -86,7 +86,7 @@ public class PaymentDao {
     }
 
     public List<Payment> getGroupsForMember(String fname, String lname, String phone) throws SQLException {
-        ResultSet rs = stmnt.executeQuery("select payments.group_id,payments.member_id,payments.preferential_category, CONCAT(s.section_name,' ',age_min,'-',age_max,' ',s.type) as `section_name`" +
+        ResultSet rs = stmnt.executeQuery("select DISTINCT payments.group_id,payments.member_id,payments.preferential_category, CONCAT(s.section_name,' ',age_min,'-',age_max,' ',s.type) as `section_name`" +
                         " from payments left join members m on m.member_id = payments.member_id  " +
                         "left join `groups` g on g.group_id = payments.group_id " +
                 "left join sections s on g.section_id = s.section_id" +
