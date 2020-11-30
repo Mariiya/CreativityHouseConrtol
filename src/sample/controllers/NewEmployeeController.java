@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.regex.Pattern;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 public class NewEmployeeController {
     @FXML
     private TextField last_name_input, specialization_input, first_name_input, email_input, phone_input, position_input;
@@ -102,6 +104,7 @@ public class NewEmployeeController {
                                 if (userService.create(email, password, "staff", staffService.getLastAddedEmployee()) > 0) {
                                     screenController.alert(Alert.AlertType.INFORMATION, "OK", "New Employee created!\n Login " +
                                             email + " password" + password);
+                                    ScreenController.setNewAction(activeUser.getId(),"Новый сотрудник "+ first_name+" "+last_name +" добавлен");
                                 }
                             }
                             first_name_input.clear();

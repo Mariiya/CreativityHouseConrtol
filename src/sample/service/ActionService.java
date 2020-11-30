@@ -24,7 +24,6 @@ public class ActionService {
 
     public ObservableList<Action> getEventList(int eventId) {
         ObservableList<Action> actions=actionDao.getActionListByEvemtId(eventId);
-        System.out.println(actions.get(0).getNumber());
         return   FXCollections.observableArrayList(actions);
     }
 

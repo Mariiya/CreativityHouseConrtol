@@ -19,6 +19,8 @@ import sample.service.SectionsService;
 
 import java.sql.SQLException;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 
 public class SectionsTabController {
     @FXML
@@ -88,7 +90,7 @@ public class SectionsTabController {
                 Section section = section_table.getItems().get(index);
                 service.delete(section.getSectionIdId());
                 section_table.getItems().remove(index);
-
+                ScreenController.setNewAction(activeUser.getId(),"Секция "+section.getName()+" удалена");
             }
         });
         section_done_btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -197,6 +199,7 @@ public class SectionsTabController {
                     String descrition = section_decription_input.getText().trim();
                     service.create(name, type, less_num, price, descrition);
                     screenController.alert(Alert.AlertType.INFORMATION, "Section", "New Section created!");
+                    ScreenController.setNewAction(activeUser.getId(),"Секция "+name+"создана");
                 }
                 section_decription_input.clear();
                 section_name_input.clear();

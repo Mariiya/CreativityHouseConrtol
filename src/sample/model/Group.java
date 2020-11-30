@@ -78,11 +78,11 @@ public class Group {
     }
 
     public final int getAgeMin() {
-        return sectionIdProperty().get();
+        return ageMinProperty().get();
     }
 
     public final void setAgeMin(Integer ageMin) {
-        sectionIdProperty().set(ageMin);
+        ageMinProperty().set(ageMin);
     }
 
     public StringProperty managerNameProperty() {

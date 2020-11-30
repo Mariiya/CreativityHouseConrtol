@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 import static sample.controllers.AuthorizationController.activeUser;
 import static sample.controllers.AuthorizationController.activeUserType;
 
-public class GroupsController implements Initializable, ControlledScreen {
+public class GroupsController implements ControlledScreen {
     @FXML
     private ImageView back_img;
     @FXML
@@ -32,7 +32,7 @@ public class GroupsController implements Initializable, ControlledScreen {
     @FXML
     private TableColumn<Group, String> teacher_col, section_name_col;
     @FXML
-    private Button delete_group_btn, view_members_btn, create_group_btn, done_group_btn, edit_group_btn;
+    private Button delete_group_btn, view_members_btn, create_group_btn, done_group_btn, edit_group_btn, create_lessons_btn;
     @FXML
     private CheckBox monday_check_box, tue_check_box, fri_check_box, sat_check_box, wed_check_box, sun_check_box, thu_check_box;
     @FXML
@@ -45,7 +45,6 @@ public class GroupsController implements Initializable, ControlledScreen {
     private TextField fri_dur_input, monday_dur_input, tue_dur_input, wed_dur_input, thu_dur_input, sat_dur_input, sun_dur_input;
     ScreenController controlledScreen;
     GroupService service;
-    boolean allowCreateLessons = false;
 
     HashMap<String, Integer> sections = new HashMap<String, Integer>();
     ObservableList<String> targetList;
@@ -54,6 +53,7 @@ public class GroupsController implements Initializable, ControlledScreen {
         service = new GroupService();
         groups_table = new TableView<Group>();
         sections = service.getAllSections();
+        groups_table.setEditable(true);
     }
 
     void fillTable() {
@@ -72,25 +72,31 @@ public class GroupsController implements Initializable, ControlledScreen {
         teacher_col.setCellValueFactory(
                 new PropertyValueFactory<>("managerName"));
         free_places_col.setCellFactory(TextFieldTableCell.<Group, Integer>forTableColumn(new IntegerStringConverter()));
+        switch (activeUserType) {
+            case 1:
+                groups_table.setItems(service.getAllGroups());
+                break;
+            case 2:
+                groups_table.setItems(service.getGroupsListByManagerId(activeUser.getUserId()));
+                break;
+            default:
+        }
 
-        free_places_col.setCellValueFactory(
-                new PropertyValueFactory<>("maxMemberNum"));
-        if(activeUserType==0) {
-            groups_table.setItems(service.getAllGroups());
-        }
-        else {
-            groups_table.setItems(service.getGroupsListByManagerId(activeUser.getUserId()));
-        }
     }
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize() {
         sections = service.getAllSections();
         Set<String> sourceSet = sections.keySet();
         targetList = FXCollections.observableArrayList(List.copyOf(sourceSet));
-        fillTable();
         sections_box_input.setItems(targetList);
+        groups_table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                fillTable();
+            }
+        });
 
         Pattern p = Pattern.compile("(\\d+\\.?\\d*)?");
         age_max_input.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -100,21 +106,22 @@ public class GroupsController implements Initializable, ControlledScreen {
             if (!p.matcher(newValue).matches()) age_min_input.setText(oldValue);
         });
         max_num_members_input.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!p.matcher(newValue).matches())  max_num_members_input.setText(oldValue);
+            if (!p.matcher(newValue).matches()) max_num_members_input.setText(oldValue);
         });
 
         back_img.setOnMouseReleased(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 int getBack = activeUserType;
+
                 switch (getBack) {
-                    case 0:
+                    case 1:
                         controlledScreen.setScreen(ScreensFramework.screenAManage);
                         break;
-                    case 1:
+                    case 2:
                         controlledScreen.setScreen(ScreensFramework.screenMHome);
                         break;
-                    case 2:
+                    case 3:
                         controlledScreen.setScreen(ScreensFramework.screenTHome);
                         break;
                     default:
@@ -201,50 +208,72 @@ public class GroupsController implements Initializable, ControlledScreen {
                 ) {
                     controlledScreen.alert(Alert.AlertType.WARNING, "Can not creat Group", "Fill all fields");
                 } else {
-                    if (
-                            service.create(Integer.parseInt(age_min_input.getText()), Integer.parseInt(age_max_input.getText()), Integer.parseInt(max_num_members_input.getText()),
-                                    activeUser.getUserId(),  sections.get(sections_box_input.getValue()))
-                    ) {
-                        controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "New Section created!");
-                        allowCreateLessons = true;
-                    }
-                }
-                if (!sat_check_box.isSelected()
-                        && !monday_check_box.isSelected()
-                        && !tue_check_box.isSelected()
-                        && !wed_check_box.isSelected()
-                        && !fri_check_box.isSelected()
-                        && !thu_check_box.isSelected()
-                        && !sun_check_box.isSelected()
-                ) {
-                    controlledScreen.alert(Alert.AlertType.WARNING, "Can not creat Lessons", "Select day(s) of week");
-                    allowCreateLessons = false;
-                } else {
-                    int groupId = service.getLastAddedGroup();
-                    if (allowCreateLessons && groupId > 0) {
-                        LessonService lessonService = new LessonService();
-                        if (monday_check_box.isSelected())
-                            lessonService.create(1, groupId, monday_time_input.getText(), Integer.parseInt(monday_dur_input.getText()));
-                        if (tue_check_box.isSelected())
-                            lessonService.create(2, groupId, tue_time_input.getText(), Integer.parseInt(tue_dur_input.getText()));
-                        if (wed_check_box.isSelected())
-                            lessonService.create(3, groupId, wed_time_input.getText(), Integer.parseInt(wed_dur_input.getText()));
-                        if (thu_check_box.isSelected())
-                            lessonService.create(4, groupId, thu_time_input.getText(), Integer.parseInt(thu_dur_input.getText()));
-                        if (fri_check_box.isSelected())
-                            lessonService.create(5, groupId, fri_time_input.getText(), Integer.parseInt(fri_dur_input.getText()));
-                        if (sat_check_box.isSelected())
-                            lessonService.create(6, groupId, sat_time_input.getText(), Integer.parseInt(sat_dur_input.getText()));
-                        if (sun_check_box.isSelected())
-                            lessonService.create(7, groupId, sun_time_input.getText(), Integer.parseInt(sun_dur_input.getText()));
-                        controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "New Lessons created!");
-                    }
-                    controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "Error during creating group");
+                    service.create(Integer.parseInt(age_min_input.getText()), Integer.parseInt(age_max_input.getText()), Integer.parseInt(max_num_members_input.getText()),
+                            activeUser.getUserId(), sections.get(sections_box_input.getValue()));
+                    controlledScreen.alert(Alert.AlertType.INFORMATION, "Group", "New Group created!");
                 }
             }
         });
-    }
 
+        create_lessons_btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int id;
+                if (groups_table.getSelectionModel().getSelectedItem() == null) {
+                    controlledScreen.alert(Alert.AlertType.WARNING, "Fail", "Select group row");
+                } else {
+                    id = groups_table.getSelectionModel().getSelectedItem().getGroupId();
+                    String mon, tue, wed, thu, fri, sat, sun;
+                    mon = monday_dur_input.getText().trim();
+                    tue = tue_dur_input.getText().trim();
+                    wed = wed_dur_input.getText().trim();
+                    thu = thu_dur_input.getText().trim();
+                    fri = fri_dur_input.getText().trim();
+                    sat = sat_dur_input.getText().trim();
+                    sun = sun_dur_input.getText().trim();
+
+                    if (!sat_check_box.isSelected()
+                            && !monday_check_box.isSelected()
+                            && !tue_check_box.isSelected()
+                            && !wed_check_box.isSelected()
+                            && !fri_check_box.isSelected()
+                            && !thu_check_box.isSelected()
+                            && !sun_check_box.isSelected()
+                            && (
+                            mon.isEmpty()
+                                    && tue.isEmpty()
+                                    && wed.isEmpty()
+                                    && thu.isEmpty()
+                                    && fri.isEmpty()
+                                    && sat.isEmpty()
+                                    && sun.isEmpty()
+                    )
+                    ) {
+                        controlledScreen.alert(Alert.AlertType.WARNING, "Can not creat Lessons", "Select day(s) of week\n and duration");
+                    } else {
+                        LessonService lessonService = new LessonService();
+                        if (monday_check_box.isSelected() && !mon.isEmpty())
+                            lessonService.create(1, id, monday_time_input.getText(), Integer.parseInt(monday_dur_input.getText()));
+                        if (tue_check_box.isSelected()&& !thu.isEmpty())
+                            lessonService.create(2, id, tue_time_input.getText(), Integer.parseInt(tue_dur_input.getText()));
+                        if (wed_check_box.isSelected() && !wed.isEmpty())
+                            lessonService.create(3, id, wed_time_input.getText(), Integer.parseInt(wed_dur_input.getText()));
+                        if (thu_check_box.isSelected() &&!thu.isEmpty())
+                            lessonService.create(4, id, thu_time_input.getText(), Integer.parseInt(thu_dur_input.getText()));
+                        if (fri_check_box.isSelected() &&!fri.isEmpty())
+                            lessonService.create(5, id, fri_time_input.getText(), Integer.parseInt(fri_dur_input.getText()));
+                        if (sat_check_box.isSelected()&& !sat.isEmpty())
+                            lessonService.create(6, id, sat_time_input.getText(), Integer.parseInt(sat_dur_input.getText()));
+                        if (sun_check_box.isSelected() && !sun.isEmpty())
+                            lessonService.create(7, id, sun_time_input.getText(), Integer.parseInt(sun_dur_input.getText()));
+                        controlledScreen.alert(Alert.AlertType.INFORMATION, "Section", "New Lessons created!");
+                        ScreenController.setNewAction(activeUser.getUserId(), "Новый урок(и)  у группы" + groups_table.getSelectionModel().getSelectedItem().getSectionName() + " создан");
+                    }
+                }
+            }
+        });
+
+    }
 
     @Override
     public void setScreenParent(ScreenController screenPage) {

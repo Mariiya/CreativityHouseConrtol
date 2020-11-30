@@ -34,6 +34,8 @@ public class ScreensFramework extends Application {
 
     public static String screenReports="reports";
     public static String screenReportsFile="/sample/view/reports_view.fxml";
+    public static String screenHistory="history";
+    public static String screenHistoryFile="/sample/view/users_histoty.fxml";
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -47,6 +49,7 @@ public class ScreensFramework extends Application {
         mainContainer.loadScreen(ScreensFramework.screenGroups,screenGroupFile);
         mainContainer.loadScreen(ScreensFramework.screenRegister,screenRegisterFile);
         mainContainer.loadScreen(ScreensFramework.screenReports,screenReportsFile);
+      //  mainContainer.loadScreen(ScreensFramework.screenHistory,screenHistoryFile);
 
         mainContainer.setScreen(ScreensFramework.screenMainID);
 

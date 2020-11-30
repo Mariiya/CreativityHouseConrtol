@@ -19,7 +19,7 @@ public class Action {
     public final void setEventName(String eventName) { eventNameProperty().set(eventName); }
 
     public StringProperty actionNameProperty() { return actionName; }
-    public final String actionNameName() {return actionNameProperty().get(); }
+    public final String getactioneName() {return actionNameProperty().get(); }
     public final void setActionName(String actionName) { actionNameProperty().set(actionName); }
 
 

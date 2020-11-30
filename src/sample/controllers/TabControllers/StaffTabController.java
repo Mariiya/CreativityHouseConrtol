@@ -29,6 +29,8 @@ import sample.service.StaffService;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 public class StaffTabController {
     @FXML
     private Button edit_btn,done_btn,delete_btn,add_emp_btn;
@@ -88,6 +90,7 @@ public class StaffTabController {
                 Employee emp = staff_table.getItems().get(index);
                 service.delete(emp.getEmployeeId());
                 staff_table.getItems().remove(index);
+                ScreenController.setNewAction(activeUser.getId(),"Сотрудник  "+emp.getLastName()+" " +emp.getFirstName()+" удален");
             }
         });
         done_btn.setOnAction(new EventHandler<ActionEvent>() {

@@ -37,7 +37,7 @@
                         <Image url="@sources/icons8-user-groups-100.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Manage Groups" textFill="#ffecb3">
+                  <Button fx:id="manage_group_btn" layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Manage Groups" textFill="#ffecb3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -46,7 +46,7 @@
             </Pane>
             <Pane layoutX="351.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
                <children>
-                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Lesson Register" textFill="#ffecb3">
+                  <Button fx:id="register_btn" layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Lesson Register" textFill="#ffecb3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -60,7 +60,7 @@
             </Pane>
             <Pane layoutX="629.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
                <children>
-                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Time Table" textFill="#ffecb3">
+                  <Button fx:id="time_table_btn" layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Time Table" textFill="#ffecb3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -74,7 +74,7 @@
             </Pane>
             <Pane layoutX="62.0" layoutY="322.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
                <children>
-                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Requests" textFill="#ffecb3">
+                  <Button fx:id="requests_btn" layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Requests" textFill="#ffecb3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -88,7 +88,7 @@
             </Pane>
             <Pane layoutX="351.0" layoutY="322.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
                <children>
-                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="New Event" textFill="#ffecb3">
+                  <Button fx:id="new_event_btn" layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="New Event" textFill="#ffecb3">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -102,7 +102,7 @@
             </Pane>
             <Pane layoutX="629.0" layoutY="322.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #7C4DFF; -fx-border-width: 3;">
                <children>
-                  <Button layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Log out" textFill="#ffecb3">
+                  <Button fx:id="log_out_btn" layoutX="26.0" layoutY="153.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF; -fx-border-color: #7C4DFF;" text="Log out" textFill="#ffecb3">
                      <font>
                         <Font size="14.0" />
                      </font>

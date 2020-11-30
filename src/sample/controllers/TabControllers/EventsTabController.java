@@ -12,10 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import sample.controllers.ActionsTableController;
 import sample.controllers.ScreenController;
@@ -28,6 +26,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+
+import static sample.controllers.AuthorizationController.activeUser;
 
 
 public class EventsTabController {
@@ -152,6 +152,7 @@ public class EventsTabController {
                 Event e = events_table.getItems().get(index);
                 service.delete(e.getEventId());
                 events_table.getItems().remove(index);
+                ScreenController.setNewAction(activeUser.getId(),"Мероприятие "+e.getEventName()+"удалено");
             }
         });
         done_btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -246,6 +247,7 @@ public class EventsTabController {
                 } else {
                     if (service.create(time, name, date, addr) != -1) {
                         screenController.alert(Alert.AlertType.INFORMATION, "OK", "New event created");
+                        ScreenController.setNewAction(activeUser.getId(),"Мероприятие "+name+"создано");
                     } else {
                         screenController.alert(Alert.AlertType.ERROR, "Fail", "New event creating failed");
                     }

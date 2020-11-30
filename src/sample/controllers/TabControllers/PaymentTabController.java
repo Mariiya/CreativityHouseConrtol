@@ -24,6 +24,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 public class PaymentTabController {
     @FXML
     private TableColumn<Payment, String> pref_cat_col, section_col, member_col, pay_date_col;
@@ -237,6 +239,8 @@ public class PaymentTabController {
                         if (option.get() == ButtonType.OK) {
                             if (service.create(payment_date.getValue().toString(), amountPayment, pref_cat, member_id, group_id) != -1) {
                                 screenController.alert(Alert.AlertType.INFORMATION, "Payment", "New Payment created!");
+                                ScreenController.setNewAction(activeUser.getUserId(),"Новая оплата за "
+                                        +section_input.getValue()+" оплачена " +last_name_input);
                                 first_name_input.clear();
                                 last_name_input.clear();
                                 phone_input.clear();

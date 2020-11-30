@@ -20,6 +20,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 
 public class AdminManagePageController implements Initializable, ControlledScreen {
 
@@ -99,7 +101,7 @@ public class AdminManagePageController implements Initializable, ControlledScree
                 Lessons tt = lessons_table.getItems().get(index);
                 service.delete(tt.getGroupId(), tt.getDay_of_week());
                 lessons_table.getItems().remove(index);
-
+                ScreenController.setNewAction(activeUser.getId(),"Урок "+tt.getDay_of_week() +" у группы"+ tt.getGroup()+" удален");
             }
         });
         lessons_done_btn.setOnAction(new EventHandler<ActionEvent>() {

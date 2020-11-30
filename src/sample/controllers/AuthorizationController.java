@@ -31,8 +31,10 @@ public class AuthorizationController implements Initializable, ControlledScreen 
     private UserDao userDao;
     private UserService service;
     ScreenController screenController;
-    public static User activeUser=new User();
-    public static int activeUserType=5;
+    public static User activeUser = new User();
+    public static int activeUserType = 5;
+    private boolean flag=false;
+
     public AuthorizationController() throws SQLException {
         userDao = new UserDao();
         service = new UserService();
@@ -48,16 +50,15 @@ public class AuthorizationController implements Initializable, ControlledScreen 
     }
 
     public static int getActiveUserType() {
-        if(activeUser==null) return 5;
+        if (activeUser == null) return 5;
         return switch (activeUser.getType()) {
-            case "admin" -> 0;
-            case "staff" -> 1;
-            case "members" -> 2;
+            case "admin" -> 1;
+            case "staff" -> 2;
+            case "members" -> 3;
             default -> 5;
         };
 
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,19 +66,22 @@ public class AuthorizationController implements Initializable, ControlledScreen 
         continue_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                activeUser=service.isUser(login_input_field.getText(),password_input_field.getText());
+                activeUser = service.isUser(login_input_field.getText(), password_input_field.getText());
                 switch (getActiveUserType()) {
-                    case 0:
-                        screenController.setScreen(ScreensFramework.screenAHomeID);
-                        activeUserType=0;
-                        break;
                     case 1:
-                        screenController.setScreen(ScreensFramework.screenTHome);
-                        activeUserType=1;
+                        screenController.setScreen(ScreensFramework.screenAHomeID);
+                        activeUserType = 1;
+                        flag=true;
                         break;
                     case 2:
+                        screenController.setScreen(ScreensFramework.screenTHome);
+                        activeUserType = 2;
+                        flag=true;
+                        break;
+                    case 3:
                         screenController.setScreen(ScreensFramework.screenMHome);
-                        activeUserType=2;
+                        activeUserType = 3;
+                        flag=true;
                         break;
                     default:
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -85,6 +89,11 @@ public class AuthorizationController implements Initializable, ControlledScreen 
                         alert.setHeaderText(null);
                         alert.setContentText("No user found!");
                         alert.showAndWait();
+                }
+                if (flag) {
+                    System.out.println(activeUser.getUserId());
+                    System.out.println(activeUser.getUserId()+"Пользователь " + activeUser.getType() + " " + activeUser.getLogin() + " вошел в систему");
+                    ScreenController.setNewAction(activeUser.getId(), "Пользователь " + activeUser.getType() + " " + activeUser.getLogin() + " вошел в систему");
                 }
             }
         });

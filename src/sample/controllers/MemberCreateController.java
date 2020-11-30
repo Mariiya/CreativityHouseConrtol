@@ -26,6 +26,8 @@ import java.util.Date;
 import java.util.Random;
 import java.util.regex.Pattern;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 public class MemberCreateController {
 
     @FXML
@@ -232,6 +234,7 @@ public class MemberCreateController {
                                 if (userService.create(email, password, "member", memberService.getLastAddedMember()) > 0) {
                                     screenController.alert(Alert.AlertType.INFORMATION, "OK", "New memeber created!\n Login " +
                                             email + " password" + password);
+                                    ScreenController.setNewAction(activeUser.getId(),"Новый участник "+ first_name+" "+las_name +" создан");
                                 }
                             }
                             first_name_input.clear();

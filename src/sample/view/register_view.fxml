@@ -23,9 +23,14 @@
                   <Font name="Cambria" size="39.0" />
                </font>
             </Label>
-            <ImageView layoutX="37.0" layoutY="6.0">
+            <ImageView layoutX="810.0" layoutY="6.0">
                <image>
                   <Image url="@sources/icons8-edit-property-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="dack_img" fitHeight="56.0" fitWidth="64.0" layoutX="29.0" layoutY="14.0">
+               <image>
+                  <Image url="@sources/icons8-back-arrow-100.png" />
                </image>
             </ImageView>
          </children>

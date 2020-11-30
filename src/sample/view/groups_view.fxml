@@ -110,13 +110,13 @@
                   <Font name="Cambria" size="14.0" />
                </font>
             </CheckBox>
-            <TextField fx:id="monday_time_input" layoutX="163.0" layoutY="21.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
-            <TextField fx:id="tue_time_input" layoutX="163.0" layoutY="51.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
-            <TextField fx:id="wed_time_input" layoutX="163.0" layoutY="84.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
-            <TextField fx:id="thu_time_input" layoutX="163.0" layoutY="116.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
-            <TextField fx:id="fri_time_input" layoutX="163.0" layoutY="146.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
-            <TextField fx:id="sat_time_input" layoutX="163.0" layoutY="176.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
-            <TextField fx:id="sun_time_input" layoutX="163.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="time" />
+            <TextField fx:id="monday_time_input" layoutX="163.0" layoutY="21.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
+            <TextField fx:id="tue_time_input" layoutX="163.0" layoutY="51.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
+            <TextField fx:id="wed_time_input" layoutX="163.0" layoutY="84.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
+            <TextField fx:id="thu_time_input" layoutX="163.0" layoutY="116.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
+            <TextField fx:id="fri_time_input" layoutX="163.0" layoutY="146.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
+            <TextField fx:id="sat_time_input" layoutX="163.0" layoutY="176.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
+            <TextField fx:id="sun_time_input" layoutX="163.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="time" text="00:00:00" />
             <Button fx:id="create_lessons_btn" layoutX="127.0" layoutY="250.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Set" textFill="#ffecb3">
                <font>
                   <Font size="14.0" />
@@ -146,7 +146,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="done_group_btn" layoutX="383.0" layoutY="313.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+      <Button fx:id="done_group_btn" disable="true" layoutX="383.0" layoutY="313.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
          <font>
             <Font size="14.0" />
          </font>

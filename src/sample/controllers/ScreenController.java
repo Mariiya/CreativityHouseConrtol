@@ -12,13 +12,16 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import sample.service.UserHistoryService;
+
 import java.io.IOException;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {
-
+    
     private HashMap<String, Node> screens = new HashMap<>();
 
+    
     public ScreenController() {
         super();
     }
@@ -92,11 +95,16 @@ public class ScreenController extends StackPane {
         }
     }
 
-    public static void alert(Alert.AlertType type,String title,String message) {
+    public static void alert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public static void setNewAction(int userId, String descr) {
+        UserHistoryService service = new UserHistoryService();
+        service.create(userId,descr);
     }
 }

@@ -3,6 +3,8 @@ package sample.service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javafx.scene.control.Alert;
+import sample.controllers.ScreenController;
 import sample.dao.LessonDao;
 import sample.model.TimeTable;
 import sample.model.Lessons;
@@ -82,6 +84,9 @@ public class LessonService {
         try {
             lessonDao.create(lessonDay, groupId, time, duration);
         } catch (SQLException throwables) {
+            if(throwables.getMessage().contains("Duplicate entry")){
+                ScreenController.alert(Alert.AlertType.ERROR,"На этот день недели уже есть урок!",throwables.getMessage());
+            }
             throwables.printStackTrace();
         }
     }

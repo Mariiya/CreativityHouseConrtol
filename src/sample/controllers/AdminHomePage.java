@@ -5,23 +5,31 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.DefaultStringConverter;
 import sample.model.User;
 import sample.service.UserService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.TableColumn.CellEditEvent;
+
+import static sample.controllers.AuthorizationController.activeUser;
 
 
 public class AdminHomePage implements Initializable,ControlledScreen {
@@ -139,9 +147,23 @@ public class AdminHomePage implements Initializable,ControlledScreen {
 
         users_history_btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-
-            }
-        });
+              //  screenController.setScreen(ScreensFramework.screenHistory);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/sample/view/users_histoty.fxml"));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 900, 700);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage stage = new Stage();
+                stage.setScene(scene);   stage.setTitle("New Member");
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(
+                        ((Node)event.getSource()).getScene().getWindow() );
+                stage.showAndWait();
+                           }
+                    });
 
         edit_users_btn.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -156,7 +178,7 @@ public class AdminHomePage implements Initializable,ControlledScreen {
                 User user = users_table.getItems().get(index);
                 service.deleteUser(user.getId());
                 users_table.getItems().remove(index);
-
+                ScreenController.setNewAction(activeUser.getId(),"Пользователь "+user.getLogin()+" удален");
             }
         });
 

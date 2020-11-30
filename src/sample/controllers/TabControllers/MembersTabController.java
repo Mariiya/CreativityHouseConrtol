@@ -20,6 +20,8 @@ import sample.service.MemberService;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static sample.controllers.AuthorizationController.activeUser;
+
 public class MembersTabController {
     @FXML
     private TableColumn<Member, String> med_date_col, member_birth_date_col;
@@ -76,6 +78,7 @@ public class MembersTabController {
                 Member memeber = members_table.getItems().get(index);
                 service.delete(memeber.getMemberId());
                 members_table.getItems().remove(index);
+                ScreenController.setNewAction(activeUser.getId(),"Учасник "+memeber.getLastName()+ " "+ memeber.getFirstName()+"удален");
             }
         });
         done_member_btn.setOnAction(new EventHandler<ActionEvent>() {

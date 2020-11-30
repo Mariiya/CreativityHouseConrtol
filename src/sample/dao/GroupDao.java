@@ -125,7 +125,7 @@ public class GroupDao {
         stmnt.execute("DELETE FROM groups WHERE group_id=" + id + ";");
     }
     public boolean create(int age_min,int age_max,int max_memb,int manager_id,int section_id) throws SQLException {
-        System.out.println(manager_id);
+
       return  stmnt.execute("INSERT INTO groups VALUES (NULL,"+age_min+","+age_max+","+max_memb+","+manager_id+","+section_id+");");
     }
 

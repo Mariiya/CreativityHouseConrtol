@@ -21,9 +21,14 @@
                   <Font name="Cambria" size="39.0" />
                </font>
             </Label>
-            <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="45.0" layoutY="13.0">
+            <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="806.0" layoutY="13.0">
                <image>
                   <Image url="@sources/icons8-flip-chart-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="back_img" fitHeight="56.0" fitWidth="62.0" layoutX="28.0" layoutY="9.0">
+               <image>
+                  <Image url="@sources/back.png" />
                </image>
             </ImageView>
          </children>

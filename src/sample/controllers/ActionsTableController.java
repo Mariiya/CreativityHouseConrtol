@@ -10,6 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import sample.model.Action;
 import sample.service.ActionService;
 
+import static sample.controllers.AuthorizationController.activeUser;
 
 
 public class ActionsTableController {
@@ -78,6 +79,7 @@ public class ActionsTableController {
                 Action a = actions_table.getItems().get(index);
                 service.delete(a.getEventId(),a.getNumber());
                 actions_table.getItems().remove(index);
+                ScreenController.setNewAction(activeUser.getId(),"Выступление "+a.getactioneName()+" удалено");
             }
         });
         done_btn.setOnAction(new EventHandler<ActionEvent>() {
