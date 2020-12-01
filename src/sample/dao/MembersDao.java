@@ -1,10 +1,14 @@
 package sample.dao;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sample.model.Member;
+import sample.model.Request;
 
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MembersDao extends  BaseDaoUtils{
@@ -48,6 +52,7 @@ public class MembersDao extends  BaseDaoUtils{
         }
         return null;
     }
+
 
     public void updateMedCertificate(int memberId, String newDate) throws SQLException {
         stmnt.executeUpdate("UPDATE members set medical_certificate_date='" + newDate + "' WHERE member_id=" + memberId + ";");

@@ -58,4 +58,30 @@ public abstract class BaseDaoUtils {
 
         return sb.toString();
     }
+
+   public String getWeek(int i) {
+        return switch (i) {
+            case 1 -> "Monday";
+            case 2 -> "Tuesday";
+            case 3 -> "Wednesday";
+            case 4 -> "Thursday";
+            case 5 -> "Friday";
+            case 6 -> "Saturday";
+            case 7 -> "Sunday";
+            default -> "Unsigt";
+        };
+    }
+
+   public int getWeekBack(String day) {
+        return switch (day) {
+            case "Monday" -> 1;
+            case "Tuesday" -> 2;
+            case "Wednesday" -> 3;
+            case "Thursday" -> 4;
+            case "Friday" -> 5;
+            case "Saturday" -> 6;
+            case "Sunday" -> 7;
+            default -> 0;
+        };
+    }
 }

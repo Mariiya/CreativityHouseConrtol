@@ -35,13 +35,12 @@
             </ImageView>
          </children>
       </Pane>
-      <Button layoutX="715.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="OK" textFill="#ffecb3">
+      <Button fx:id="ok_btn" layoutX="715.0" layoutY="137.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="OK" textFill="#ffecb3">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <ChoiceBox layoutX="43.0" layoutY="139.0" prefHeight="25.0" prefWidth="318.0" style="-fx-background-color: #FFA000;" />
-      <DatePicker layoutX="439.0" layoutY="140.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: #FFA000;" />
+      <DatePicker fx:id="date_select" layoutX="439.0" layoutY="140.0" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: #FFA000;" />
       <Label layoutX="43.0" layoutY="96.0" prefHeight="24.0" prefWidth="64.0" text="Group">
          <font>
             <Font name="Cambria Bold" size="20.0" />
@@ -52,22 +51,23 @@
             <Font name="Cambria Bold" size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="43.0" layoutY="198.0" prefHeight="416.0" prefWidth="830.0" stylesheets="@sources/time_table_style.css">
+      <TableView fx:id="register_table" layoutX="43.0" layoutY="198.0" prefHeight="416.0" prefWidth="830.0" stylesheets="@sources/time_table_style.css">
         <columns>
-          <TableColumn prefWidth="93.0" text="№" />
-          <TableColumn prefWidth="653.0" text="Member name" />
-            <TableColumn minWidth="0.0" prefWidth="84.0" text="presence" />
+          <TableColumn fx:id="num_col" prefWidth="93.0" text="№" />
+          <TableColumn fx:id="member_col" prefWidth="653.0" text="Member name" />
+            <TableColumn fx:id="presence_col" minWidth="0.0" prefWidth="84.0" text="presence" />
         </columns>
       </TableView>
-      <Button layoutX="698.0" layoutY="633.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+      <Button fx:id="presence_done" disable="true" layoutX="698.0" layoutY="633.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="46.0" layoutY="633.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="View  previous" textFill="#ffecb3">
+      <Button fx:id="view_previous_btn" layoutX="46.0" layoutY="633.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="View  previous" textFill="#ffecb3">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <ComboBox fx:id="group_list" layoutX="43.0" layoutY="140.0" prefHeight="25.0" prefWidth="363.0" style="-fx-background-color: #FFA000;" />
    </children>
 </AnchorPane>

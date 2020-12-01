@@ -42,24 +42,7 @@ public class GroupDao extends BaseDaoUtils{
     }
 
 
-    public List<String> getAllGroups(){
-        try (
-                ResultSet rs = stmnt.executeQuery("select group_id,\n" +
-                        "       CONCAT(s.section_name,' ',age_min,'-',age_max,' ',s.type) as `group_name` from  `groups`\n" +
-                        "                left join sections s on `groups`.section_id = s.section_id\n" +
-                        "GROUP BY group_name;");
-        ){
-            List<String>types=new ArrayList<>();
-            while(rs.next()){
-                String type = rs.getString("type");
-                types.add(type);
-            }
-            return types;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-    }
+
 
 
     public List<Group> getGroupsListByManagerId(int manager_id) {

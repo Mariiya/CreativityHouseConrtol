@@ -5,10 +5,13 @@ import javafx.collections.ObservableList;
 import sample.dao.GroupDao;
 import sample.dao.SectionsDao;
 import sample.model.Group;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 
 
 public class GroupService {
@@ -41,6 +44,7 @@ public class GroupService {
         }
         return -1;
     }
+
 
 
     public ObservableList<Group> getAllGroups() {
