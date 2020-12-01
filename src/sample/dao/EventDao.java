@@ -6,20 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventDao {
-    private Connection connection;
-    private Statement stmnt;
-
-    public EventDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
+public class EventDao extends BaseDaoUtils {
 
     public List<Event> getEventList() {
         try (
@@ -43,21 +30,21 @@ public class EventDao {
     }
 
     public boolean create (String time,String name,String date,String addr) throws SQLException {
-       return stmnt.execute("INSERT INTO Events VALUES(NULL,'" +name+ "','"+addr+"','"+date+"','"+time+"');");
+       return stmnt.execute("INSERT INTO Events VALUES(NULL,'" +addSlashes(name)+ "','"+addSlashes(addr)+"','"+addSlashes(date)+"','"+addSlashes(time)+"');");
     }
     public int delete(int event_id) throws SQLException {
         return stmnt.executeUpdate("DELETE FROM  Events WHERE event_id="+event_id+";");
     }
     public int updateName(int event_id,String newVal) throws SQLException {
-        return stmnt.executeUpdate("UPTADE Events SET event_name='"+newVal+"' WHERE event_id="+event_id+";");
+        return stmnt.executeUpdate("UPTADE Events SET event_name='"+addSlashes(newVal)+"' WHERE event_id="+event_id+";");
     }
     public int updateAddr(int event_id,String newVal) throws SQLException {
-        return stmnt.executeUpdate("UPTADE Events SET event_addr='"+newVal+"' WHERE event_id="+event_id+";");
+        return stmnt.executeUpdate("UPTADE Events SET event_addr='"+addSlashes(newVal)+"' WHERE event_id="+event_id+";");
     }
     public int updateTime(int event_id,String newVal) throws SQLException {
-        return stmnt.executeUpdate("UPTADE Events SET event_time='"+newVal+"' WHERE event_id="+event_id+";");
+        return stmnt.executeUpdate("UPTADE Events SET event_time='"+addSlashes(newVal)+"' WHERE event_id="+event_id+";");
     }
     public int updateDate(int event_id,String newVal) throws SQLException {
-        return stmnt.executeUpdate("UPTADE Events SET event_date='"+newVal+"' WHERE event_id="+event_id+";");
+        return stmnt.executeUpdate("UPTADE Events SET event_date='"+addSlashes(newVal)+"' WHERE event_id="+event_id+";");
     }
 }

@@ -14,11 +14,7 @@ public class MemberService {
     private ObservableList<Member> allMembers;
 
     public MemberService() {
-        try {
-            membersDao = new MembersDao();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        membersDao = new MembersDao();
         allMembers = FXCollections.observableArrayList(membersDao.getMembersList());
     }
 

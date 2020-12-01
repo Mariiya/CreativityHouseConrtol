@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import sample.service.UserHistoryService;
 
 import java.io.IOException;
+import java.text.StringCharacterIterator;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {
@@ -107,4 +108,5 @@ public class ScreenController extends StackPane {
         UserHistoryService service = new UserHistoryService();
         service.create(userId,descr);
     }
+
 }

@@ -7,19 +7,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MembersDao {
-    private Connection connection;
-    private Statement stmnt;
-
-    public MembersDao() throws SQLException {
-
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
+public class MembersDao extends  BaseDaoUtils{
 
     public int create(String fname,String lname,String pname, String pphone,String birthDate,String birtCer, String medDate) throws SQLException {
         return  stmnt.executeUpdate("INSERT INTO Members VALUES\n" +
-                "        (NULL, '"+fname+"', '"+lname+"', '"+birthDate+"', '"+ birtCer+"', '"+medDate+"', '"+pname+"', '"+pphone+"')\n" +
+                "        (NULL, '"+addSlashes(fname)+"', '"+addSlashes(lname)+"', '"+addSlashes(birthDate)+"', '"+ addSlashes(birtCer)+"', '"+medDate+"', '"+addSlashes(pname)+"', '"+addSlashes(pphone)+"')\n" +
                 "        ;");
 
     }
@@ -30,12 +22,6 @@ public class MembersDao {
             lastId= rs.getInt("max");
         }
         return lastId;
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
     }
 
     public List<Member> getMembersList() {
@@ -68,15 +54,15 @@ public class MembersDao {
     }
 
     public void updateLastName(int memberId, String newLastName) throws SQLException {
-        stmnt.executeUpdate("UPDATE members set last_name='" + newLastName + "' WHERE member_id=" + memberId + ";");
+        stmnt.executeUpdate("UPDATE members set last_name='" + addSlashes(newLastName) + "' WHERE member_id=" + memberId + ";");
     }
 
     public void updatePhoneNumber(int memberId, String newPhone) throws SQLException {
-        stmnt.executeUpdate("UPDATE members set parent_phone_number='" + newPhone + "' WHERE member_id=" + memberId + ";");
+        stmnt.executeUpdate("UPDATE members set parent_phone_number='" + addSlashes(newPhone) + "' WHERE member_id=" + memberId + ";");
     }
 
     public void updateParentName(int memberId, String newParentName) throws SQLException {
-        stmnt.executeUpdate("UPDATE members set parent_name='" + newParentName + "' WHERE member_id=" + memberId + ";");
+        stmnt.executeUpdate("UPDATE members set parent_name='" + addSlashes(newParentName) + "' WHERE member_id=" + memberId + ";");
     }
 
 

@@ -15,11 +15,7 @@ public class StaffService {
     private ObservableList<Employee> allEmployees;
 
     public StaffService() {
-        try {
-            staffDao = new StaffDao();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        staffDao = new StaffDao();
         allEmployees = FXCollections.observableArrayList(staffDao.getStaffList());
     }
     public int create(String fname,String lname,String pos, String phone,int max_hours,String spec)  {

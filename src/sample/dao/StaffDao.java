@@ -7,18 +7,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaffDao {
-    private Connection connection;
-    private Statement stmnt;
-
-    public StaffDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
+public class StaffDao extends BaseDaoUtils{
 
     public int create(String fname,String lname,String pos, String phone,int max_hours,String spec) throws SQLException {
         return  stmnt.executeUpdate("INSERT INTO Staff VALUES\n" +
-                "        (NULL, '"+fname+"', '"+lname+"', '"+phone+"', '"+pos+"', "+max_hours+", '"+spec+"');");
+                "        (NULL, '"+addSlashes(fname)+"', '"+addSlashes(lname)+"', '"+addSlashes(phone)+"', '"+addSlashes(pos)+"', "+max_hours+", '"+addSlashes(spec)+"');");
     }
     public int getLastAddedEmployee() throws SQLException {
         ResultSet rs = stmnt.executeQuery("SELECT max(employee_id) as max from `staff`;");
@@ -29,11 +22,6 @@ public class StaffDao {
         return lastId;
     }
 
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
 
     public List<Employee> getStaffList() {
         try (
@@ -60,11 +48,11 @@ public class StaffDao {
     }
 
     public void updatePosition(int empId, String newPosition) throws SQLException {
-        stmnt.executeUpdate("UPDATE staff set position ='" + newPosition + "' WHERE employee_id=" + empId + ";");
+        stmnt.executeUpdate("UPDATE staff set position ='" + addSlashes(newPosition) + "' WHERE employee_id=" + empId + ";");
     }
 
     public void updateLastName(int empId, String newLastName) throws SQLException {
-        stmnt.executeUpdate("UPDATE staff set last_name='" + newLastName + "' WHERE employee_id=" + empId + ";");
+        stmnt.executeUpdate("UPDATE staff set last_name='" + addSlashes(newLastName) + "' WHERE employee_id=" + empId + ";");
     }
 
     public void updateMaxWHours(int empId, int newHours) throws SQLException {
@@ -72,7 +60,7 @@ public class StaffDao {
     }
 
     public void updateSpecialization(int empId, String newSpecialization) throws SQLException {
-        stmnt.executeUpdate("UPDATE staff set specialization ='" + newSpecialization + "' WHERE employee_id=" + empId + ";");
+        stmnt.executeUpdate("UPDATE staff set specialization ='" + addSlashes(newSpecialization) + "' WHERE employee_id=" + empId + ";");
     }
     public void updatePhone(int empId, String newphone) throws SQLException {
         stmnt.executeUpdate("UPDATE staff set phone_number ='" + newphone + "' WHERE employee_id=" + empId + ";");

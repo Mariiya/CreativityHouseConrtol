@@ -133,10 +133,11 @@ public class GroupsController implements ControlledScreen {
             @Override
             public void handle(ActionEvent event) {
                 int index = groups_table.getSelectionModel().getSelectedIndex();
-                Group group = groups_table.getItems().get(index);
-                service.delete(group.getGroupId());
-                groups_table.getItems().remove(index);
-
+                if(index>0) {
+                    Group group = groups_table.getItems().get(index);
+                    service.delete(group.getGroupId());
+                    groups_table.getItems().remove(index);
+                }
             }
         });
         done_group_btn.setOnAction(new EventHandler<ActionEvent>() {

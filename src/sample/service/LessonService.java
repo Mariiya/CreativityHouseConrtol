@@ -17,12 +17,7 @@ public class LessonService {
     private ObservableList<Lessons> lessons;
 
     public LessonService() {
-        try {
             lessonDao = new LessonDao();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
         try {
             lessons = FXCollections.observableArrayList(lessonDao.getTimeTable());
         } catch (SQLException throwables) {

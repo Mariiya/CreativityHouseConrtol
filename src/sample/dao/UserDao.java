@@ -12,23 +12,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
 
-public class UserDao {
-
-
-    private Connection connection;
-    private Statement stmnt;
-
-    public UserDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
-
+public class UserDao extends BaseDaoUtils {
 
     public List<User> getUserList() {
         try (
@@ -53,7 +37,7 @@ public class UserDao {
 
     public boolean isEmail(String email) {
         try (
-                ResultSet rs = stmnt.executeQuery("select * from users WHERE login='"+email+"';");
+                ResultSet rs = stmnt.executeQuery("select * from users WHERE login='"+addSlashes(email)+"';");
         ) {
             int count=0;
             while (rs.next()) {
@@ -81,7 +65,7 @@ public class UserDao {
     }
 
     public int create(String login, String passw, String userType, int user_num) throws SQLException {
-        return stmnt.executeUpdate("INSERT INTO Users VALUES (NULL,'" + login + "','" + passw + "','" + userType + "'," + user_num + ");");
+        return stmnt.executeUpdate("INSERT INTO Users VALUES (NULL,'" + addSlashes(login) + "','" + passw + "','" + addSlashes(userType) + "'," + user_num + ");");
     }
 
     public void delete(Integer id) throws SQLException {

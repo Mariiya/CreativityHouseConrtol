@@ -3,28 +3,12 @@ package sample.dao;
 
 import sample.model.TimeTable;
 import sample.model.Lessons;
-
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class LessonDao {
 
-    private Connection connection;
-    private Statement stmnt;
-
-    public LessonDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
+public class LessonDao extends BaseDaoUtils {
 
 
     public List<TimeTable> getGroupTimeTable() {
@@ -92,7 +76,7 @@ public class LessonDao {
     }
 
     public void create(int lessonDay, int groupId, String time, int duration) throws SQLException {
-        stmnt.execute("INSERT INTO Lessons VALUES(" + lessonDay + "," + groupId + ",'" + time + "'," + duration + ",NULL);");
+        stmnt.execute("INSERT INTO Lessons VALUES(" + lessonDay + "," + groupId + ",'" + addSlashes(time) + "'," + duration + ",NULL);");
     }
 
 
@@ -142,7 +126,7 @@ public class LessonDao {
     }
 
     public void updateTime(int groupId, String newTime, String week) throws SQLException {
-        stmnt.executeUpdate("UPDATE lessons set time='" + newTime + "' WHERE lesson_day_of_week=" + getWeekBack(week) + " AND group_id=" + groupId + ";");
+        stmnt.executeUpdate("UPDATE lessons set time='" + addSlashes(newTime) + "' WHERE lesson_day_of_week=" + getWeekBack(week) + " AND group_id=" + groupId + ";");
     }
 
     public void updateRoom(int groupId, int newRoom, String week) throws SQLException {

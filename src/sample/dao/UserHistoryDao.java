@@ -1,29 +1,13 @@
 package sample.dao;
 
-import sample.model.User;
+
 import sample.model.UsersHistory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserHistoryDao {
-
-
-    private Connection connection;
-    private Statement stmnt;
-
-    public UserHistoryDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
-
+public class UserHistoryDao extends BaseDaoUtils {
 
     public List<UsersHistory> getUserHistoryList() {
         try (
@@ -60,7 +44,7 @@ public class UserHistoryDao {
         return null;
     }
     public int create(int userId, String descr) throws SQLException {
-        return stmnt.executeUpdate("INSERT INTO userHistory VALUES (NULL," + userId + ",NULL,NULL,'" + descr + "');");
+        return stmnt.executeUpdate("INSERT INTO userHistory VALUES (NULL," + userId + ",NULL,NULL,'" + addSlashes(descr) + "');");
     }
     public int clear() throws SQLException {
         return stmnt.executeUpdate("DELETE FROM  userHistory;");

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane prefHeight="378.0" prefWidth="749.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.RequestsController">
+    <children>
+        <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="749.0" style="-fx-background-color: #FFC107;">
+            <children>
+                <Label layoutX="122.0" layoutY="10.0" prefHeight="56.0" prefWidth="394.0" text="Requests" textFill="#ffecb3">
+                    <font>
+                        <Font name="Cambria" size="39.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="56.0" fitWidth="63.0" layoutX="666.0" layoutY="10.0">
+                    <image>
+                        <Image url="@sources/icons8-user-groups-100.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <TableView fx:id="request_table" layoutY="75.0" prefHeight="238.0" prefWidth="749.0" style="-fx-border-width: 3;" stylesheets="@sources/table_style.css">
+            <columns>
+                <TableColumn fx:id="member_col" prefWidth="336.0" text="Member" />
+                <TableColumn fx:id="section_col" prefWidth="166.0" text="Section request" />
+            <TableColumn fx:id="date_col" prefWidth="85.0" text="Date" />
+                <TableColumn fx:id="approve_col" prefWidth="155.0" text="Approve to" />
+            </columns>
+        </TableView>
+        <Button fx:id="edit_btn" layoutX="570.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Edit" textFill="#ffecb3">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+      <Button fx:id="done_btn" disable="true" layoutX="375.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #7C4DFF;" text="Done" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="create_group_btn" layoutX="14.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #000000;" text="Create New group" textFill="#ffecb3">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

@@ -27,12 +27,8 @@ public class PaymentService {
     private ObservableList<Payment> allPayments;
 
     public PaymentService() {
-        try {
             paymentDao = new PaymentDao();
             groupDao=new GroupDao();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         allPayments = FXCollections.observableArrayList(paymentDao.getPaymentsList());
 
     }

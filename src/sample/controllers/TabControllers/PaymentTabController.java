@@ -50,8 +50,6 @@ public class PaymentTabController {
 
     private ScreenController screenController;
     private PaymentService service;
-    List<String> sections = new ArrayList<>();
-    ObservableList<String> targetList;
     LocalDateTime now = LocalDateTime.now();
     int member_id, group_id;
     String pref_cat;

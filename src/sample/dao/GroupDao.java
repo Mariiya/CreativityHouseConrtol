@@ -3,23 +3,9 @@ package sample.dao;
 import sample.model.Group;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;;
 
-public class GroupDao {
-    private Connection connection;
-    private Statement stmnt;
-
-    public GroupDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
+public class GroupDao extends BaseDaoUtils{
 
     public List<Group> getGroupsList() {
         try (
@@ -111,6 +97,7 @@ public class GroupDao {
         return null;
     }
 
+
     public void updateMaxAge(int id, int newAge) throws SQLException {
         stmnt.executeUpdate("UPDATE groups set max_age=" +newAge + " WHERE group_id=" + id + ";");
     }
@@ -118,8 +105,8 @@ public class GroupDao {
         stmnt.executeUpdate("UPDATE groups set min_age=" +newAge + " WHERE group_id=" + id + ";");
     }
 
-    public void updateMaxMemberNum(int id, int maxMemberNum) throws SQLException {
-        stmnt.executeUpdate("UPDATE groups set max_members_num=" +maxMemberNum + " WHERE group_id=" + id + ";");
+    public int updateMaxMemberNum(int id, int maxMemberNum) throws SQLException {
+       return stmnt.executeUpdate("UPDATE groups set max_members_num=" +maxMemberNum + " WHERE group_id=" + id + ";");
     }
     public void delete(Integer id) throws SQLException {
         stmnt.execute("DELETE FROM groups WHERE group_id=" + id + ";");

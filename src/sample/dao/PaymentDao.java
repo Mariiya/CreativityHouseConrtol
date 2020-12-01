@@ -9,26 +9,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentDao {
-    private Connection connection;
-    private Statement stmnt;
-
-    public PaymentDao() throws SQLException {
-
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
+public class PaymentDao  extends BaseDaoUtils{
 
     public int create(String pDate, double amount, String prefCet, int memberId, int groupID) throws SQLException {
         return stmnt.executeUpdate("INSERT INTO Payments VALUES\n" +
-                "        (NULL, '" + pDate + "', " + amount + ", '" + prefCet + "', " + memberId + ", " + groupID + ");");
+                "        (NULL, '" + pDate + "', " + amount + ", '" + addSlashes(prefCet) + "', " + memberId + ", " + groupID + ");");
 
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
     }
 
     public ObservableList<Payment> getPaymentsList() {
@@ -86,11 +72,12 @@ public class PaymentDao {
     }
 
     public List<Payment> getGroupsForMember(String fname, String lname, String phone) throws SQLException {
-        ResultSet rs = stmnt.executeQuery("select DISTINCT payments.group_id,payments.member_id,payments.preferential_category, CONCAT(s.section_name,' ',age_min,'-',age_max,' ',s.type) as `section_name`" +
-                        " from payments left join members m on m.member_id = payments.member_id  " +
-                        "left join `groups` g on g.group_id = payments.group_id " +
-                "left join sections s on g.section_id = s.section_id" +
-                " WHERE m.first_name LIKE '%"+fname+"%' AND m.last_name LIKE '%"+lname+"%' AND m.parent_phone_number LIKE '%"+phone+"%';");
+        ResultSet rs = stmnt.executeQuery("select  payments.group_id,payments.member_id,payments.preferential_category, CONCAT(s.section_name,' ',age_min,'-',age_max,' ',s.type) as `section_name`\n" +
+                "                         from payments left join members m on m.member_id = payments.member_id\n" +
+                "                        left join `groups` g on g.group_id = payments.group_id\n" +
+                "                left join sections s on g.section_id = s.section_id\n" +
+                "                 WHERE m.first_name LIKE '%"+addSlashes(fname)+"%' AND m.last_name LIKE '%"+addSlashes(lname)+"%' AND m.parent_phone_number LIKE '%"+addSlashes(phone)+"%'\n" +
+                "AND payments.amount=-1;");
         {
             List<Payment> groupMember = new ArrayList<>();
             while(rs.next()) {

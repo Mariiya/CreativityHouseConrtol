@@ -15,11 +15,7 @@ public class ActionService {
     private ObservableList<Action> allActionsByEvent;
 
     public ActionService()  {
-        try {
             actionDao=new ActionDao();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
     }
 
     public ObservableList<Action> getEventList(int eventId) {

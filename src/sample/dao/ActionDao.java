@@ -7,20 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActionDao {
-    private Connection connection;
-    private Statement stmnt;
+public class ActionDao extends BaseDaoUtils{
 
-    public ActionDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
 
     public  ObservableList<Action>  getActionListByEvemtId(int event_id) {
         try (
@@ -57,12 +45,12 @@ public class ActionDao {
     }
 
     public boolean create (String title,int num,int eventId,int groupId) throws SQLException {
-        return stmnt.execute("INSERT INTO Actions VALUES('" +title+ "',"+num+","+eventId+","+groupId+");");
+        return stmnt.execute("INSERT INTO Actions VALUES('" +addSlashes(title)+ "',"+num+","+eventId+","+groupId+");");
     }
     public int delete(int event_id,int number) throws SQLException {
         return stmnt.executeUpdate("DELETE FROM  Actions WHERE event_id="+event_id+" AND number="+number+";");
     }
     public int updateTitle(int event_id,int number,String newVal) throws SQLException {
-        return stmnt.executeUpdate("UPTADE Actions SET action_title='"+newVal+"' WHERE event_id="+event_id+" AND number="+number+";");
+        return stmnt.executeUpdate("UPTADE Actions SET action_title='"+addSlashes(newVal)+"' WHERE event_id="+event_id+" AND number="+number+";");
     }
 }

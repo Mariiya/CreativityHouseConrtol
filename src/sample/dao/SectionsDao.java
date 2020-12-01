@@ -8,20 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SectionsDao {
-    private Connection connection;
-    private Statement stmnt;
-
-    public SectionsDao() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Creativity", "root", "root");
-        stmnt = connection.createStatement();
-    }
-
-    public void shutdown() throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
+public class SectionsDao extends BaseDaoUtils {
 public List<String> getAllTypes(){
     try (
         ResultSet rs = stmnt.executeQuery("SELECT DISTINCT (case when type LIKE '%групповые%' then 'Group' else 'Individual'end) as type from sections");
@@ -40,13 +27,13 @@ return null;
 
     public HashMap<String,Integer> getAllSectionsNames(){
         try (
-                ResultSet rs = stmnt.executeQuery("SELECT DISTINCT section_id,section_name from sections");
+                ResultSet rs = stmnt.executeQuery("SELECT DISTINCT section_id,CONCAT(section_name,' ', type) as section_name from sections");
         ){
             HashMap<String,Integer> sections_names=new HashMap<>();
             while(rs.next()){
                 int id  = rs.getInt("section_id");
-                String type = rs.getString("section_name");
-                sections_names.put(type,id);
+                String name = rs.getString("section_name");
+                sections_names.put(name,id);
             }
             return sections_names;
         } catch (SQLException throwables) {
@@ -79,11 +66,11 @@ return null;
     }
 
     public void updateName(int id, String newName) throws SQLException {
-        stmnt.executeUpdate("UPDATE sections set section_name='" + newName + "' WHERE section_id=" + id + ";");
+        stmnt.executeUpdate("UPDATE sections set section_name='" + addSlashes(newName) + "' WHERE section_id=" + id + ";");
     }
 
     public void updateDescription(int id, String newDes) throws SQLException {
-        stmnt.executeUpdate("UPDATE sections set description='" + newDes + "' WHERE section_id=" + id + ";");
+        stmnt.executeUpdate("UPDATE sections set description='" + addSlashes(newDes) + "' WHERE section_id=" + id + ";");
     }
 
     public void updateType(int id, String newType) throws SQLException {
@@ -101,7 +88,7 @@ return null;
     }
     public void create(String name,String type, int less_num,float price,String description) throws SQLException {
 
-        stmnt.execute("INSERT INTO Sections VALUES (NULL,'"+name+"','"+switchType(type)+"',"+less_num+","+price+",'"+description+"');");
+        stmnt.execute("INSERT INTO Sections VALUES (NULL,'"+addSlashes(name)+"','"+switchType(type)+"',"+less_num+","+price+",'"+addSlashes(description)+"');");
     }
     String switchType(String type){
         String typeUpdated;

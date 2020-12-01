@@ -14,11 +14,7 @@ public class UserHistoryService {
     private ObservableList<UsersHistory> allHistory;
 
     public UserHistoryService()  {
-        try {
-            dao = new UserHistoryDao();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        dao = new UserHistoryDao();
         allHistory = FXCollections.observableArrayList(dao.getUserHistoryList());
     }
     public void clear()  {

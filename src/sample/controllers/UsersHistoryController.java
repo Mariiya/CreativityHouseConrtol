@@ -54,6 +54,7 @@ public class UsersHistoryController implements ControlledScreen {
             @Override
             public void handle(ActionEvent event) {
                 service.clear();
+                users_history_table.getItems().clear();
             }
         });
     }

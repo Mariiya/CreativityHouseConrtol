@@ -5,13 +5,10 @@ import javafx.collections.ObservableList;
 import sample.dao.GroupDao;
 import sample.dao.SectionsDao;
 import sample.model.Group;
-import sample.model.Payment;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+
 
 
 public class GroupService {
@@ -64,12 +61,13 @@ public class GroupService {
         }
     }
 
-    public void updateMaxMemberNum(int id, int maxMemberNum)  {
+    public int updateMaxMemberNum(int id, int maxMemberNum)  {
         try {
-            groupDao.updateMaxMemberNum(id,maxMemberNum);
+           return groupDao.updateMaxMemberNum(id,maxMemberNum);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return -1;
     }
 
    public int getLastAddedGroup(){
@@ -80,6 +78,7 @@ public class GroupService {
         }
         return -1;
     }
+
     public ObservableList<Group>  getGroupsListByManagerId(int manager_id) {
         return  FXCollections.observableArrayList(groupDao.getGroupsListByManagerId(manager_id));
     }
