@@ -98,7 +98,7 @@ public class RegisterController implements Initializable, ControlledScreen {
         return dayCellFactory;
     }
 
-    void fillTable(int group_id) {
+    void fillTable(ObservableList list) {
         num_col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Register, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Register, String> p) {
@@ -107,12 +107,10 @@ public class RegisterController implements Initializable, ControlledScreen {
         });
 
         num_col.setSortable(false);
-
         member_col.setCellValueFactory(new PropertyValueFactory<>("memberName"));
         presence_col.setCellValueFactory(new PropertyValueFactory<>("onLesson"));
         presence_col.setCellFactory(tc -> new CheckBoxTableCell<>());
-        registerSave = service.getMembersByGroupId(group_id);
-        register_table.setItems(registerSave);
+        register_table.setItems(list);
 
     }
 
@@ -129,7 +127,8 @@ public class RegisterController implements Initializable, ControlledScreen {
                 if (index == -1) {
                     screenController.alert(Alert.AlertType.WARNING, "no group", "select group from the list");
                 } else {
-                    fillTable(groups.get(index).getGroupId());
+                    registerSave = service.getMembersByGroupId(groups.get(index).getGroupId());
+                    fillTable(registerSave);
                 }
                 presence_done.setDisable(false);
             }
@@ -196,10 +195,26 @@ public class RegisterController implements Initializable, ControlledScreen {
                         if (service.create(r.getMemberId(), r.getGroupId(),
                                 date_select.getValue().getDayOfWeek().toString(),
                                 date_select.getValue().toString(), r.getOnLesson()) == -1) {
-                            screenController.alert(Alert.AlertType.ERROR, "Error", "Error during adding");
                         }
                     }
                     screenController.alert(Alert.AlertType.INFORMATION, "OK", "All members saved in register");
+                }
+            }
+        });
+        view_previous_btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int index = -1;
+                index = group_list.getSelectionModel().getSelectedIndex();
+                if (date_select.getValue().toString().isEmpty()) {
+                    screenController.alert(Alert.AlertType.WARNING, "No date", "Select date");
+                } else {
+                    if (index == -1) {
+                        screenController.alert(Alert.AlertType.WARNING, "no group", "select group from the list");
+                    } else {
+                        registerSave = service.getMembersByGroupIdAndDate(date_select.getValue().toString(), groups.get(index).getGroupId());
+                        fillTable(registerSave);
+                    }
                 }
             }
         });
