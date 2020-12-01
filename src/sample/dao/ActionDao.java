@@ -44,8 +44,8 @@ public class ActionDao extends BaseDaoUtils{
         return null;
     }
 
-    public boolean create (String title,int num,int eventId,int groupId) throws SQLException {
-        return stmnt.execute("INSERT INTO Actions VALUES('" +addSlashes(title)+ "',"+num+","+eventId+","+groupId+");");
+    public boolean create (String title,int eventId,int groupId) throws SQLException {
+        return stmnt.execute("INSERT INTO Actions VALUES('" +addSlashes(title)+ "',"+1+","+eventId+","+groupId+");");
     }
     public int delete(int event_id,int number) throws SQLException {
         return stmnt.executeUpdate("DELETE FROM  Actions WHERE event_id="+event_id+" AND number="+number+";");

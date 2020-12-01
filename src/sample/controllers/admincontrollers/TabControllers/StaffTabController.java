@@ -1,10 +1,5 @@
-package sample.controllers.TabControllers;
+package sample.controllers.admincontrollers.TabControllers;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,16 +15,14 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
-import sample.controllers.ScreenController;
-import sample.model.Group;
-import sample.model.Member;
+import sample.controllers.main.ScreenController;
 import sample.model.Employee;
 import sample.service.StaffService;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 public class StaffTabController {
     @FXML

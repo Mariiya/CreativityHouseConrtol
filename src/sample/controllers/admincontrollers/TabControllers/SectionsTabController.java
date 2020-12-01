@@ -1,4 +1,4 @@
-package sample.controllers.TabControllers;
+package sample.controllers.admincontrollers.TabControllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,14 +12,14 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
-import sample.controllers.ScreenController;
+import sample.controllers.main.ScreenController;
 import sample.model.Section;
 
 import sample.service.SectionsService;
 
 import java.sql.SQLException;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 
 public class SectionsTabController {

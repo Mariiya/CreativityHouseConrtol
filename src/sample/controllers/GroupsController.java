@@ -5,26 +5,31 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.util.converter.IntegerStringConverter;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 import sample.model.Group;
 import sample.service.GroupService;
 import sample.service.LessonService;
 
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static sample.controllers.AuthorizationController.activeUser;
-import static sample.controllers.AuthorizationController.activeUserType;
+import static sample.controllers.main.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUserType;
 
 public class GroupsController implements ControlledScreen {
+    @FXML
+    private Pane create_group_pane;
+
     @FXML
     private ImageView back_img;
     @FXML
@@ -87,6 +92,7 @@ public class GroupsController implements ControlledScreen {
 
     @FXML
     public void initialize() {
+
         sections = service.getAllSections();
         Set<String> sourceSet = sections.keySet();
         targetList = FXCollections.observableArrayList(List.copyOf(sourceSet));
@@ -133,7 +139,7 @@ public class GroupsController implements ControlledScreen {
             @Override
             public void handle(ActionEvent event) {
                 int index = groups_table.getSelectionModel().getSelectedIndex();
-                if(index>0) {
+                if (index > 0) {
                     Group group = groups_table.getItems().get(index);
                     service.delete(group.getGroupId());
                     groups_table.getItems().remove(index);
@@ -201,17 +207,22 @@ public class GroupsController implements ControlledScreen {
         create_group_btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                if (age_max_input.getText().trim().isEmpty()
-                        || age_min_input.getText().isEmpty()
-                        || sections_box_input.getValue().toString().isEmpty()
-                        || max_num_members_input.getText().trim().isEmpty()
-                ) {
-                    controlledScreen.alert(Alert.AlertType.WARNING, "Can not creat Group", "Fill all fields");
+                if (activeUserType == 1) {
+                    create_group_pane.setDisable(true);
+                    create_group_btn.setDisable(true);
+                    controlledScreen.alert(Alert.AlertType.WARNING, "Admin can not create groups", "Autorise as a teacher");
                 } else {
-                    service.create(Integer.parseInt(age_min_input.getText()), Integer.parseInt(age_max_input.getText()), Integer.parseInt(max_num_members_input.getText()),
-                            activeUser.getUserId(), sections.get(sections_box_input.getValue()));
-                    controlledScreen.alert(Alert.AlertType.INFORMATION, "Group", "New Group created!");
+                    if (age_max_input.getText().trim().isEmpty()
+                            || age_min_input.getText().isEmpty()
+                            || sections_box_input.getValue().isEmpty()
+                            || max_num_members_input.getText().trim().isEmpty()
+                    ) {
+                        controlledScreen.alert(Alert.AlertType.WARNING, "Can not creat Group", "Fill all fields");
+                    } else {
+                        if (service.create(Integer.parseInt(age_min_input.getText()), Integer.parseInt(age_max_input.getText()), Integer.parseInt(max_num_members_input.getText()),
+                                activeUser.getUserId(), sections.get(sections_box_input.getValue())) != -1)
+                            controlledScreen.alert(Alert.AlertType.INFORMATION, "Group", "New Group created!");
+                    }
                 }
             }
         });
@@ -255,15 +266,15 @@ public class GroupsController implements ControlledScreen {
                         LessonService lessonService = new LessonService();
                         if (monday_check_box.isSelected() && !mon.isEmpty())
                             lessonService.create(1, id, monday_time_input.getText(), Integer.parseInt(monday_dur_input.getText()));
-                        if (tue_check_box.isSelected()&& !thu.isEmpty())
+                        if (tue_check_box.isSelected() && !thu.isEmpty())
                             lessonService.create(2, id, tue_time_input.getText(), Integer.parseInt(tue_dur_input.getText()));
                         if (wed_check_box.isSelected() && !wed.isEmpty())
                             lessonService.create(3, id, wed_time_input.getText(), Integer.parseInt(wed_dur_input.getText()));
-                        if (thu_check_box.isSelected() &&!thu.isEmpty())
+                        if (thu_check_box.isSelected() && !thu.isEmpty())
                             lessonService.create(4, id, thu_time_input.getText(), Integer.parseInt(thu_dur_input.getText()));
-                        if (fri_check_box.isSelected() &&!fri.isEmpty())
+                        if (fri_check_box.isSelected() && !fri.isEmpty())
                             lessonService.create(5, id, fri_time_input.getText(), Integer.parseInt(fri_dur_input.getText()));
-                        if (sat_check_box.isSelected()&& !sat.isEmpty())
+                        if (sat_check_box.isSelected() && !sat.isEmpty())
                             lessonService.create(6, id, sat_time_input.getText(), Integer.parseInt(sat_dur_input.getText()));
                         if (sun_check_box.isSelected() && !sun.isEmpty())
                             lessonService.create(7, id, sun_time_input.getText(), Integer.parseInt(sun_dur_input.getText()));

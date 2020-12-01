@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="391.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.CreateControllers.ActionCreatecontroller">
+        <children>
+            <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="482.0" style="-fx-background-color: #FFC107;">
+                <children>
+                    <Label layoutX="139.0" layoutY="10.0" prefHeight="56.0" prefWidth="204.0" text="New Action" textFill="#ffecb3">
+                        <font>
+                            <Font name="Cambria" size="39.0" />
+                        </font>
+                    </Label>
+                    <ImageView fitHeight="68.0" fitWidth="71.0" layoutX="40.0" layoutY="6.0">
+                        <image>
+                            <Image url="@sources/logo.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </Pane>
+            <AnchorPane layoutX="-3.0" layoutY="76.0" minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="485.0">
+                <children>
+                    <TextField fx:id="title_input" layoutX="36.0" layoutY="60.0" prefHeight="33.0" prefWidth="433.0" promptText="Title" />
+                    <Label layoutX="196.0" layoutY="22.0" prefHeight="24.0" prefWidth="115.0" text="Action Title">
+                        <font>
+                            <Font name="Cambria Bold" size="20.0" />
+                        </font>
+                    </Label>
+            <ChoiceBox fx:id="group_id" layoutX="36.0" layoutY="138.0" prefHeight="33.0" prefWidth="433.0" style="-fx-background-color: #FFC107;" />
+            <Label layoutX="222.0" layoutY="106.0" prefHeight="24.0" prefWidth="62.0" text="Group">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="event_id" layoutX="37.0" layoutY="205.0" prefHeight="33.0" prefWidth="433.0" style="-fx-background-color: #FFC107;" />
+            <Label layoutX="222.0" layoutY="171.0" prefHeight="24.0" prefWidth="62.0" text="Events">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </Label>
+                </children>
+            </AnchorPane>
+              <Button fx:id="add_btn" layoutX="168.0" layoutY="336.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="139.0" style="-fx-background-color: #7C4DFF;" text="Add" textFill="#ffecb3">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Button>
+        </children>
+    </AnchorPane>

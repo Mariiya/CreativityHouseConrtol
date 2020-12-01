@@ -16,7 +16,7 @@ public class GroupService {
     private SectionsDao sectionDao;
     private ObservableList<Group> allGroups;
 
-    public GroupService() throws SQLException {
+    public GroupService(){
         groupDao = new GroupDao();
         sectionDao=new SectionsDao();
         allGroups = FXCollections.observableArrayList(groupDao.getGroupsList());
@@ -32,13 +32,14 @@ public class GroupService {
             throwables.printStackTrace();
         }
     }
-    public boolean create(int age_min,int age_max,int max_memb,int manager_id,int section_id) {
+    public int create(int age_min,int age_max,int max_memb,int manager_id,int section_id) {
         try {
-           return groupDao.create(age_min,age_max,max_memb,manager_id,section_id);
+           groupDao.create(age_min,age_max,max_memb,manager_id,section_id);
+           return 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
 

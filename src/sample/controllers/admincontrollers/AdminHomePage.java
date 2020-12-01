@@ -1,4 +1,4 @@
-package sample.controllers;
+package sample.controllers.admincontrollers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,6 +18,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.DefaultStringConverter;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 import sample.model.User;
 import sample.service.UserService;
 
@@ -29,10 +31,10 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.TableColumn.CellEditEvent;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 
-public class AdminHomePage implements Initializable,ControlledScreen {
+public class AdminHomePage implements Initializable, ControlledScreen {
 
     @FXML
     private Button manage_btn, delete_users_btn;

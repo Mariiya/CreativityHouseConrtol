@@ -1,17 +1,18 @@
 package sample.controllers;
 
-import com.mysql.cj.x.protobuf.MysqlxNotice;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static sample.controllers.AuthorizationController.activeUserType;
+import static sample.controllers.main.AuthorizationController.activeUserType;
 
 public class RegisterController implements Initializable, ControlledScreen {
 

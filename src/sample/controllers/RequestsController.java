@@ -11,6 +11,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.DefaultStringConverter;
+import sample.controllers.main.AuthorizationController;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 import sample.model.Group;
 import sample.model.Request;
 import sample.service.GroupService;
@@ -21,7 +24,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 
 public class RequestsController {

@@ -1,4 +1,4 @@
-package sample.controllers.TabControllers;
+package sample.controllers.admincontrollers.TabControllers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,13 +14,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.controllers.ScreenController;
+import sample.controllers.main.ScreenController;
 import sample.model.Member;
 import sample.service.MemberService;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 public class MembersTabController {
     @FXML

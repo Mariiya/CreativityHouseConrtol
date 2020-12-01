@@ -1,4 +1,4 @@
-package sample.controllers;
+package sample.controllers.main;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -12,10 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
+import sample.controllers.main.ControlledScreen;
 import sample.service.UserHistoryService;
 
 import java.io.IOException;
-import java.text.StringCharacterIterator;
 import java.util.HashMap;
 
 public class ScreenController extends StackPane {

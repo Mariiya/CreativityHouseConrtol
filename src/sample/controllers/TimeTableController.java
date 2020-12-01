@@ -1,24 +1,23 @@
 package sample.controllers;
 
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
-import sample.model.Lessons;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 import sample.model.TimeTable;
 import sample.service.LessonService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static sample.controllers.AuthorizationController.activeUserType;
+import static sample.controllers.main.AuthorizationController.activeUserType;
 
 public class TimeTableController implements Initializable, ControlledScreen {
 

@@ -1,4 +1,4 @@
-package sample.controllers;
+package sample.controllers.main;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 import sample.dao.UserDao;
 import sample.model.User;
 import sample.service.UserService;

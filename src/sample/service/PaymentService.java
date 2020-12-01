@@ -3,20 +3,16 @@ package sample.service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import sample.controllers.ScreenController;
+import sample.controllers.main.ScreenController;
 import sample.dao.GroupDao;
 import sample.dao.PaymentDao;
 
-import sample.dao.SectionsDao;
 import sample.model.Payment;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 

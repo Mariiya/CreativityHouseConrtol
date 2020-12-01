@@ -1,9 +1,8 @@
-package sample.controllers;
+package sample.controllers.main;
 
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class ScreensFramework extends Application {

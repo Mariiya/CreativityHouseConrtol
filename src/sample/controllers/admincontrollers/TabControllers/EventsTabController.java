@@ -1,4 +1,4 @@
-package sample.controllers.TabControllers;
+package sample.controllers.admincontrollers.TabControllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,7 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.controllers.ActionsTableController;
-import sample.controllers.ScreenController;
+import sample.controllers.main.ScreenController;
 import sample.model.Event;
 import sample.service.EventService;
 
@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 
 public class EventsTabController {

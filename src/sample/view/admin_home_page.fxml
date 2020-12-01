@@ -12,7 +12,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="701.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.AdminHomePage">
+<AnchorPane prefHeight="701.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.admincontrollers.AdminHomePage">
     <children>
         <Pane layoutY="-1.0" prefHeight="76.0" prefWidth="901.0" style="-fx-background-color: #FFC107;">
             <children>

@@ -12,7 +12,7 @@ public class EventService {
     private EventDao eventDao;
     private ObservableList<Event> allEvents;
 
-    public EventService() throws SQLException {
+    public EventService()  {
         eventDao=new EventDao();
         allEvents = FXCollections.observableArrayList(eventDao.getEventList());
     }

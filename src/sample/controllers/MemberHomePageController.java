@@ -1,6 +1,8 @@
 package sample.controllers;
 
 import javafx.fxml.Initializable;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
 
 import java.net.URL;
 import java.util.ResourceBundle;

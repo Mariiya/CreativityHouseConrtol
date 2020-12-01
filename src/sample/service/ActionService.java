@@ -23,13 +23,13 @@ public class ActionService {
         return   FXCollections.observableArrayList(actions);
     }
 
-    public boolean create (String title,int num,int eventId,int groupId)  {
+    public int create (String title,int eventId,int groupId)  {
         try {
-            return actionDao.create(title, num, eventId, groupId);
+            actionDao.create(title, eventId, groupId);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return false;
+        return -1;
     }
     public int delete(int event_id,int number)  {
         try {

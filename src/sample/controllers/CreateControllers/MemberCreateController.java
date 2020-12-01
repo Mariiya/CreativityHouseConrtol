@@ -1,16 +1,15 @@
-package sample.controllers;
+package sample.controllers.CreateControllers;
 
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.css.converter.StringConverter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
+import sample.controllers.main.ScreenController;
 import sample.service.MemberService;
 import sample.service.UserService;
 
@@ -18,15 +17,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 public class MemberCreateController {
 

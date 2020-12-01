@@ -8,8 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
 import sample.model.UsersHistory;
 import sample.service.UserHistoryService;
 

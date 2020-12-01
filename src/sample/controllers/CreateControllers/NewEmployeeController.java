@@ -1,4 +1,4 @@
-package sample.controllers;
+package sample.controllers.CreateControllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import sample.controllers.main.ScreenController;
 import sample.service.StaffService;
 import sample.service.UserService;
 
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 public class NewEmployeeController {
     @FXML

@@ -1,19 +1,16 @@
-package sample.controllers.TabControllers;
+package sample.controllers.admincontrollers.TabControllers;
 
-import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
-import sample.controllers.ScreenController;
+import sample.controllers.main.ScreenController;
 import sample.model.Payment;
-import sample.model.Section;
 import sample.service.PaymentService;
 
 import java.sql.SQLException;
@@ -24,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 public class PaymentTabController {
     @FXML

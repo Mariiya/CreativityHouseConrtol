@@ -1,4 +1,4 @@
-package sample.controllers;
+package sample.controllers.admincontrollers;
 
 
 import javafx.collections.FXCollections;
@@ -12,7 +12,10 @@ import javafx.scene.control.cell.*;
 import javafx.scene.image.ImageView;
 import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.IntegerStringConverter;
-import sample.controllers.TabControllers.SectionsTabController;
+import sample.controllers.admincontrollers.TabControllers.SectionsTabController;
+import sample.controllers.main.ControlledScreen;
+import sample.controllers.main.ScreenController;
+import sample.controllers.main.ScreensFramework;
 import sample.model.Lessons;
 import sample.service.LessonService;
 
@@ -20,7 +23,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static sample.controllers.AuthorizationController.activeUser;
+import static sample.controllers.main.AuthorizationController.activeUser;
 
 
 public class AdminManagePageController implements Initializable, ControlledScreen {
